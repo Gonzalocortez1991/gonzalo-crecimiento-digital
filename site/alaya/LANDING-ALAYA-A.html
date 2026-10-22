@@ -1,0 +1,357 @@
+﻿<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>5 Bloqueos Emocionales que Frenan tu Negocio â€” Escalamiento Consciente</title>
+<meta name="description" content="GuÃ­a gratuita de Alaya y Gonzalo Crecimiento Digital. DescubrÃ­ el bloqueo emocional que frena tu negocio y destrabalo con una soluciÃ³n estratÃ©gica concreta.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300..900;1,9..144,300..900&family=Space+Mono:wght@400;700&family=Sora:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#0B0A0F;
+    --bg-2:#0F0D17;
+    --ink:#F2EFE6;
+    --ink-dim:#B9B3C2;
+    --ink-faint:#7C7688;
+    --neon:#A6FF00;          /* GCD Â· estrategia / sistema */
+    --violet:#B79CFF;        /* Alaya Â· conciencia / emociÃ³n */
+    --violet-deep:#6E5AA8;
+    --line:rgba(242,239,230,.1);
+    --line-strong:rgba(242,239,230,.22);
+    --serif:'Fraunces',serif;
+    --mono:'Space Mono',monospace;
+    --sans:'Sora',sans-serif;
+  }
+  *{margin:0;padding:0;box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{
+    background:var(--bg);color:var(--ink);font-family:var(--sans);font-weight:300;
+    line-height:1.65;-webkit-font-smoothing:antialiased;overflow-x:hidden;
+  }
+  body::before{
+    content:"";position:fixed;inset:0;z-index:0;pointer-events:none;
+    background:
+      radial-gradient(900px 600px at 88% -5%, rgba(183,156,255,.12), transparent 60%),
+      radial-gradient(800px 500px at -10% 15%, rgba(166,255,0,.06), transparent 55%),
+      radial-gradient(700px 700px at 110% 95%, rgba(183,156,255,.08), transparent 60%);
+  }
+  .wrap{position:relative;z-index:1;max-width:1080px;margin:0 auto;padding:0 22px}
+
+  .serif{font-family:var(--serif)}
+  .mono{font-family:var(--mono)}
+  .kicker{font-family:var(--mono);font-size:11px;letter-spacing:.28em;text-transform:uppercase;color:var(--ink-faint)}
+  .kicker em{font-style:normal;color:var(--neon)}
+  .violet{color:var(--violet)}
+
+  /* ===== NAV ===== */
+  .nav{position:relative;z-index:2;display:flex;justify-content:space-between;align-items:center;padding:22px 0;border-bottom:1px solid var(--line)}
+  .brand{display:flex;align-items:center;gap:12px}
+  .brand-dot{width:30px;height:30px;border-radius:50%;background:radial-gradient(circle at 30% 30%, var(--violet), var(--violet-deep));position:relative;flex:none}
+  .brand-dot::after{content:"";position:absolute;inset:0;border-radius:50%;border:1px solid var(--neon);transform:scale(1.35);opacity:.8}
+  .brand-name{font-family:var(--serif);font-weight:600;font-size:14px;letter-spacing:.02em}
+  .brand-sub{font-family:var(--mono);font-size:8.5px;letter-spacing:.2em;text-transform:uppercase;color:var(--ink-faint)}
+  .nav-tag{font-family:var(--mono);font-size:9.5px;letter-spacing:.2em;text-transform:uppercase;color:var(--ink-faint)}
+
+  /* ===== HERO ===== */
+  .hero{padding:64px 0 40px;position:relative}
+  .hero .kicker{margin-bottom:24px}
+  .hero h1{font-family:var(--serif);font-weight:700;line-height:.98;letter-spacing:-.015em;font-size:clamp(40px,8.5vw,92px)}
+  .hero h1 .dim{color:var(--ink-faint);font-weight:300}
+  .hero h1 .line2{display:block;color:var(--violet);font-style:italic;font-weight:500}
+  .hero h1 .line2 b{font-weight:700;font-style:normal;color:var(--neon)}
+  .hero-deck{margin-top:30px;max-width:560px;color:var(--ink-dim);font-size:17px;font-weight:300}
+  .hero-deck strong{color:var(--ink);font-weight:600}
+
+  /* duo split strip */
+  .duo-split{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:38px}
+  .duo-card{border:1px solid var(--line-strong);border-radius:16px;padding:20px 22px;position:relative;overflow:hidden}
+  .duo-card.yami{background:linear-gradient(160deg, rgba(183,156,255,.12), rgba(110,90,168,.04) 60%, transparent)}
+  .duo-card.gonza{background:linear-gradient(160deg, rgba(166,255,0,.10), rgba(166,255,0,.02) 60%, transparent)}
+  .duo-card .who{font-family:var(--mono);font-size:10px;letter-spacing:.22em;text-transform:uppercase;margin-bottom:10px}
+  .duo-card.yami .who{color:var(--violet)}
+  .duo-card.gonza .who{color:var(--neon)}
+  .duo-card p{font-size:14px;color:var(--ink-dim);font-weight:300}
+  .duo-card b{color:var(--ink);font-weight:600}
+
+  /* ===== FORM ===== */
+  .capture{margin-top:48px;border:1px solid var(--line-strong);border-radius:22px;overflow:hidden;
+    background:linear-gradient(165deg, rgba(183,156,255,.07), rgba(11,10,15,.4) 45%, rgba(166,255,0,.05));}
+  .capture-inner{padding:34px 30px}
+  .capture h2{font-family:var(--serif);font-weight:600;font-size:clamp(24px,4vw,34px);line-height:1.1;letter-spacing:-.01em}
+  .capture p.lede{margin-top:12px;color:var(--ink-dim);font-size:14.5px;max-width:520px}
+  form{margin-top:26px;display:grid;gap:16px}
+  .field label{display:block;font-family:var(--mono);font-size:10px;letter-spacing:.18em;text-transform:uppercase;color:var(--ink-faint);margin-bottom:8px}
+  .field input, .field select{
+    width:100%;background:rgba(11,10,15,.6);border:1px solid var(--line-strong);border-radius:12px;
+    padding:15px 16px;color:var(--ink);font-family:var(--sans);font-size:15px;font-weight:300;transition:border-color .2s,box-shadow .2s;
+  }
+  .field input::placeholder{color:var(--ink-faint)}
+  .field input:focus, .field select:focus{outline:none;border-color:var(--neon);box-shadow:0 0 0 3px rgba(166,255,0,.12)}
+  .field select{appearance:none;cursor:pointer}
+  .field.bloqueo{border-left:2px solid var(--violet);padding-left:16px;border-radius:0 12px 12px 0}
+  .submit{
+    display:inline-flex;align-items:center;justify-content:center;gap:10px;margin-top:6px;cursor:pointer;
+    font-family:var(--mono);font-size:12px;letter-spacing:.18em;text-transform:uppercase;font-weight:700;
+    color:#0B0A0F;background:linear-gradient(100deg,var(--violet),var(--neon));border:none;border-radius:999px;padding:17px 28px;
+    transition:transform .2s,box-shadow .2s;
+  }
+  .submit:hover{transform:translateY(-2px);box-shadow:0 16px 36px rgba(166,255,0,.18)}
+  .submit:disabled{opacity:.6;cursor:not-allowed;transform:none;box-shadow:none}
+  .privacy{font-family:var(--mono);font-size:9.5px;letter-spacing:.12em;text-transform:uppercase;color:var(--ink-faint);text-align:center;margin-top:14px}
+  .privacy a{color:var(--violet);text-decoration:none;border-bottom:1px solid rgba(183,156,255,.3)}
+
+  /* ===== SUCCESS ===== */
+  #success{display:none;text-align:center;padding:14px 6px}
+  #success .orb{width:96px;height:96px;border-radius:50%;margin:0 auto 24px;position:relative;background:radial-gradient(circle at 32% 30%, var(--violet), var(--violet-deep) 70%)}
+  #success .orb::before{content:"";position:absolute;inset:-14px;border-radius:50%;border:1px solid rgba(166,255,0,.5);animation:orb 6s linear infinite}
+  @keyframes orb{to{transform:rotate(360deg)}}
+  #success h2{font-family:var(--serif);font-weight:600;font-size:clamp(26px,4vw,38px);line-height:1.1}
+  #success h2 .v{color:var(--violet);font-style:italic;font-weight:500}
+  #success p{margin:16px auto 0;max-width:460px;color:var(--ink-dim);font-size:15px}
+  #success .cta-btn{display:inline-flex;align-items:center;gap:12px;margin-top:30px;font-family:var(--mono);font-size:12px;letter-spacing:.18em;text-transform:uppercase;font-weight:700;color:#0B0A0F;background:var(--neon);text-decoration:none;padding:16px 30px;border-radius:999px;transition:transform .2s,box-shadow .2s}
+  #success .cta-btn:hover{transform:translateY(-3px);box-shadow:0 18px 40px rgba(166,255,0,.22)}
+  #success .note{margin-top:18px;font-family:var(--mono);font-size:9.5px;letter-spacing:.16em;text-transform:uppercase;color:var(--ink-faint)}
+
+  /* ===== BLOCKS PREVIEW ===== */
+  .section{padding:80px 0;position:relative}
+  .section-tag{display:flex;align-items:center;gap:14px;margin-bottom:18px;font-family:var(--mono);font-size:11px;letter-spacing:.26em;text-transform:uppercase;color:var(--ink-faint)}
+  .section-tag::before{content:"";width:28px;height:1px;background:var(--neon)}
+  .section h2{font-family:var(--serif);font-weight:600;font-size:clamp(28px,4.4vw,46px);line-height:1.06;letter-spacing:-.01em;max-width:740px}
+  .cards{margin-top:40px;display:grid;grid-template-columns:1fr 1fr;gap:16px}
+  .card{border:1px solid var(--line-strong);border-radius:18px;padding:26px 26px 30px;background:rgba(242,239,230,.02)}
+  .card .n{font-family:var(--serif);font-size:34px;color:transparent;-webkit-text-stroke:1px var(--violet);font-weight:300;line-height:1}
+  .card h3{font-family:var(--serif);font-weight:600;font-size:19px;line-height:1.15;margin:12px 0 10px}
+  .card p{font-size:13.5px;color:var(--ink-dim);font-weight:300}
+  .card .two{display:flex;gap:8px;margin-top:14px;flex-wrap:wrap}
+  .pill{font-family:var(--mono);font-size:9.5px;letter-spacing:.1em;text-transform:uppercase;padding:5px 11px;border-radius:999px}
+  .pill.y{color:var(--violet);border:1px solid rgba(183,156,255,.4)}
+  .pill.g{color:var(--neon);border:1px solid rgba(166,255,0,.4)}
+
+  /* ===== CASE ===== */
+  .case{border:1px solid var(--line-strong);border-radius:22px;padding:40px;margin-top:8px;background:linear-gradient(165deg, rgba(166,255,0,.06), rgba(183,156,255,.05))}
+  .case .big{font-family:var(--serif);font-weight:700;font-size:clamp(34px,6vw,64px);line-height:1;letter-spacing:-.02em}
+  .case .big .a{color:var(--neon)}
+  .case .big .b{color:var(--violet)}
+  .case p{margin-top:16px;color:var(--ink-dim);max-width:560px;font-size:15px}
+
+  /* ===== SECONDARY CTA ===== */
+  .cta-2{margin-top:30px;text-align:center}
+  .ghost-btn{display:inline-flex;align-items:center;gap:10px;font-family:var(--mono);font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:var(--ink);border:1px solid var(--line-strong);border-radius:999px;padding:14px 26px;text-decoration:none;transition:all .2s;background:rgba(242,239,230,.03)}
+  .ghost-btn:hover{color:var(--neon);border-color:rgba(166,255,0,.5);background:rgba(166,255,0,.06)}
+
+  /* ===== FOOTER ===== */
+  .footer{border-top:1px solid var(--line);padding:34px 0 44px;font-family:var(--mono);font-size:9.5px;letter-spacing:.18em;text-transform:uppercase;color:var(--ink-faint);display:flex;justify-content:space-between;align-items:center;gap:16px;flex-wrap:wrap}
+  .footer .tags{display:flex;gap:18px;flex-wrap:wrap}
+  .footer .tags span{display:inline-flex;align-items:center;gap:8px}
+  .footer .tags span::before{content:"";width:6px;height:6px;border-radius:50%}
+  .footer .tags .g::before{background:var(--neon)}
+  .footer .tags .a::before{background:var(--violet)}
+
+  @media (max-width:760px){
+    .duo-split{grid-template-columns:1fr}
+    .cards{grid-template-columns:1fr}
+    .capture-inner{padding:28px 20px}
+    .case{padding:28px}
+    .hero{padding:44px 0 28px}
+    .section{padding:60px 0}
+  }
+  @media print{ body{background:#0B0A0F} body::before{display:none} }
+</style>
+<style>@media(max-width:760px){.hero-grid{grid-template-columns:1fr!important}.hero-grid>div:last-child{margin:0 auto}}</style>
+</head>
+<body>
+
+<!-- ===== NAV ===== -->
+<header class="wrap">
+  <nav class="nav">
+    <div class="brand">
+      <div class="brand-dot"></div>
+      <div>
+        <div class="brand-name">Escalamiento Consciente</div>
+        <div class="brand-sub">Alaya <span class="violet">Â·</span> Gonzalo Crecimiento Digital</div>
+      </div>
+    </div>
+    <div class="nav-tag">Lead magnet Â· Gratis</div>
+  </nav>
+</header>
+
+<!-- ===== HERO ===== -->
+<section class="hero wrap">
+  <div class="kicker"><em>Lead magnet</em> â€” Alaya &amp; GCD</div>
+  <h1>
+    <span class="dim">5 bloqueos</span> emocionales
+    <span class="line2">que frenan <b>tu negocio</b></span>
+  </h1>
+  <div class="hero-grid" style="display:grid;grid-template-columns:1.2fr 160px;gap:28px;align-items:center;margin-top:28px">
+    <p class="hero-deck" style="margin-top:0">
+      Y cÃ³mo destrabarlos con <strong>una soluciÃ³n estratÃ©gica concreta</strong>. Dos miradas, un solo mapa:
+      <strong>la emociÃ³n</strong> que te frena <em>y</em> <strong>la estructura</strong> que te saca del lugar.
+    </p>
+    <div style="width:160px;height:160px;border-radius:50%;overflow:hidden;border:1px solid rgba(183,156,255,.25);box-shadow:0 12px 32px rgba(0,0,0,.35);background:rgba(242,239,230,.04);flex:none">
+      <img src="/alaya/hero-alaya-gcd.png" alt="Yamila y Gonzalo â€” Alaya Ã— GCD" style="width:100%;height:100%;object-fit:cover;object-position:center top;display:block" loading="eager" onerror="this.onerror=null;this.src='/alaya/hero-alaya-gcd.jpg'">
+    </div>
+  </div>
+
+  <div class="duo-split">
+    <div class="duo-card yami">
+      <div class="who">Yamila Â· lado emocional</div>
+      <p>Detecta la <b>creencia</b> que te frena: "vender es sucio", "no merezco cobrar", "tengo que estar perfecta".</p>
+    </div>
+    <div class="duo-card gonza">
+      <div class="who">Gonzalo Â· lado digital</div>
+      <p>Te da la <b>acciÃ³n concreta</b>: cÃ³mo calcular tu precio, armar tu embudo, lanzar mÃ­nimo viable.</p>
+    </div>
+  </div>
+
+  <!-- ===== CAPTURE (form / success) ===== -->
+  <div class="capture" id="capture">
+    <div class="capture-inner">
+      <div id="formBlock">
+        <h2>DescargÃ¡ la guÃ­a gratis</h2>
+        <p class="lede">5 bloqueos Â· 5 ejercicios Â· 1 checklist de destrabe semanal. Te la enviamos a tu email al instante.</p>
+
+        <form id="leadForm" action="https://script.google.com/macros/s/AKfycbwCtlyOq2yJPhGzDCjKeTPqgHkScdXLT1W3mQLUY_Fmo45MXKnm7PB9-sFA8N3zjl8iQQ/exec" method="POST" target="hidden-frame">
+          <div class="field">
+            <label for="name">Tu nombre</label>
+            <input id="name" name="name" type="text" placeholder="CÃ³mo te llamÃ¡s" required>
+          </div>
+          <div class="field">
+            <label for="email">Tu email</label>
+            <input id="email" name="email" type="email" placeholder="donde@recibir.la.guia" required>
+          </div>
+          <div class="field bloqueo">
+            <label for="bloqueo">Â¿CuÃ¡l es tu mayor bloqueo hoy?</label>
+            <select id="bloqueo" name="bloqueo" required>
+              <option value="" disabled selected>ElegÃ­ unoâ€¦</option>
+              <option value="1">1 Â· Vender es sucio / No merezco cobrar</option>
+              <option value="2">2 Â· SÃ­ndrome del impostor / No soy suficiente</option>
+              <option value="3">3 Â· Perfeccionismo que paraliza</option>
+              <option value="4">4 Â· Agobio / Todo lo hago yo</option>
+              <option value="5">5 Â· No sÃ© por dÃ³nde empezar / Mapa disperso</option>
+            </select>
+          </div>
+          <button class="submit" type="submit" id="submitBtn">Quiero la guÃ­a gratis â†’</button>
+          <div class="privacy">Solo para enviarte la guÃ­a y contenido Ãºtil. <a href="https://landing-gcd.vercel.app/privacidad.html">Privacidad</a></div>
+        </form>
+      </div>
+
+      <div id="success">
+        <div class="orb"></div>
+        <h2>Â¡Listo! RevisÃ¡ tu <span class="v">email</span>.</h2>
+        <p>Te enviamos la guÃ­a <strong>"5 Bloqueos Emocionales"</strong> a tu correo. Si no aparece en unos minutos, mirÃ¡ la carpeta de spam.</p>
+        <a class="cta-btn" id="directLink" href="/alaya/LEAD-MAGNET-ALAYA-GCD.html" target="_blank" rel="noopener">Abrir la guÃ­a ahora â†’</a>
+        <div class="note">Y si querÃ©s destrabar tu caso concreto, escribinos por WhatsApp</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- hidden iframe to receive GAS response -->
+<iframe name="hidden-frame" style="display:none" aria-hidden="true"></iframe>
+
+<!-- ===== PREVIEW OF BLOCKS ===== -->
+<section class="section wrap">
+  <div class="section-tag">Adentro de la guÃ­a</div>
+  <h2>Cinco bloqueos que toda persona emprendedora conoceâ€¦ pero pocos saben cÃ³mo destrabar.</h2>
+  <div class="cards">
+    <div class="card">
+      <div class="n">01</div>
+      <h3>Â«Vender es sucioÂ» â€” No merezco cobrar</h3>
+      <p>El precio no es el problema. La creencia detrÃ¡s del precio, sÃ­.</p>
+      <div class="two"><span class="pill y">Origen emocional</span><span class="pill g">Precio por valor</span></div>
+    </div>
+    <div class="card">
+      <div class="n">02</div>
+      <h3>SÃ­ndrome del impostor â€” No soy suficiente</h3>
+      <p>ComparÃ¡s tu interior con el exterior de los demÃ¡s.</p>
+      <div class="two"><span class="pill y">Identidad partida</span><span class="pill g">Autoridad con IA</span></div>
+    </div>
+    <div class="card">
+      <div class="n">03</div>
+      <h3>Perfeccionismo que paraliza</h3>
+      <p>No lanzÃ¡s hasta que todo estÃ© perfecto. Y nunca lo estÃ¡.</p>
+      <div class="two"><span class="pill y">Miedo al juicio</span><span class="pill g">Lanzamiento MVP</span></div>
+    </div>
+    <div class="card">
+      <div class="n">04</div>
+      <h3>Agobio â€” Todo lo hago yo</h3>
+      <p>Tu negocio depende 100% de vos. Eso no es compromiso: es un techo.</p>
+      <div class="two"><span class="pill y">Dificultad de delegar</span><span class="pill g">Embudo automÃ¡tico</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== CASE ===== -->
+<section class="section wrap" style="padding-top:0">
+  <div class="case">
+    <div class="kicker" style="color:var(--neon)">Caso real Â· Alaya + GCD</div>
+    <div class="big" style="margin-top:14px"><span class="a">$200</span> â†’ <span class="b">$600</span></div>
+    <p>En 30 dÃ­as, con la misma clienta, el mismo servicio y el mismo mercado. Lo que cambiÃ³ fue el <strong style="color:var(--ink)">orden</strong>: primero la creencia, despuÃ©s la estrategia. Esa es la lÃ³gica que vas a encontrar en la guÃ­a.</p>
+  </div>
+  <div class="cta-2">
+    <a class="ghost-btn" href="#capture">â†‘ Volver a descargar la guÃ­a</a>
+  </div>
+</section>
+
+<!-- ===== FOOTER ===== -->
+<footer class="footer wrap">
+  <div>Escalamiento Consciente Â· Lead magnet</div>
+  <div class="tags">
+    <span class="a">Alaya â€” conciencia</span>
+    <span class="g">GCD â€” estructura</span>
+  </div>
+</footer>
+
+<script>
+  /* ====== CONFIG ======
+     ENDPOINT: pegar acÃ¡ la URL del GAS de captura Alaya (GAS-LeadCapture-Alaya.gs)
+     cuando estÃ© desplegado. Mientras quede el placeholder, el formulario
+     simula el Ã©xito para que puedas previsualizar la landing.
+     GUIDE_URL: ruta a la guÃ­a en Vercel (copiar LEAD-MAGNET-ALAYA-GCD.html a /alaya/). */
+  var CONFIG = {
+    ENDPOINT: "https://script.google.com/macros/s/AKfycbwCtlyOq2yJPhGzDCjKeTPqgHkScdXLT1W3mQLUY_Fmo45MXKnm7PB9-sFA8N3zjl8iQQ/exec",
+    GUIDE_URL: "https://drive.google.com/file/d/1FTDo1rEydcNn5830s74cxzG0mv1gTwbk/view?usp=drive_link"
+  };
+
+  var form = document.getElementById('leadForm');
+  var formBlock = document.getElementById('formBlock');
+  var success = document.getElementById('success');
+  var submitBtn = document.getElementById('submitBtn');
+  var directLink = document.getElementById('directLink');
+
+  directLink.href = CONFIG.GUIDE_URL;
+
+  function showSuccess(){
+    formBlock.style.display = 'none';
+    success.style.display = 'block';
+    success.scrollIntoView({behavior:'smooth', block:'center'});
+  }
+
+  /* El GAS devuelve un HTML que hace window.top.postMessage({status}) */
+  window.addEventListener('message', function(e){
+    if (e.data && e.data.source === 'alaya-lead'){
+      if (e.data.status === 'success') showSuccess();
+    }
+  });
+
+  form.addEventListener('submit', function(ev){
+    /* Si el ENDPOINT sigue siendo el placeholder, no enviar a GAS:
+       mostrar Ã©xito directo para previsualizar la landing. */
+    if (CONFIG.ENDPOINT.indexOf("AKfycbyXXXXXXXX") !== -1){
+      ev.preventDefault();
+      showSuccess();
+      return;
+    }
+    submitBtn.disabled = true;
+    submitBtn.textContent = 'Enviandoâ€¦';
+    /* tras enviar por el iframe, el postMessage confirma.
+       Timeout de respaldo por si el mensaje no llega. */
+    setTimeout(function(){
+      if (success.style.display !== 'block') showSuccess();
+    }, 2500);
+  });
+</script>
+</body>
+</html>

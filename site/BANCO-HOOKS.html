@@ -1,0 +1,385 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Banco de Hooks + Copies — GCD</title>
+<style>
+  :root {
+    --neon: #A6FF00; --neon-dim: rgba(166,255,0,0.5);
+    --neon-glow: rgba(166,255,0,0.12); --dark: #0a0a0a;
+    --dark2: #111; --dark3: #1a1a1a; --dark4: #222;
+    --text: #e0e0e0; --text-dim: #888; --text-muted: #555;
+    --font-body: 'Space Grotesk', sans-serif;
+    --font-mono: 'Syne Mono', monospace;
+  }
+  * { margin:0; padding:0; box-sizing:border-box; }
+  body {
+    font-family: var(--font-body); background: var(--dark); color: var(--text);
+    line-height: 1.7; font-weight: 300; font-size: 14px; padding: 20px;
+  }
+  body::after {
+    content: ''; position: fixed; top:0; left:0; width:100%; height:100%;
+    background: repeating-linear-gradient(0deg, rgba(0,0,0,0.03) 0px, rgba(0,0,0,0.03) 1px, transparent 1px, transparent 3px);
+    pointer-events: none; z-index: 9999;
+  }
+  .page { max-width: 800px; margin: 0 auto; border: 1px solid var(--dark4); padding: 32px 24px; }
+  h1 { font-size: 22px; font-weight: 600; margin-bottom: 4px; }
+  h1 span { color: var(--neon); }
+  .subtitle {
+    font-family: var(--font-mono); font-size: 11px; color: var(--text-muted);
+    letter-spacing: 0.15em; margin-bottom: 8px;
+  }
+  .intro {
+    font-size: 13px; color: var(--text-dim); margin-bottom: 24px; padding-bottom: 16px;
+    border-bottom: 1px solid var(--dark4);
+  }
+  .section-label {
+    font-family: var(--font-mono); font-size: 10px; color: var(--neon);
+    letter-spacing: 0.25em; margin-bottom: 8px; padding-top: 24px;
+    border-top: 1px solid var(--dark4);
+  }
+  .framework-note {
+    background: var(--dark3); border-left: 2px solid var(--neon-dim);
+    padding: 12px 16px; margin-bottom: 16px; font-size: 12px; color: var(--text-dim);
+  }
+  .copy-card {
+    background: var(--dark2); border: 1px solid var(--dark4);
+    padding: 16px; margin-bottom: 12px;
+    cursor: pointer; transition: border-color 0.2s;
+    position: relative;
+  }
+  .copy-card:hover { border-color: var(--neon-dim); }
+  .copy-card .tag {
+    font-family: var(--font-mono); font-size: 9px; color: var(--neon);
+    letter-spacing: 0.15em; margin-bottom: 4px;
+  }
+  .copy-card .hook { font-size: 15px; font-weight: 500; margin-bottom: 4px; }
+  .copy-card .usage {
+    font-size: 11px; color: var(--text-muted); margin-top: 6px;
+    font-family: var(--font-mono); font-style: italic;
+  }
+  .copy-card .copied-msg {
+    position: absolute; top: 8px; right: 12px;
+    font-size: 10px; color: var(--neon); font-family: var(--font-mono);
+    opacity: 0; transition: opacity 0.3s;
+  }
+  .copy-card .copied-msg.show { opacity: 1; }
+  .placeholder { color: var(--neon-dim); font-style: italic; }
+  .footer-note {
+    margin-top: 24px; padding-top: 16px; border-top: 1px solid var(--dark4);
+    font-size: 10px; color: var(--text-muted); text-align: center;
+    font-family: var(--font-mono);
+  }
+  @media (max-width: 600px) { .page { padding: 16px; } }
+</style>
+<script type="text/javascript">
+    (function(c,l,a,r,i,t,y){
+        c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+        t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
+        y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
+    })(window, document, "clarity", "script", "xd2k88rszz");
+</script>
+</head>
+<body>
+<div class="page">
+
+<h1>🧠 Banco de <span>Hooks + Copies</span></h1>
+<div class="subtitle">// 25 plantillas reutilizables · Click para copiar</div>
+<div class="intro">
+  Estructuras de copy que funcionan para <strong>cualquier producto digital</strong>.
+  Reemplazá lo que está en <span class="placeholder">{verde}</span> con tu contenido y usalo.
+</div>
+
+<!-- ================================================================== -->
+<!-- FRAMEWORK -->
+<!-- ================================================================== -->
+<div class="section-label">// CÓMO USAR ESTE BANCO</div>
+<div class="framework-note">
+  <strong>Los 4 ángulos que venden:</strong><br>
+  <strong>1. Dolor → Solución:</strong> Mostrás el problema, después la salida.<br>
+  <strong>2. Historia → Lección:</strong> Contás lo que viviste, extraés el aprendizaje.<br>
+  <strong>3. Social Proof:</strong> Alguien más lo hizo, funciona.<br>
+  <strong>4. Escasez + Urgencia:</strong> Oportunidad limitada en el tiempo.
+</div>
+
+<!-- ================================================================== -->
+<!-- HOOKS PARA REDES -->
+<!-- ================================================================== -->
+<div class="section-label">// HOOKS PARA REELS / POSTS</div>
+
+<div class="copy-card" onclick="copyText(this)">
+  <div class="tag">CURIOSIDAD</div>
+  <div class="hook">"Esto es lo que nadie te dice sobre <span class="placeholder">{topic}</span>"</div>
+  <div class="usage">Usar: revelación, dato oculto, insider knowledge</div>
+  <span class="copied-msg">✅ Copiado</span>
+</div>
+
+<div class="copy-card" onclick="copyText(this)">
+  <div class="tag">ERROR → LECCIÓN</div>
+  <div class="hook">"Los <span class="placeholder">{número}</span> errores que cometí antes de <span class="placeholder">{resultado}</span>"</div>
+  <div class="usage">Usar: numerar errores, ritmo rápido, autenticidad</div>
+  <span class="copied-msg">✅ Copiado</span>
+</div>
+
+<div class="copy-card" onclick="copyText(this)">
+  <div class="tag">IDENTIDAD</div>
+  <div class="hook">"Empecé sin <span class="placeholder">{recurso}</span>, sin <span class="placeholder">{recurso}</span>, sin <span class="placeholder">{recurso}</span>. Esto fue lo primero que hice."</div>
+  <div class="usage">Usar: 3 carencias en serie + giro</div>
+  <span class="copied-msg">✅ Copiado</span>
+</div>
+
+<div class="copy-card" onclick="copyText(this)">
+  <div class="tag">CONSTATACIÓN</div>
+  <div class="hook">"Si estás haciendo <span class="placeholder">{acción}</span>, no tenés un <span class="placeholder">{negocio}</span>. Tenés un <span class="placeholder">{problema}</span>."</div>
+  <div class="usage">Usar: confrontación suave, verdad incómoda</div>
+  <span class="copied-msg">✅ Copiado</span>
+</div>
+
+<div class="copy-card" onclick="copyText(this)">
+  <div class="tag">TRANSFORMACIÓN</div>
+  <div class="hook">"En <span class="placeholder">{tiempo}</span> pasé de <span class="placeholder">{punto A}</span> a <span class="placeholder">{punto B}</span>. <span class="placeholder">{lección}</span>"</div>
+  <div class="usage">Usar: antes/después, testimonio personal</div>
+  <span class="copied-msg">✅ Copiado</span>
+</div>
+
+<div class="copy-card" onclick="copyText(this)">
+  <div class="tag">PREGUNTA</div>
+  <div class="hook">"¿Y si <span class="placeholder">{creencia limitante}</span> no fuera cierto?"</div>
+  <div class="usage">Usar: desafiar una creencia común del nicho</div>
+  <span class="copied-msg">✅ Copiado</span>
+</div>
+
+<div class="copy-card" onclick="copyText(this)">
+  <div class="tag">ANTICIPACIÓN</div>
+  <div class="hook">"Hay <span class="placeholder">{número}</span> tipos de personas que <span class="placeholder">{acción}</span>. Si estás en el <span class="placeholder">{número}</span>, esto te interesa."</div>
+  <div class="usage">Usar: segmentación implícita, el que se siente aludido sigue viendo</div>
+  <span class="copied-msg">✅ Copiado</span>
+</div>
+
+<div class="copy-card" onclick="copyText(this)">
+  <div class="tag">PROBLEMA COMÚN</div>
+  <div class="hook">"A nadie le enseñan <span class="placeholder">{skill clave}</span>. Y es lo que más afecta tus <span class="placeholder">{resultados}</span>."</div>
+  <div class="usage">Usar: gap educativo, necesidad no cubierta</div>
+  <span class="copied-msg">✅ Copiado</span>
+</div>
+
+<!-- ================================================================== -->
+<!-- COPIES PARA META ADS -->
+<!-- ================================================================== -->
+<div class="section-label">// TEXTOS PARA META ADS</div>
+
+<div class="copy-card" onclick="copyText(this)">
+  <div class="tag">ADS — HISTORIA</div>
+  <div class="hook"><span class="placeholder">{historia personal de 1-2 líneas}</span>. <span class="placeholder">{lección aprendida}</span>. <span class="placeholder">{oferta + llamado}</span>.</div>
+  <div class="usage">
+    <span class="placeholder">Título:</span> <span class="placeholder">{frase gancho}</span><br>
+    <span class="placeholder">Descripción:</span> <span class="placeholder">{qué incluye + precio + garantía}</span>
+  </div>
+  <span class="copied-msg">✅ Copiado</span>
+</div>
+
+<div class="copy-card" onclick="copyText(this)">
+  <div class="tag">ADS — ORDEN vs DESORDEN</div>
+  <div class="hook">La mayoría arranca probando de todo: <span class="placeholder">{acción 1}</span>, <span class="placeholder">{acción 2}</span>, <span class="placeholder">{acción 3}</span>... sin orden. Perdí <span class="placeholder">{tiempo}</span> haciendo eso. <span class="placeholder">{producto}</span> te ahorra ese tiempo.</div>
+  <div class="usage">
+    <span class="placeholder">Título:</span> El orden de las <span class="placeholder">{número}</span> áreas<br>
+    <span class="placeholder">Descripción:</span> <span class="placeholder">{descripción + precio}</span>
+  </div>
+  <span class="copied-msg">✅ Copiado</span>
+</div>
+
+<div class="copy-card" onclick="copyText(this)">
+  <div class="tag">ADS — CASO REAL</div>
+  <div class="hook">"Invertí <span class="placeholder">{inversión}</span> y recuperé <span class="placeholder">{retorno}</span> en <span class="placeholder">{tiempo}</span>." — <span class="placeholder">{nombre}</span>, <span class="placeholder">{perfil}</span>. Sin <span class="placeholder">{recurso 1}</span>, sin <span class="placeholder">{recurso 2}</span>. Solo el sistema aplicado.</div>
+  <div class="usage">
+    <span class="placeholder">Título:</span> <span class="placeholder">ROI {número}x en {tiempo}</span><br>
+    <span class="placeholder">Descripción:</span> Caso real · Sistema paso a paso · Probá gratis
+  </div>
+  <span class="copied-msg">✅ Copiado</span>
+</div>
+
+<div class="copy-card" onclick="copyText(this)">
+  <div class="tag">ADS — LEAD MAGNET</div>
+  <div class="hook">No sabés por dónde arrancar? Yo tampoco. Probé <span class="placeholder">{lista de cosas}</span>... todo suelto. Hasta que entendí el orden. Te lo cuento acá.</div>
+  <div class="usage">
+    <span class="placeholder">Título:</span> El <span class="placeholder">{recurso}</span> que me hubiera gustado tener<br>
+    <span class="placeholder">Descripción:</span> Gratis · <span class="placeholder">{tiempo}</span> de lectura · Sin spam
+  </div>
+  <span class="copied-msg">✅ Copiado</span>
+</div>
+
+<div class="copy-card" onclick="copyText(this)">
+  <div class="tag">ADS — RETARGETING</div>
+  <div class="hook">Ya conocés <span class="placeholder">{producto}</span>. <span class="placeholder">{beneficio principal}</span>. <span class="placeholder">{elemento de escasez}</span>.</div>
+  <div class="usage">
+    <span class="placeholder">Título:</span> <span class="placeholder">{mismo gancho}</span><br>
+    <span class="placeholder">Descripción:</span> <span class="placeholder">{precio + CTA directo}</span>
+  </div>
+  <span class="copied-msg">✅ Copiado</span>
+</div>
+
+<!-- ================================================================== -->
+<!-- ASUNTOS DE EMAIL -->
+<!-- ================================================================== -->
+<div class="section-label">// ASUNTOS DE EMAIL (subject lines)</div>
+
+<div class="copy-card" onclick="copyText(this)">
+  <div class="tag">EMAIL — CURIOSIDAD</div>
+  <div class="hook">El error que me costó <span class="placeholder">{tiempo}</span></div>
+  <div class="usage">Tasa de apertura estimada: 45-55%</div>
+  <span class="copied-msg">✅ Copiado</span>
+</div>
+
+<div class="copy-card" onclick="copyText(this)">
+  <div class="tag">EMAIL — REPLAY</div>
+  <div class="hook">📡 Te perdiste el vivo? Acá está grabado</div>
+  <div class="usage">Usar post-webinar</div>
+  <span class="copied-msg">✅ Copiado</span>
+</div>
+
+<div class="copy-card" onclick="copyText(this)">
+  <div class="tag">EMAIL — FRAMEWORK</div>
+  <div class="hook">De <span class="placeholder">{punto A}</span> a <span class="placeholder">{punto B}</span> (los <span class="placeholder">{número}</span> pasos)</div>
+  <div class="usage">Storytelling + estructura numérica</div>
+  <span class="copied-msg">✅ Copiado</span>
+</div>
+
+<div class="copy-card" onclick="copyText(this)">
+  <div class="tag">EMAIL — POST-CAPTURA</div>
+  <div class="hook">Acá tenés <span class="placeholder">{recurso}</span> + algo que se viene</div>
+  <div class="usage">Lead magnet + teaser de próxima entrega</div>
+  <span class="copied-msg">✅ Copiado</span>
+</div>
+
+<div class="copy-card" onclick="copyText(this)">
+  <div class="tag">EMAIL — ESCASEZ</div>
+  <div class="hook">⏳ Últimas horas — <span class="placeholder">{oferta}</span> termina hoy</div>
+  <div class="usage">Urgencia, countdown, FOMO</div>
+  <span class="copied-msg">✅ Copiado</span>
+</div>
+
+<div class="copy-card" onclick="copyText(this)">
+  <div class="tag">EMAIL — ANTICIPACIÓN</div>
+  <div class="hook">Mañana a las <span class="placeholder">{hora}</span> abro algo que armé para vos</div>
+  <div class="usage">Pre-lanzamiento, webinar, evento</div>
+  <span class="copied-msg">✅ Copiado</span>
+</div>
+
+<div class="copy-card" onclick="copyText(this)">
+  <div class="tag">EMAIL — OBJECIÓN</div>
+  <div class="hook">"<span class="placeholder">{objeción común}</span>" — y por qué no es tan así</div>
+  <div class="usage">Refutar excusa antes de que la piensen</div>
+  <span class="copied-msg">✅ Copiado</span>
+</div>
+
+<!-- ================================================================== -->
+<!-- WHATSAPP -->
+<!-- ================================================================== -->
+<div class="section-label">// WHATSAPP · PLANTILLAS</div>
+
+<div class="copy-card" onclick="copyText(this)">
+  <div class="tag">WA — SEGUIMIENTO FRÍO</div>
+  <div class="hook">Hola <span class="placeholder">{nombre}</span>, vi que descargaste <span class="placeholder">{recurso}</span>. Cómo vas con eso? Cualquier duda, estoy acá.</div>
+  <div class="usage">Baja presión, sin venta directa</div>
+  <span class="copied-msg">✅ Copiado</span>
+</div>
+
+<div class="copy-card" onclick="copyText(this)">
+  <div class="tag">WA — POST-VENTA</div>
+  <div class="hook">Gracias por tu compra, <span class="placeholder">{nombre}</span>. Te dejé el acceso acá: <span class="placeholder">{link}</span>. Cualquier cosa que necesites, respondé este mensaje.</div>
+  <div class="usage">Confirmación + soporte abierto</div>
+  <span class="copied-msg">✅ Copiado</span>
+</div>
+
+<div class="copy-card" onclick="copyText(this)">
+  <div class="tag">WA — VENTA CONSULTORÍA</div>
+  <div class="hook">Hola <span class="placeholder">{nombre}</span>, te paso los links de pago para <span class="placeholder">{servicio}</span>. Cupo limitado esta semana, si te sirve podés reservar ahora.</div>
+  <div class="usage">Escasez suave + llamado a la acción</div>
+  <span class="copied-msg">✅ Copiado</span>
+</div>
+
+<div class="copy-card" onclick="copyText(this)">
+  <div class="tag">WA — RECORDATORIO</div>
+  <div class="hook">Te recuerdo que <span class="placeholder">{evento/llamada}</span> es <span class="placeholder">{cuándo}</span>. Te espero!</div>
+  <div class="usage">Corto, directo, sin presión</div>
+  <span class="copied-msg">✅ Copiado</span>
+</div>
+
+<!-- ================================================================== -->
+<!-- CALLS TO ACTION -->
+<!-- ================================================================== -->
+<div class="section-label">// CALL TO ACTION (CTAs)</div>
+
+<div class="copy-card" onclick="copyText(this)">
+  <div class="tag">CTA — LEAD MAGNET</div>
+  <div class="hook">Descargar <span class="placeholder">{recurso}</span> gratis</div>
+  <div class="usage">Simple, directo, sin fricción</div>
+  <span class="copied-msg">✅ Copiado</span>
+</div>
+
+<div class="copy-card" onclick="copyText(this)">
+  <div class="tag">CTA — COMPRA</div>
+  <div class="hook">Comprar ahora · <span class="placeholder">{precio}</span></div>
+  <div class="usage">Precio visible, sin sorpresas</div>
+  <span class="copied-msg">✅ Copiado</span>
+</div>
+
+<div class="copy-card" onclick="copyText(this)">
+  <div class="tag">CTA — WEBINAR</div>
+  <div class="hook">Quiero el link del <span class="placeholder">{evento}</span></div>
+  <div class="usage">Expectativa + anticipación</div>
+  <span class="copied-msg">✅ Copiado</span>
+</div>
+
+<div class="copy-card" onclick="copyText(this)">
+  <div class="tag">CTA — ESCASEZ</div>
+  <div class="hook">Sí, quiero <span class="placeholder">{oferta}</span> antes de que termine</div>
+  <div class="usage">Largo, específico, urgente</div>
+  <span class="copied-msg">✅ Copiado</span>
+</div>
+
+<div class="copy-card" onclick="copyText(this)">
+  <div class="tag">CTA — CONSULTORÍA</div>
+  <div class="hook">Reservar mi <span class="placeholder">{sesión/llamada}</span></div>
+  <div class="usage">Acción directa, sin ambigüedad</div>
+  <span class="copied-msg">✅ Copiado</span>
+</div>
+
+<div class="footer-note">
+  Gonzalo Crecimiento Digital · Click en cualquier tarjeta para copiar · Junio 2026
+</div>
+
+</div>
+
+<script>
+function copyText(el) {
+  // Get the hook/body text, strip placeholder styling
+  const hookEl = el.querySelector('.hook');
+  const rawText = hookEl ? hookEl.innerText : '';
+
+  // Get usage text
+  const usageEl = el.querySelector('.usage');
+  const usageText = usageEl ? usageEl.innerText.replace('Usar:', '').trim() : '';
+
+  let copyContent = rawText;
+  if (usageText) copyContent += '\n\n📋 ' + usageText;
+
+  navigator.clipboard.writeText(copyContent).then(function() {
+    const msg = el.querySelector('.copied-msg');
+    if (msg) {
+      msg.classList.add('show');
+      setTimeout(function() { msg.classList.remove('show'); }, 1500);
+    }
+  }).catch(function() {
+    const range = document.createRange();
+    range.selectNodeContents(hookEl);
+    const sel = window.getSelection();
+    sel.removeAllRanges();
+    sel.addRange(range);
+  });
+}
+</script>
+
+</body>
+</html>

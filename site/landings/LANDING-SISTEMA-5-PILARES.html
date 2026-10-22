@@ -1,0 +1,385 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sistema 5 Pilares — Mentoría 1:1 | Gonzalo Crecimiento Digital</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#0d0d0d;--bg2:#141414;--bg3:#1a1a1a;--bg4:#222;--neon:#A6FF00;--neon2:#7acc00;--t1:#fff;--t2:#888;--t3:#555;--bdr:#2a2a2a;--red:#f44;--yel:#fa0;--grn:#0c6}
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:'Inter',sans-serif;background:var(--bg);color:var(--t1);min-height:100vh;line-height:1.6}
+a{color:var(--neon);text-decoration:none}
+a:hover{text-decoration:underline}
+
+/* Hero */
+.hero{min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:60px 24px;position:relative;overflow:hidden}
+.hero::before{content:'';position:absolute;top:-50%;left:-50%;width:200%;height:200%;background:radial-gradient(circle at 50% 50%,rgba(166,255,0,.03) 0%,transparent 50%);animation:rotate 20s linear infinite}
+@keyframes rotate{from{transform:rotate(0deg)}to{transform:rotate(360deg)}}
+.hero-badge{font-family:'DM Mono',monospace;font-size:11px;color:var(--neon);letter-spacing:3px;text-transform:uppercase;margin-bottom:24px;padding:8px 16px;border:1px solid rgba(166,255,0,.2);border-radius:20px;background:rgba(166,255,0,.05)}
+.hero h1{font-size:clamp(36px,6vw,64px);font-weight:900;line-height:1.1;max-width:800px;margin-bottom:20px}
+.hero h1 .highlight{color:var(--neon)}
+.hero-sub{font-size:clamp(16px,2.5vw,20px);color:var(--t2);max-width:600px;margin-bottom:40px;line-height:1.6}
+.hero-cta{display:inline-flex;align-items:center;gap:10px;padding:16px 32px;background:var(--neon);color:var(--bg);font-size:16px;font-weight:700;border-radius:8px;transition:all .3s;border:none;cursor:pointer;font-family:'Inter',sans-serif}
+.hero-cta:hover{background:var(--neon2);transform:translateY(-2px);box-shadow:0 8px 32px rgba(166,255,0,.3);text-decoration:none}
+.hero-meta{margin-top:20px;font-family:'DM Mono',monospace;font-size:12px;color:var(--t3)}
+
+/* Section */
+.section{padding:80px 24px;max-width:1000px;margin:0 auto}
+.section-label{font-family:'DM Mono',monospace;font-size:11px;color:var(--neon);letter-spacing:2px;text-transform:uppercase;margin-bottom:12px}
+.section-title{font-size:clamp(28px,4vw,40px);font-weight:800;margin-bottom:16px;line-height:1.2}
+.section-sub{font-size:16px;color:var(--t2);margin-bottom:40px;max-width:600px}
+
+/* Pillars */
+.pillars{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:16px;margin-bottom:40px}
+.pillar{background:var(--bg3);border:1px solid var(--bdr);border-radius:12px;padding:24px 16px;text-align:center;transition:all .3s}
+.pillar:hover{border-color:var(--neon);transform:translateY(-4px)}
+.pillar-icon{font-size:32px;margin-bottom:12px}
+.pillar-name{font-size:14px;font-weight:700;margin-bottom:4px}
+.pillar-verb{font-family:'DM Mono',monospace;font-size:11px;color:var(--neon);text-transform:uppercase;letter-spacing:1px;margin-bottom:8px}
+.pillar-desc{font-size:12px;color:var(--t2);line-height:1.5}
+
+/* Problem */
+.problem-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:16px}
+.problem-card{background:var(--bg3);border:1px solid var(--bdr);border-radius:10px;padding:20px;position:relative;padding-left:20px;border-left:3px solid var(--red)}
+.problem-card p{font-size:14px;color:var(--t2);line-height:1.6}
+.problem-card strong{color:var(--t1)}
+
+/* Sessions */
+.sessions{display:flex;flex-direction:column;gap:12px}
+.session{display:flex;align-items:flex-start;gap:16px;background:var(--bg3);border:1px solid var(--bdr);border-radius:10px;padding:20px;transition:all .3s}
+.session:hover{border-color:var(--neon)}
+.session-num{font-family:'DM Mono',monospace;font-size:24px;font-weight:800;color:var(--neon);min-width:40px;line-height:1}
+.session-info{flex:1}
+.session-title{font-size:15px;font-weight:600;margin-bottom:4px}
+.session-desc{font-size:13px;color:var(--t2);line-height:1.5}
+.session-tag{font-family:'DM Mono',monospace;font-size:10px;padding:3px 8px;border-radius:4px;background:rgba(166,255,0,.1);color:var(--neon);white-space:nowrap}
+
+/* Benefits */
+.benefits{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:16px}
+.benefit{display:flex;gap:12px;padding:16px;background:var(--bg3);border:1px solid var(--bdr);border-radius:8px}
+.benefit-icon{font-size:20px;flex-shrink:0;margin-top:2px}
+.benefit-text{font-size:13px;color:var(--t2);line-height:1.5}
+.benefit-text strong{color:var(--t1)}
+
+/* Price */
+.price-box{background:var(--bg3);border:2px solid var(--neon);border-radius:16px;padding:40px;text-align:center;max-width:500px;margin:0 auto}
+.price-label{font-family:'DM Mono',monospace;font-size:12px;color:var(--t3);text-transform:uppercase;letter-spacing:2px;margin-bottom:8px}
+.price-amount{font-size:48px;font-weight:900;color:var(--neon);margin-bottom:8px}
+.price-note{font-size:14px;color:var(--t2);margin-bottom:24px}
+.price-features{text-align:left;margin-bottom:24px}
+.price-feature{display:flex;align-items:center;gap:8px;font-size:13px;color:var(--t2);padding:6px 0}
+.price-feature::before{content:'✓';color:var(--neon);font-weight:700}
+.price-cta{display:block;width:100%;padding:16px;background:var(--neon);color:var(--bg);font-size:16px;font-weight:700;border:none;border-radius:8px;cursor:pointer;transition:all .3s;font-family:'Inter',sans-serif}
+.price-cta:hover{background:var(--neon2);text-decoration:none}
+
+/* Testimonial placeholder */
+.testimonial{background:var(--bg3);border:1px solid var(--bdr);border-radius:12px;padding:32px;text-align:center;max-width:600px;margin:0 auto}
+.testimonial-text{font-size:16px;font-style:italic;color:var(--t2);line-height:1.6;margin-bottom:16px}
+.testimonial-author{font-size:13px;color:var(--t3)}
+.testimonial-author strong{color:var(--t1)}
+
+/* FAQ */
+.faq{display:flex;flex-direction:column;gap:12px;max-width:700px;margin:0 auto}
+.faq-item{background:var(--bg3);border:1px solid var(--bdr);border-radius:8px;padding:20px;cursor:pointer;transition:all .3s}
+.faq-item:hover{border-color:var(--neon)}
+.faq-q{font-size:14px;font-weight:600;display:flex;justify-content:space-between;align-items:center}
+.faq-q::after{content:'+';font-size:18px;color:var(--neon);transition:transform .3s}
+.faq-item.open .faq-q::after{transform:rotate(45deg)}
+.faq-a{font-size:13px;color:var(--t2);line-height:1.6;margin-top:12px;display:none}
+.faq-item.open .faq-a{display:block}
+
+/* Footer */
+.footer{text-align:center;padding:40px 24px;border-top:1px solid var(--bdr)}
+.footer p{font-size:12px;color:var(--t3)}
+
+/* CTA final */
+.cta-final{padding:80px 24px;text-align:center}
+.cta-final h2{font-size:clamp(28px,4vw,40px);font-weight:800;margin-bottom:16px}
+.cta-final p{font-size:16px;color:var(--t2);margin-bottom:32px}
+
+/* Responsive */
+@media(max-width:768px){
+.hero{padding:40px 20px}
+.section{padding:40px 20px}
+.pillars{grid-template-columns:repeat(2,1fr);gap:10px}
+.session{flex-direction:column;gap:8px}
+.price-box{padding:24px}
+}
+</style>
+</head>
+<body>
+
+<!-- Hero -->
+<section class="hero">
+<div class="hero-badge">Mentoría 1:1 · 7 Sesiones · Sistema Completo</div>
+<h1>Tenés algo que ofrecer.<br>Los <span class="highlight">5 pilares</span> son el sistema para <span class="highlight">escalarlo</span>.</h1>
+<p class="hero-sub">No te falta talento. Te falta el sistema. Una mentoría de 7 sesiones donde vas a aprender a convertir lo que sabés hacer en un negocio que crece sin que vos explotes.</p>
+<a href="https://wa.me/5491161677122?text=Hola%2C%20quiero%20info%20sobre%20el%20Sistema%205%20Pilares" target="_blank" class="hero-cta">Escribinos por WhatsApp</a>
+<p class="hero-meta">$200 USD · 7 sesiones · Soporte 30 días</p>
+</section>
+
+<!-- Problema -->
+<section class="section">
+<div class="section-label">El problema</div>
+<h2 class="section-title">Sabés hacer algo. Pero no sabés cómo hacer que eso se vuelva plata.</h2>
+<p class="section-sub">Y no es por falta de esfuerzo. Es por falta de sistema.</p>
+<div class="problem-grid">
+<div class="problem-card"><p><strong>Tenés un talento</strong> que otros pagarían por aprender, pero no sabés cómo empaquetarlo ni a quién venderle.</p></div>
+<div class="problem-card"><p><strong>Probaste de todo:</strong> Instagram, TikTok, cursos, ebooks. Pero nada escala. Seguís cambiando tiempo por plata.</p></div>
+<div class="problem-card"><p><strong>No sabés qué precio poner</strong>, cómo cobrar, o cuándo reinvertir. El dinero entra y se va por la tangente.</p></div>
+<div class="problem-card"><p><strong>El mundo digital</strong> te parece un laberinto sin salida. Demasiadas herramientas, demasiados "gurús", demasiado ruido.</p></div>
+<div class="problem-card"><p><strong>Sentís que estás solo.</strong> No tenés a quién preguntarle cuando algo no funciona.</p></div>
+<div class="problem-card"><p><strong>Ya tenés algo funcionando</strong> pero no crece. Llegaste a un techo y no sabés cómo pasar de ahí.</p></div>
+</div>
+</section>
+
+<!-- Los 5 Pilares -->
+<section class="section">
+<div class="section-label">El sistema</div>
+<h2 class="section-title">5 pilares. 5 engranajes. 1 máquina que crece sola.</h2>
+<p class="section-sub">No son 5 temas separados. Son 5 capas que conectan. Si falta una, el sistema no funciona.</p>
+<div class="pillars">
+<div class="pillar">
+<div class="pillar-icon">🎯</div>
+<div class="pillar-name">Marketing</div>
+<div class="pillar-verb">Atraer</div>
+<div class="pillar-desc">Cómo hacer que más personas sepan lo que hacés y te compren.</div>
+</div>
+<div class="pillar">
+<div class="pillar-icon">⚡</div>
+<div class="pillar-name">IA</div>
+<div class="pillar-verb">Acelerar</div>
+<div class="pillar-desc">Cómo multiplicar tu capacidad sin multiplicar tus horas.</div>
+</div>
+<div class="pillar">
+<div class="pillar-icon">📈</div>
+<div class="pillar-name">Crecimiento</div>
+<div class="pillar-verb">Escalar</div>
+<div class="pillar-desc">Cómo construir sistemas que crezcan solos sin depender de vos.</div>
+</div>
+<div class="pillar">
+<div class="pillar-icon">💰</div>
+<div class="pillar-name">Finanzas</div>
+<div class="pillar-verb">Ordenar</div>
+<div class="pillar-desc">Cómo manejar el dinero que entra sin que se vaya por la tangente.</div>
+</div>
+<div class="pillar">
+<div class="pillar-icon">🔐</div>
+<div class="pillar-name">Cripto</div>
+<div class="pillar-verb">Optimizar</div>
+<div class="pillar-desc">Cómo proteger y hacer rendir lo que generás en el nuevo mundo digital.</div>
+</div>
+</div>
+</section>
+
+<!-- Qué es -->
+<section class="section">
+<div class="section-label">El programa</div>
+<h2 class="section-title">7 sesiones. Un pilar por sesión. Un sistema completo al final.</h2>
+<p class="section-sub">No es un curso genérico. Es una mentoría 1:1 adaptada a tu negocio, tu ritmo y tu realidad.</p>
+<div class="sessions">
+<div class="session">
+<div class="session-num">0</div>
+<div class="session-info">
+<div class="session-title">Diagnóstico</div>
+<div class="session-desc">Mapeamos qué tenés para escalar. Diagnosticamos tus 5 áreas. Definimos tu punto de partida.</div>
+</div>
+<div class="session-tag">30-45 min</div>
+</div>
+<div class="session">
+<div class="session-num">1</div>
+<div class="session-info">
+<div class="session-title">Marketing: Atraer</div>
+<div class="session-desc">Embudo de captura, avatar ideal, estrategia de contenido, copy que vende.</div>
+</div>
+<div class="session-tag">60 min</div>
+</div>
+<div class="session">
+<div class="session-num">2</div>
+<div class="session-info">
+<div class="session-title">IA: Acelerar</div>
+<div class="session-desc">Stack de IA, automatizaciones, creación de contenido con IA para tu negocio.</div>
+</div>
+<div class="session-tag">60 min</div>
+</div>
+<div class="session">
+<div class="session-num">3</div>
+<div class="session-info">
+<div class="session-title">Crecimiento: Escalar</div>
+<div class="session-desc">Métricas, pipeline de productos, embudo loop semanal, pasar de vender tiempo a vender sistemas.</div>
+</div>
+<div class="session-tag">60 min</div>
+</div>
+<div class="session">
+<div class="session-num">4</div>
+<div class="session-info">
+<div class="session-title">Finanzas: Ordenar</div>
+<div class="session-desc">Pricing, márgenes, proyecciones, pasarelas de pago, dónde reinvertir.</div>
+</div>
+<div class="session-tag">60 min</div>
+</div>
+<div class="session">
+<div class="session-num">5</div>
+<div class="session-info">
+<div class="session-title">Cripto: Optimizar</div>
+<div class="session-desc">Exchanges, stablecoins, trading bots, DeFi. Proteger y hacer rendir tus ingresos.</div>
+</div>
+<div class="session-tag">60 min</div>
+</div>
+<div class="session">
+<div class="session-num">6</div>
+<div class="session-info">
+<div class="session-title">Cierre + Roadmap 90 Días</div>
+<div class="session-desc">Revisión de avances, quick wins, prioridades 30-60-90 días, próximos pasos.</div>
+</div>
+<div class="session-tag">60 min</div>
+</div>
+</div>
+</section>
+
+<!-- Beneficios -->
+<section class="section">
+<div class="section-label">Qué incluye</div>
+<h2 class="section-title">Todo lo que necesitás para escalar. Nada que no necesites.</h2>
+<div class="benefits">
+<div class="benefit">
+<div class="benefit-icon">🎯</div>
+<div class="benefit-text"><strong>Diagnóstico 5 Pilares</strong> — Tu mapa personalizado de qué está funcionando y qué falta.</div>
+</div>
+<div class="benefit">
+<div class="benefit-icon">📚</div>
+<div class="benefit-text"><strong>7 sesiones 1:1</strong> — 7 horas de mentoría personalizada, un pilar por sesión.</div>
+</div>
+<div class="benefit">
+<div class="benefit-icon">🧰</div>
+<div class="benefit-text"><strong>Kit de 14 herramientas</strong> — Plantillas, prompts, guías, calculadoras para cada pilar.</div>
+</div>
+<div class="benefit">
+<div class="benefit-icon">🗺️</div>
+<div class="benefit-text"><strong>Roadmap 90 días</strong> — Tu plan de acción personalizado para los próximos 3 meses.</div>
+</div>
+<div class="benefit">
+<div class="benefit-icon">💬</div>
+<div class="benefit-text"><strong>Soporte WhatsApp</strong> — 30 días post-programa para resolver dudas puntuales.</div>
+</div>
+<div class="benefit">
+<div class="benefit-icon">🎬</div>
+<div class="benefit-text"><strong>Sesiones grabadas</strong> — Todas las sesiones quedan grabadas para que puedas revisarlas.</div>
+</div>
+</div>
+</section>
+
+<!-- Para quién es -->
+<section class="section">
+<div class="section-label">Para quién es</div>
+<h2 class="section-title">Si tenés algo que ofrecer, esto es para vos.</h2>
+<div style="display:grid;grid-template-columns:1fr 1fr;gap:24px;max-width:800px">
+<div>
+<h3 style="font-size:16px;font-weight:700;color:var(--grn);margin-bottom:12px">Sí es para vos si...</h3>
+<ul style="list-style:none;display:flex;flex-direction:column;gap:8px">
+<li style="font-size:13px;color:var(--t2)">✓ Tenés un talento que querés monetizar</li>
+<li style="font-size:13px;color:var(--t2)">✓ Tenés un producto que no termina de despegar</li>
+<li style="font-size:13px;color:var(--t2)">✓ Sabés algo que otros pagarían por aprender</li>
+<li style="font-size:13px;color:var(--t2)">✓ Trabajás para otro y querés emprender</li>
+<li style="font-size:13px;color:var(--t2)">✓ No sabés por dónde arrancar</li>
+</ul>
+</div>
+<div>
+<h3 style="font-size:16px;font-weight:700;color:var(--red);margin-bottom:12px">No es para vos si...</h3>
+<ul style="list-style:none;display:flex;flex-direction:column;gap:8px">
+<li style="font-size:13px;color:var(--t2)">✗ Querés una solución mágica sin esfuerzo</li>
+<li style="font-size:13px;color:var(--t2)">✗ No estás dispuesto a dedicarle tiempo</li>
+<li style="font-size:13px;color:var(--t2)">✗ Ya tenés un sistema que funciona perfecto</li>
+<li style="font-size:13px;color:var(--t2)">✗ No querés invertir en tu crecimiento</li>
+<li style="font-size:13px;color:var(--t2)">✗ Buscás info gratis sin compromiso</li>
+</ul>
+</div>
+</div>
+</section>
+
+<!-- Testimonio placeholder -->
+<section class="section">
+<div class="section-label">Resultado</div>
+<h2 class="section-title">Lo que pasa cuando conectás los 5 pilares</h2>
+<div class="testimonial">
+<p class="testimonial-text">"De $200 en Meta Ads pasé a $600 de retorno. No fue magia, fue un sistema. Gonzalo me mostró que no me faltaba talento, me faltaba el sistema correcto."</p>
+<p class="testimonial-author"><strong>Yamila</strong> — Clienta real, caso documentado</p>
+</div>
+</section>
+
+<!-- Precio -->
+<section class="section" id="precio">
+<div class="section-label">Inversión</div>
+<h2 class="section-title">Tu próximo nivel tiene un precio. Y es menor al que pensás.</h2>
+<div class="price-box">
+<div class="price-label">Mentoría Sistema 5 Pilares</div>
+<div class="price-amount">$200 USD</div>
+<div class="price-note">O 2 cuotas de $125 USD</div>
+<div class="price-features">
+<div class="price-feature">7 sesiones 1:1 de 60 minutos</div>
+<div class="price-feature">Diagnóstico personalizado 5 Pilares</div>
+<div class="price-feature">Kit de 14 herramientas</div>
+<div class="price-feature">Roadmap de escalamiento 90 días</div>
+<div class="price-feature">Soporte WhatsApp 30 días</div>
+<div class="price-feature">Todas las sesiones grabadas</div>
+</div>
+<a href="https://wa.me/5491161677122?text=Hola%2C%20quiero%20agendar%20mi%20sesión%200%20del%20Sistema%205%20Pilares" target="_blank" class="price-cta">Agendar Sesión 0 Gratis</a>
+</div>
+</section>
+
+<!-- FAQ -->
+<section class="section">
+<div class="section-label">Preguntas frecuentes</div>
+<h2 class="section-title">Las dudas que todos tienen</h2>
+<div class="faq">
+<div class="faq-item">
+<div class="faq-q">¿Necesito saber de tecnología?</div>
+<div class="faq-a">No. El programa se adapta a tu nivel. Si no sabés usar IA, te enseñamos desde cero. Si ya sabés, profundizamos.</div>
+</div>
+<div class="faq-item">
+<div class="faq-q">¿Sirve para mi negocio?</div>
+<div class="faq-a">Si tenés algo que ofrecer (un servicio, un producto, un talento), sí. No importa si sos cerámista, consultor, coach o vendedor de empanadas.</div>
+</div>
+<div class="faq-item">
+<div class="faq-q">¿Cuánto tarda en verse resultados?</div>
+<div class="faq-a">Los primeros cambios se ven en las primeras 2 semanas (embudo básico, primer contenido con IA). El sistema completo se consolida en 90 días.</div>
+</div>
+<div class="faq-item">
+<div class="faq-q">¿Qué pasa si no puedo asistir a una sesión?</div>
+<div class="faq-a">Se reprograma con 24 horas de anticipación sin problema.</div>
+</div>
+<div class="faq-item">
+<div class="faq-q">¿Hay garantía?</div>
+<div class="faq-a">Si después de la sesión 0 sentís que no es para vos, te devolvemos el anticipo sin preguntas.</div>
+</div>
+<div class="faq-item">
+<div class="faq-q">¿Cuánto dura el soporte WhatsApp?</div>
+<div class="faq-a">30 días después de la última sesión. Horario L-V 10-18hs Argentina. Respuesta en máximo 24 horas.</div>
+</div>
+<div class="faq-item">
+<div class="faq-q">¿Pago todo junto o puedo en cuotas?</div>
+<div class="faq-a">Podés pagar todo junto ($200 USD) o en 2 cuotas ($125 USD c/u). Anticipo del 50% para reservar fecha.</div>
+</div>
+</div>
+</section>
+
+<!-- CTA Final -->
+<section class="cta-final">
+<h2>No te falta talento.<br>Te falta el sistema.</h2>
+<p>Escribinos y agendá tu sesión 0 sin compromiso. En 45 minutos vamos a ver qué tenés para escalar y si este programa es para vos.</p>
+<a href="https://wa.me/5491161677122?text=Hola%2C%20quiero%20info%20sobre%20el%20Sistema%205%20Pilares" target="_blank" class="hero-cta">Escribinos por WhatsApp</a>
+</section>
+
+<!-- Footer -->
+<footer class="footer">
+<p>Gonzalo Crecimiento Digital · Bases sobre escalamiento y estrategia digital</p>
+</footer>
+
+<script>
+document.querySelectorAll('.faq-item').forEach(item=>{
+item.addEventListener('click',()=>{item.classList.toggle('open')});
+});
+</script>
+</body>
+</html>

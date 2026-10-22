@@ -1,0 +1,582 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Plan 15 Min al Día | GCD</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Syne+Mono&display=swap" rel="stylesheet">
+<!-- Meta Pixel -->
+<script>
+!function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,document,'script','https://connect.facebook.net/en_US/fbevents.js');
+fbq('init', '925391107193038');
+fbq('track', 'PageView');
+</script>
+<!-- End Meta Pixel -->
+<style>
+* { margin:0; padding:0; box-sizing:border-box; }
+:root {
+  --neon: #A6FF00;
+  --neon-dim: rgba(166,255,0,0.25);
+  --neon-glow: rgba(166,255,0,0.06);
+  --dark: #0a0a0a;
+  --dark2: #111;
+  --dark3: #1a1a1a;
+  --text: #eee;
+  --text-dim: #999;
+  --text-muted: #555;
+  --font: 'Space Grotesk', sans-serif;
+  --mono: 'Syne Mono', monospace;
+  --success: #A6FF00;
+  --accent: #4FC3F7;
+}
+html { scroll-behavior: smooth; }
+body {
+  font-family: var(--font);
+  background: var(--dark);
+  color: var(--text);
+  min-height: 100vh;
+  overflow-x: hidden;
+}
+.grid-bg {
+  position: fixed;
+  inset: 0;
+  background-image:
+    linear-gradient(rgba(166,255,0,0.025) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(166,255,0,0.025) 1px, transparent 1px);
+  background-size: 40px 40px;
+  pointer-events: none;
+  z-index: 0;
+}
+.scanline {
+  position: fixed;
+  inset: 0;
+  background: repeating-linear-gradient(0deg, transparent, transparent 2px, rgba(0,0,0,0.02) 2px, rgba(0,0,0,0.02) 4px);
+  pointer-events: none;
+  z-index: 0;
+}
+.container {
+  position: relative;
+  z-index: 1;
+  max-width: 640px;
+  margin: 0 auto;
+  padding: 40px 20px;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+.header-bar {
+  text-align: center;
+  margin-bottom: 28px;
+}
+.header-bar .badge {
+  font-family: var(--mono);
+  font-size: 10px;
+  letter-spacing: 5px;
+  color: var(--neon);
+  opacity: 0.5;
+  text-transform: uppercase;
+}
+.header-bar .badge::before, .header-bar .badge::after {
+  content: ' ◆ ';
+  font-size: 6px;
+}
+
+.screen { display: none; }
+.screen.active { display: block; animation: fadeIn 0.4s ease; }
+
+@keyframes fadeIn {
+  from { opacity:0; transform:translateY(12px); }
+  to { opacity:1; transform:translateY(0); }
+}
+
+.btn {
+  display: inline-block;
+  font-family: var(--mono);
+  font-size: 13px;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  padding: 16px 44px;
+  border: none;
+  cursor: pointer;
+  transition: all 0.3s;
+  text-decoration: none;
+  color: var(--dark);
+  background: var(--neon);
+  font-weight: 600;
+}
+.btn:hover {
+  background: #8cdb00;
+  box-shadow: 0 0 40px rgba(166,255,0,0.2);
+  transform: translateY(-2px);
+}
+.btn:disabled {
+  opacity: 0.25;
+  cursor: not-allowed;
+  transform: none;
+  box-shadow: none;
+}
+.btn-outline {
+  background: transparent;
+  color: var(--neon);
+  border: 1px solid var(--neon);
+}
+.btn-outline:hover {
+  background: var(--neon-glow);
+}
+.btn-sm { padding: 12px 28px; font-size: 12px; }
+
+/* INTRO */
+.intro-wrap { text-align: center; flex:1; display:flex; flex-direction:column; justify-content:center; }
+.intro-icon { font-size: 44px; margin-bottom: 12px; }
+.intro-title {
+  font-size: clamp(28px, 5vw, 40px);
+  font-weight: 600;
+  line-height: 1.15;
+  margin-bottom: 10px;
+}
+.intro-title .hl { color: var(--neon); }
+.intro-sub {
+  font-size: 16px;
+  color: var(--text-dim);
+  line-height: 1.6;
+  max-width: 480px;
+  margin: 0 auto 6px;
+}
+.intro-lab {
+  font-size: 12px;
+  color: var(--text-muted);
+  margin-bottom: 20px;
+  font-family: var(--mono);
+  letter-spacing: 2px;
+}
+.intro-features {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 10px 24px;
+  margin: 18px 0 24px;
+  font-size: 14px;
+  color: var(--text-dim);
+}
+.intro-features span { display: flex; align-items: center; gap: 6px; }
+.intro-features .ck { color: var(--neon); }
+
+/* PROGRESS BAR */
+.progress-section {
+  margin-bottom: 24px;
+}
+.progress-numbers {
+  display: flex;
+  justify-content: space-between;
+  font-size: 12px;
+  color: var(--text-muted);
+  font-family: var(--mono);
+  margin-bottom: 6px;
+}
+.progress-numbers strong { color: var(--neon); }
+.progress-track {
+  height: 3px;
+  background: var(--dark3);
+  border-radius: 2px;
+  overflow: hidden;
+}
+.progress-fill {
+  height: 100%;
+  background: var(--neon);
+  width: 0%;
+  transition: width 0.5s ease;
+  box-shadow: 0 0 10px var(--neon-dim);
+}
+
+/* MONTH CARD */
+.month-card {
+  background: var(--dark2);
+  border: 1px solid rgba(166,255,0,0.06);
+  padding: 28px;
+  margin-bottom: 20px;
+}
+.month-num {
+  font-family: var(--mono);
+  font-size: 10px;
+  letter-spacing: 3px;
+  color: var(--neon);
+  opacity: 0.5;
+  margin-bottom: 4px;
+}
+.month-name {
+  font-size: 22px;
+  font-weight: 500;
+  margin-bottom: 16px;
+}
+.month-desc {
+  font-size: 14px;
+  color: var(--text-dim);
+  line-height: 1.6;
+  margin-bottom: 16px;
+}
+.week-list { display: flex; flex-direction: column; gap: 8px; }
+.week-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px 14px;
+  background: var(--dark3);
+  font-size: 14px;
+  line-height: 1.4;
+  transition: all 0.2s;
+}
+.week-item .w-icon { font-size: 18px; flex-shrink: 0; }
+.week-item .w-time {
+  font-family: var(--mono);
+  font-size: 10px;
+  color: var(--text-muted);
+  flex-shrink: 0;
+  margin-left: auto;
+}
+.month-done {
+  text-align: center;
+  padding: 16px;
+  background: rgba(166,255,0,0.06);
+  border: 1px solid rgba(166,255,0,0.1);
+  margin-top: 16px;
+}
+.month-done .check { font-size: 32px; color: var(--neon); margin-bottom: 6px; }
+.month-done p { font-size: 14px; color: var(--text-dim); }
+
+.nav-row {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  margin-top: 12px;
+}
+
+/* RESULTS */
+.result-screen { text-align: center; }
+.result-icon { font-size: 52px; margin-bottom: 12px; }
+.result-title {
+  font-size: clamp(24px, 4vw, 34px);
+  font-weight: 600;
+  margin-bottom: 8px;
+}
+.result-sub {
+  font-size: 15px;
+  color: var(--text-dim);
+  margin-bottom: 20px;
+  line-height: 1.6;
+}
+.summary-strip {
+  display: flex;
+  justify-content: center;
+  gap: 16px;
+  flex-wrap: wrap;
+  margin-bottom: 24px;
+}
+.summary-item {
+  background: var(--dark3);
+  border: 1px solid rgba(166,255,0,0.06);
+  padding: 16px 20px;
+  min-width: 100px;
+  text-align: center;
+}
+.summary-item .num {
+  font-size: 28px;
+  font-weight: 600;
+  color: var(--neon);
+}
+.summary-item .label {
+  font-size: 11px;
+  color: var(--text-muted);
+  margin-top: 2px;
+  font-family: var(--mono);
+  letter-spacing: 1px;
+}
+
+/* FORM */
+.form-box {
+  background: var(--dark2);
+  border: 1px solid rgba(166,255,0,0.06);
+  padding: 28px;
+  text-align: center;
+}
+.form-box h3 { font-size: 17px; font-weight: 500; margin-bottom: 6px; }
+.form-box p { font-size: 14px; color: var(--text-dim); margin-bottom: 16px; }
+.form-box form {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  max-width: 380px;
+  margin: 0 auto;
+}
+.form-box input {
+  padding: 14px 16px;
+  background: var(--dark3);
+  border: 1px solid rgba(255,255,255,0.06);
+  font-family: var(--font);
+  font-size: 15px;
+  color: var(--text);
+  outline: none;
+  transition: border 0.2s;
+}
+.form-box input:focus { border-color: var(--neon-dim); }
+.form-box input::placeholder { color: var(--text-muted); }
+.status-msg {
+  font-size: 12px;
+  color: var(--text-muted);
+  margin-top: 10px;
+  min-height: 18px;
+}
+.status-msg.success { color: var(--neon); }
+.status-msg.error { color: #FF3A3A; }
+
+/* RESPONSIVE */
+@media (max-width: 600px) {
+  .container { padding: 20px 16px; }
+  .month-card { padding: 20px 16px; }
+  .nav-row { flex-direction: column; }
+  .nav-row .btn { width: 100%; text-align: center; }
+  .summary-strip { gap: 8px; }
+  .summary-item { min-width: 80px; padding: 12px; }
+}
+</style>
+</head>
+<body>
+<div class="grid-bg"></div>
+<div class="scanline"></div>
+
+<div class="container" id="app">
+  <div class="header-bar">
+    <div class="badge">GCD · PLAN 15 MIN v1.0</div>
+  </div>
+
+  <!-- SCREEN 0: INTRO -->
+  <div class="screen active" id="screenIntro">
+    <div class="intro-wrap">
+      <div class="intro-icon">⏱️</div>
+      <h1 class="intro-title">Tu plan <span class="hl">paso a paso</span></h1>
+      <p class="intro-sub">15 minutos por día. Sin apuros. Sin palabras raras. En 90 días tenés tu sistema andando.</p>
+      <div class="intro-lab">_ Para los que arrancan de cero _</div>
+      <div class="intro-features">
+        <span><span class="ck">✓</span> 15 min por día</span>
+        <span><span class="ck">✓</span> Sin jerga técnica</span>
+        <span><span class="ck">✓</span> 3 meses de plan</span>
+        <span><span class="ck">✓</span> Checklist semanal</span>
+      </div>
+      <button class="btn" onclick="startPlan()">Ver el plan →</button>
+    </div>
+  </div>
+
+  <!-- SCREEN 1: MONTHS -->
+  <div class="screen" id="screenPlan">
+    <div class="progress-section">
+      <div class="progress-numbers">
+        <span>Progreso: <strong id="pctLabel">0%</strong></span>
+        <span id="stepLabel">Mes 1 de 3</span>
+      </div>
+      <div class="progress-track"><div class="progress-fill" id="progressFill"></div></div>
+    </div>
+    <div id="monthCard"></div>
+  </div>
+
+  <!-- SCREEN 2: RESULT -->
+  <div class="screen" id="screenResult">
+    <div class="result-screen">
+      <div class="result-icon">🎉</div>
+      <h2 class="result-title">Plan completo</h2>
+      <p class="result-sub">En 90 días construiste tu sistema digital, 15 minutos por vez.</p>
+      <div class="summary-strip">
+        <div class="summary-item"><div class="num">12</div><div class="label">Semanas</div></div>
+        <div class="summary-item"><div class="num">~90</div><div class="label">Días</div></div>
+        <div class="summary-item"><div class="num">15</div><div class="label">Min/día</div></div>
+      </div>
+
+      <div class="form-box" id="checkoutBox">
+        <h3>Conseguí el plan completo por $5</h3>
+        <p>Incluye las 12 semanas con tareas día por día, la guía de herramientas y el seguimiento paso a paso.</p>
+        <form id="checkoutForm" method="POST" target="_blank" onsubmit="checkoutPlan('plan-15-min', event)">
+          <input type="hidden" name="createCheckout" value="true">
+          <input type="hidden" name="product" value="plan-15-min">
+          <input type="text" name="name" placeholder="Tu nombre" required style="width:100%;padding:14px 16px;background:var(--dark3);border:1px solid rgba(255,255,255,0.06);font-family:var(--font);font-size:14px;color:var(--text);outline:none;">
+          <input type="email" name="email" placeholder="Tu mejor email" required style="width:100%;padding:14px 16px;background:var(--dark3);border:1px solid rgba(255,255,255,0.06);font-family:var(--font);font-size:14px;color:var(--text);outline:none;">
+          <button type="submit" class="btn btn-sm">Comprar ahora → $5</button>
+        </form>
+        <div style="margin-top:14px;font-size:12px;color:var(--text-muted);">
+          ⏳ ¿No tenés $5 ahora? <a href="#" onclick="showPlanFreeForm();return false;" style="color:var(--neon);">Dejá tu email y recibí una semana de muestra gratis</a>
+        </div>
+      </div>
+
+      <div class="form-box" id="leadFormBox" style="display:none;">
+        <h3>Recibí la primera semana gratis</h3>
+        <p>Te enviamos la semana 1 del plan para que empieces hoy.</p>
+        <form id="resultForm" onsubmit="submitLead(event)">
+          <input type="text" name="name" placeholder="Tu nombre" required>
+          <input type="email" name="email" placeholder="Tu mejor email" required>
+          <input type="hidden" name="source" value="plan-15min-free">
+          <input type="hidden" name="interes" value="plan-15-minutos">
+          <button type="submit" class="btn btn-sm" id="submitBtn">Quiero la semana gratis →</button>
+        </form>
+        <div class="status-msg" id="formStatus"></div>
+      </div>
+
+      <div style="margin-top:16px;">
+        <button class="btn btn-outline btn-sm" onclick="resetPlan()">← Volver a empezar</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<iframe name="result-frame" style="display:none"></iframe>
+
+<script>
+const GAS_URL = 'https://script.google.com/macros/s/AKfycbyUBUepqHYtzGRyda1AJGuC38sqxs215YZaViDsxyPiMNhjmCg5OZFWqKt-KXDTwBSWBQ/exec';
+const MP_GAS_URL = 'https://script.google.com/macros/s/AKfycbyxcn1-PWFdKcq5e9TWFljD47XkJ6dVCnLxt4bCb7LO0e8umzXp2MwFpjhhp0NoBGrZ/exec';
+
+const MONTHS = [
+  {
+    name: 'Mes 1 — Marketing',
+    desc: 'Las bases. Sin vender nada. Solo definís quién sos y a quién querés ayudar.',
+    weeks: [
+      { icon: '✏️', task: 'Elegí un nombre para tu proyecto', time: '5 min' },
+      { icon: '👤', task: 'Describí a quién querés ayudar (edad, problema, qué necesita)', time: '10 min' },
+      { icon: '📱', task: 'Creá una cuenta de Instagram con tu nombre', time: '15 min' },
+      { icon: '📷', task: 'Publicá tu primera foto: quién sos y a qué te dedicas', time: '15 min' }
+    ]
+  },
+  {
+    name: 'Mes 2 — IA y Contenido',
+    desc: 'Aprendés a usar herramientas que hacen el trabajo pesado por vos.',
+    weeks: [
+      { icon: '🤖', task: 'Creá una cuenta gratis en ChatGPT o DeepSeek', time: '5 min' },
+      { icon: '✍️', task: 'Pedile que te escriba un texto contando lo que hacés', time: '10 min' },
+      { icon: '🎨', task: 'Usá Canva (gratis) para hacer una imagen profesional', time: '15 min' },
+      { icon: '🎬', task: 'Grabá y publicá tu primer video de 30 segundos', time: '15 min' }
+    ]
+  },
+  {
+    name: 'Mes 3 — Crecimiento y Finanzas',
+    desc: 'Convertís seguidores en clientes y ordenás tus números.',
+    weeks: [
+      { icon: '🔗', task: 'Creá un link con un regalo gratis para tus seguidores', time: '10 min' },
+      { icon: '📣', task: 'Compartí tu link en tu perfil de Instagram', time: '5 min' },
+      { icon: '📊', task: 'Anotá en un cuaderno cuánta plata entra y sale', time: '15 min' },
+      { icon: '💵', task: 'Separá $5 para tu primera inversión (ads o cripto)', time: '5 min' }
+    ]
+  }
+];
+
+let currentMonth = 0;
+
+function showScreen(id) {
+  document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
+  document.getElementById(id).classList.add('active');
+}
+
+function startPlan() {
+  currentMonth = 0;
+  showScreen('screenPlan');
+  renderMonth();
+}
+
+function renderMonth() {
+  const m = MONTHS[currentMonth];
+  const pct = Math.round((currentMonth / MONTHS.length) * 100);
+  document.getElementById('pctLabel').textContent = `${pct}%`;
+  document.getElementById('stepLabel').textContent = `Mes ${currentMonth + 1} de ${MONTHS.length}`;
+  document.getElementById('progressFill').style.width = `${pct}%`;
+
+  const card = document.getElementById('monthCard');
+  const isLast = currentMonth === MONTHS.length - 1;
+
+  card.innerHTML = `
+    <div class="month-card">
+      <div class="month-num">MES ${currentMonth + 1} / ${MONTHS.length}</div>
+      <div class="month-name">${m.name}</div>
+      <div class="month-desc">${m.desc}</div>
+      <div class="week-list">
+        ${m.weeks.map(w => `
+          <div class="week-item">
+            <span class="w-icon">${w.icon}</span>
+            <span>${w.task}</span>
+            <span class="w-time">${w.time}</span>
+          </div>
+        `).join('')}
+      </div>
+      <div class="nav-row">
+        <button class="btn btn-outline btn-sm" onclick="prevMonth()" ${currentMonth === 0 ? 'disabled' : ''}>← Anterior</button>
+        <button class="btn btn-sm" onclick="nextMonth()">${isLast ? 'Ver plan completo →' : 'Siguiente mes →'}</button>
+      </div>
+    </div>
+  `;
+}
+
+function nextMonth() {
+  if (currentMonth < MONTHS.length - 1) {
+    currentMonth++;
+    renderMonth();
+  } else {
+    showResults();
+  }
+}
+
+function prevMonth() {
+  if (currentMonth > 0) {
+    currentMonth--;
+    renderMonth();
+  }
+}
+
+function showResults() {
+  document.getElementById('pctLabel').textContent = '100%';
+  document.getElementById('progressFill').style.width = '100%';
+  document.getElementById('stepLabel').textContent = '✅ Completado';
+  showScreen('screenResult');
+}
+
+function checkoutPlan(productId, e) {
+  document.getElementById('checkoutForm').action = MP_GAS_URL;
+  fbq('track', 'InitiateCheckout', {value:5, currency:'USD', content_name:'Plan 15 Min', content_category:'tool'});
+}
+
+function showPlanFreeForm() {
+  document.getElementById('checkoutBox').style.display = 'none';
+  document.getElementById('leadFormBox').style.display = 'block';
+}
+
+function resetPlan() {
+  currentMonth = 0;
+  showScreen('screenIntro');
+  document.getElementById('progressFill').style.width = '0%';
+  document.getElementById('pctLabel').textContent = '0%';
+  document.getElementById('stepLabel').textContent = 'Mes 1 de 3';
+}
+
+function submitLead(e) {
+  e.preventDefault();
+  const form = e.target;
+  const btn = document.getElementById('submitBtn');
+  const status = document.getElementById('formStatus');
+  const data = new FormData(form);
+
+  btn.disabled = true;
+  btn.textContent = 'Enviando...';
+  status.textContent = '';
+  status.className = 'status-msg';
+
+  fetch(GAS_URL, { method: 'POST', body: data, mode: 'no-cors' })
+    .then(() => {
+      if (typeof fbq === 'function') fbq('track', 'Lead');
+      btn.textContent = '✅ Enviado';
+      status.textContent = '✅ Checklist enviado. Revisá tu bandeja de entrada.';
+      status.className = 'status-msg success';
+      form.innerHTML = '<p style="color:var(--neon);font-size:16px;">✅ ¡Listo! Revisá tu email.</p>';
+    })
+    .catch(() => {
+      btn.disabled = false;
+      btn.textContent = 'Enviar checklist →';
+      status.textContent = '❌ Error al enviar. Intentalo de nuevo.';
+      status.className = 'status-msg error';
+    });
+}
+</script>
+</body>
+</html>

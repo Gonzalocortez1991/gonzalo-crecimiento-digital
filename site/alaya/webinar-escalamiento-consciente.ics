@@ -1,0 +1,17 @@
+BEGIN:VCALENDAR
+VERSION:2.0
+PRODID:-//Alaya x GCD//Webinar Escalamiento Consciente//ES
+CALSCALE:GREGORIAN
+METHOD:PUBLISH
+BEGIN:VEVENT
+UID:webinar-alaya-20260917@landing-gcd.vercel.app
+DTSTAMP:20260907T120000Z
+DTSTART:20260917T220000Z
+DTEND:20260917T230000Z
+SUMMARY:Webinar gratuito — Escalamiento Consciente
+DESCRIPTION:Donde la conciencia se encuentra con el sistema. Yamila (Alaya) + Gonzalo (GCD) — 60min, 110 slides, en vivo.\nLink sala: https://landing-gcd.vercel.app/webinar-alaya\n\nAgendado desde Escalamiento Consciente · Alaya x GCD
+LOCATION:Online — link se envia por email
+STATUS:CONFIRMED
+TRANSP:OPAQUE
+END:VEVENT
+END:VCALENDAR

@@ -1,0 +1,361 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Webinar — Las 5 Áreas | GCD</title>
+
+<!-- Meta Pixel -->
+<script>
+!function(f,b,e,v,n,t,s)
+{if(f.fbq)return;n=f.fbq=function(){n.callMethod?n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,document,'script','https://connect.facebook.net/en_US/fbevents.js');
+fbq('init', '925391107193038');
+fbq('track', 'PageView');
+</script>
+
+<style>
+  :root {
+    --neon: #A6FF00;
+    --neon-dim: rgba(166,255,0,0.5);
+    --neon-glow: rgba(166,255,0,0.12);
+    --dark: #0a0a0a;
+    --dark2: #111;
+    --dark3: #1a1a1a;
+    --dark4: #222;
+    --text: #e0e0e0;
+    --text-dim: #888;
+    --text-muted: #555;
+    --font-body: 'Space Grotesk', sans-serif;
+    --font-mono: 'Syne Mono', monospace;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    font-family: var(--font-body); background: var(--dark); color: var(--text);
+    line-height: 1.7; font-weight: 300; font-size: 15px;
+    min-height: 100vh; display: flex; align-items: center; justify-content: center;
+  }
+  body::after {
+    content: ''; position: fixed; top:0; left:0; width:100%; height:100%;
+    background: repeating-linear-gradient(0deg, rgba(0,0,0,0.03) 0px, rgba(0,0,0,0.03) 1px, transparent 1px, transparent 3px);
+    pointer-events: none; z-index: 9999;
+  }
+  .page {
+    max-width: 720px; width: 100%; padding: 40px 24px; text-align: center;
+  }
+  .badge {
+    display: inline-block;
+    border: 1px solid var(--neon);
+    color: var(--neon);
+    font-family: var(--font-mono);
+    font-size: 10px;
+    letter-spacing: 0.25em;
+    padding: 6px 16px;
+    margin-bottom: 20px;
+  }
+  h1 {
+    font-size: 30px; font-weight: 600; margin-bottom: 8px;
+  }
+  h1 span { color: var(--neon); }
+  .sub {
+    color: var(--text-dim); font-size: 14px; margin-bottom: 32px;
+  }
+  .countdown {
+    display: flex; justify-content: center; gap: 16px;
+    margin-bottom: 32px; flex-wrap: wrap;
+  }
+  .cd-item {
+    background: var(--dark2); border: 1px solid var(--dark4);
+    padding: 16px 20px; min-width: 80px;
+  }
+  .cd-num {
+    font-family: var(--font-mono); font-size: 36px; font-weight: 700;
+    color: var(--neon); line-height: 1;
+  }
+  .cd-label {
+    font-family: var(--font-mono); font-size: 10px; color: var(--text-muted);
+    letter-spacing: 0.15em; text-transform: uppercase; margin-top: 4px;
+  }
+  .btn {
+    display: inline-block;
+    padding: 14px 32px;
+    background: var(--neon);
+    color: var(--dark);
+    font-family: var(--font-mono);
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    text-decoration: none;
+    cursor: pointer;
+    margin: 4px;
+  }
+  .btn:hover { background: #b8ff2a; }
+  .btn-outline {
+    background: transparent;
+    border: 1px solid var(--neon);
+    color: var(--neon);
+  }
+  .btn-outline:hover { background: var(--neon-glow); }
+  .video-container {
+    position: relative; width: 100%; padding-bottom: 56.25%;
+    margin-bottom: 24px; background: var(--dark2);
+    border: 1px solid var(--dark4);
+  }
+  .video-container iframe {
+    position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+    border: none;
+  }
+  .card {
+    background: var(--dark2); border: 1px solid var(--dark4);
+    padding: 24px; margin-bottom: 16px; text-align: left;
+  }
+  .card h3 {
+    font-size: 13px; font-weight: 600; letter-spacing: 0.1em;
+    text-transform: uppercase; color: var(--neon); margin-bottom: 8px;
+  }
+  .card ul {
+    list-style: none; font-size: 13px; color: var(--text-dim);
+  }
+  .card ul li::before { content: '› '; color: var(--neon); }
+  .offer-box {
+    background: var(--dark3); border: 1px solid var(--neon-dim);
+    padding: 24px; margin: 24px 0;
+  }
+  .offer-price {
+    font-family: var(--font-mono); font-size: 48px; font-weight: 700;
+    color: var(--neon); line-height: 1;
+  }
+  .offer-price .currency { font-size: 24px; }
+  .offer-note {
+    font-size: 12px; color: var(--text-dim); margin-top: 8px;
+  }
+  .bonus-grid {
+    display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 12px;
+    margin: 16px 0;
+  }
+  .bonus-item {
+    background: var(--dark2); border: 1px solid var(--dark4);
+    padding: 12px; text-align: center;
+  }
+  .bonus-item .icon { font-size: 24px; margin-bottom: 4px; }
+  .bonus-item .name {
+    font-family: var(--font-mono); font-size: 10px; color: var(--neon);
+    letter-spacing: 0.1em; font-weight: 600;
+  }
+  .bonus-item .desc { font-size: 11px; color: var(--text-dim); margin-top: 2px; }
+  .footer-note {
+    margin-top: 32px; font-size: 11px; color: var(--text-muted);
+    font-family: var(--font-mono);
+  }
+  .hidden { display: none; }
+  @media (max-width: 600px) {
+    .bonus-grid { grid-template-columns: 1fr; }
+    h1 { font-size: 24px; }
+  }
+</style>
+<script type="text/javascript">
+    (function(c,l,a,r,i,t,y){
+        c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+        t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
+        y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
+    })(window, document, "clarity", "script", "xd2k88rszz");
+</script>
+</head>
+<body>
+
+<div class="page">
+
+  <!-- ===== STATE: PRE-LIVE ===== -->
+  <div id="preLive">
+    <div class="badge">// WEBINAR EN VIVO</div>
+    <h1>Las 5 áreas. <span>Un sistema.</span></h1>
+    <p class="sub">El mapa que conecta Marketing · IA · Crecimiento · Finanzas · Cripto en orden</p>
+
+    <div class="countdown">
+      <div class="cd-item"><div class="cd-num" id="cdDays">00</div><div class="cd-label">Días</div></div>
+      <div class="cd-item"><div class="cd-num" id="cdHours">00</div><div class="cd-label">Horas</div></div>
+      <div class="cd-item"><div class="cd-num" id="cdMins">00</div><div class="cd-label">Min</div></div>
+      <div class="cd-item"><div class="cd-num" id="cdSecs">00</div><div class="cd-label">Seg</div></div>
+    </div>
+
+    <p style="margin-bottom:24px;font-size:13px;color:var(--text-dim);">
+      Viernes 19h (ARG) · YouTube Live · Gratis
+    </p>
+
+    <a class="btn" id="liveBtnPre" href="https://www.youtube.com/@gonzalo.crecimientodigital" target="_blank">Configurar recordatorio →</a>
+    <p style="font-size:11px;color:var(--text-muted);margin-top:8px;">Activá la campanita así YouTube te avisa</p>
+
+    <div class="card" style="margin-top:32px;text-align:left;">
+      <h3>En este vivo vas a ver:</h3>
+      <ul>
+        <li>Cómo conectan las 5 áreas en el orden correcto</li>
+        <li>El error que me costó 2 años de prueba y error</li>
+        <li>Caso real: $200 → $600 en 30 días (ROI 3x)</li>
+        <li>El mapa interactivo que armé para no perderte</li>
+        <li>Oferta especial solo para los que están en el vivo</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- ===== STATE: LIVE ===== -->
+  <div id="liveNow" class="hidden">
+    <div class="badge" style="border-color:#ff4444;color:#ff4444;">🔴 EN VIVO AHORA</div>
+    <h1>Estamos <span>en vivo</span></h1>
+    <p class="sub">Conectando las 5 áreas en orden</p>
+
+    <div class="video-container">
+      <iframe id="youtubeLive" src="" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+    </div>
+
+    <p style="font-size:12px;color:var(--text-dim);margin-bottom:16px;">
+      Link de compra en la descripción y en el chat
+    </p>
+    <a class="btn" href="#" onclick="event.preventDefault();goCheckout('las-5-areas',19,'Las 5 Áreas - Webinar');">Comprar Las 5 Áreas ($19) →</a>
+  </div>
+
+  <!-- ===== STATE: POST-LIVE ===== -->
+  <div id="postLive" class="hidden">
+    <div class="badge">// REPLAY DISPONIBLE</div>
+    <h1>Te perdiste el <span>vivo</span>?</h1>
+    <p class="sub">Acá está grabado. La oferta sigue activa por tiempo limitado.</p>
+
+    <div class="video-container">
+      <iframe id="youtubeReplay" src="" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+    </div>
+
+    <div class="offer-box">
+      <p style="font-size:11px;color:var(--neon);font-family:var(--font-mono);letter-spacing:0.2em;margin-bottom:8px;">OFERTA DE LANZAMIENTO</p>
+      <div class="offer-price"><span class="currency">$</span>19</div>
+      <p class="offer-note">USD · Pago único · Acceso vitalicio · 7 días de garantía</p>
+
+      <div class="bonus-grid">
+        <div class="bonus-item">
+          <div class="icon">🧠</div>
+          <div class="name">Toolkit Prompts IA</div>
+          <div class="desc">20+ prompts por área</div>
+        </div>
+        <div class="bonus-item">
+          <div class="icon">📊</div>
+          <div class="name">Banco de Hooks + Copies</div>
+          <div class="desc">20 plantillas de ads y emails</div>
+        </div>
+        <div class="bonus-item">
+          <div class="icon">📈</div>
+          <div class="name">Planilla de Métricas</div>
+          <div class="desc">ROI calculator + tracker</div>
+        </div>
+      </div>
+
+      <div style="margin-top:16px;">
+        <div style="font-family:var(--font-mono);font-size:11px;color:var(--text-dim);margin-bottom:8px;">
+          Valor total: <span style="text-decoration:line-through;">$68</span> · Hoy: <span style="color:var(--neon);font-weight:700;">$19</span>
+        </div>
+        <a class="btn" href="#" onclick="event.preventDefault();goCheckout('las-5-areas',19,'Las 5 Áreas - Replay');">Comprar ahora →</a>
+      </div>
+    </div>
+
+    <p style="font-size:12px;color:var(--text-dim);">
+      ¿Preguntas? <a href="https://wa.me/5491161677122" style="color:var(--neon);">Escribime al WhatsApp</a>
+    </p>
+  </div>
+
+  <div class="footer-note">
+    Gonzalo Crecimiento Digital · gonzalocortez1991@gmail.com
+  </div>
+</div>
+
+<script>
+(function() {
+  // ═══════════════════════════════════════════════════════════════
+  // CONFIGURACIÓN — Cambiá estos valores para tu lanzamiento
+  // ═══════════════════════════════════════════════════════════════
+
+  const CONFIG = {
+    // Fecha y hora del vivo (formato: 'YYYY-MM-DDTHH:mm')
+    launchDate: '2026-06-28T19:00',
+    launchTimezone: 'America/Argentina/Buenos_Aires',
+
+    // YouTube
+    channelUrl: 'https://www.youtube.com/@gonzalo.crecimientodigital',
+    // Video ID del vivo (se completa cuando empieza el live)
+    liveVideoId: '',
+    // Video ID del replay (se completa después del vivo)
+    replayVideoId: '',
+
+    // GAS Auto-Delivery
+    gasUrl: 'https://script.google.com/macros/s/AKfycby_zHonl6FSf-h_hGlrLXkCcvgi965NDqe_bJBHfJGSyAU7RKxX0q2KRk8g8DpCn3RA/exec',
+  };
+
+  function goCheckout(productId, price, productName) {
+    fbq('track', 'InitiateCheckout', {value:price, currency:'USD', content_name:productName, content_category:'infoproducto'});
+    var f = document.createElement('form');
+    f.method = 'POST';
+    f.action = CONFIG.gasUrl;
+    f.target = '_blank';
+    var i1 = document.createElement('input'); i1.name = 'createCheckout'; i1.value = 'true'; f.appendChild(i1);
+    var i2 = document.createElement('input'); i2.name = 'product'; i2.value = productId; f.appendChild(i2);
+    document.body.appendChild(f);
+    f.submit();
+  }
+
+  // ═══════════════════════════════════════════════════════════════
+  // LÓGICA
+  // ═══════════════════════════════════════════════════════════════
+
+  const STATE = { PRE: 'pre', LIVE: 'live', POST: 'post' };
+  let currentState = STATE.PRE;
+  const launchTime = new Date(CONFIG.launchDate + ' ' + CONFIG.launchTimezone.replace('America/Argentina/Buenos_Aires', '-03:00'));
+
+  function getState() {
+    const now = new Date();
+    const endTime = new Date(launchTime.getTime() + 3 * 60 * 60 * 1000); // 3h after start
+    if (now < launchTime) return STATE.PRE;
+    if (now < endTime) return STATE.LIVE;
+    return STATE.POST;
+  }
+
+  function showState(state) {
+    document.getElementById('preLive').classList.toggle('hidden', state !== STATE.PRE);
+    document.getElementById('liveNow').classList.toggle('hidden', state !== STATE.LIVE);
+    document.getElementById('postLive').classList.toggle('hidden', state !== STATE.POST);
+    currentState = state;
+
+    if (state === STATE.LIVE && CONFIG.liveVideoId) {
+      document.getElementById('youtubeLive').src = 'https://www.youtube.com/embed/' + CONFIG.liveVideoId + '?autoplay=1';
+    }
+    if (state === STATE.POST && CONFIG.replayVideoId) {
+      document.getElementById('youtubeReplay').src = 'https://www.youtube.com/embed/' + CONFIG.replayVideoId + '?rel=0';
+    }
+    if (state === STATE.PRE) {
+      document.getElementById('liveBtnPre').href = CONFIG.channelUrl;
+    }
+  }
+
+  function updateCountdown() {
+    if (currentState !== STATE.PRE) return;
+    const now = new Date();
+    const diff = Math.max(0, launchTime.getTime() - now.getTime());
+    const d = Math.floor(diff / (1000*60*60*24));
+    const h = Math.floor((diff % (1000*60*60*24)) / (1000*60*60));
+    const m = Math.floor((diff % (1000*60*60)) / (1000*60));
+    const s = Math.floor((diff % (1000*60)) / 1000);
+    document.getElementById('cdDays').textContent = String(d).padStart(2,'0');
+    document.getElementById('cdHours').textContent = String(h).padStart(2,'0');
+    document.getElementById('cdMins').textContent = String(m).padStart(2,'0');
+    document.getElementById('cdSecs').textContent = String(s).padStart(2,'0');
+  }
+
+  function tick() {
+    const state = getState();
+    if (state !== currentState) showState(state);
+    if (state === STATE.PRE) updateCountdown();
+  }
+
+  showState(getState());
+  updateCountdown();
+  setInterval(tick, 1000);
+})();
+</script>
+
+</body>
+</html>

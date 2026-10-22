@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&family=Syne+Mono&display=swap" rel="stylesheet">
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      background: #0D0D0D;
+      color: #FFFFFF;
+      font-family: 'Space Grotesk', sans-serif;
+      padding: 48px 40px;
+      font-size: 13px;
+      line-height: 1.5;
+    }
+    .page { max-width: 700px; margin: 0 auto; }
+
+    /* Header */
+    .header { text-align: center; margin-bottom: 40px; padding-bottom: 32px; border-bottom: 1px solid rgba(166,255,0,0.15); }
+    .brand { font-family: 'Syne Mono', monospace; font-size: 10px; color: #A6FF00; letter-spacing: 4px; text-transform: uppercase; margin-bottom: 16px; }
+    h1 { font-size: 28px; font-weight: 700; color: #FFFFFF; margin-bottom: 8px; }
+    .tagline { font-size: 14px; color: #9A9A9A; }
+
+    /* Info bar */
+    .info-bar { display: flex; justify-content: center; gap: 32px; margin: 24px 0 0; flex-wrap: wrap; }
+    .info-item { text-align: center; }
+    .info-label { font-family: 'Syne Mono', monospace; font-size: 9px; color: #A6FF00; letter-spacing: 2px; text-transform: uppercase; margin-bottom: 4px; }
+    .info-value { font-size: 13px; color: #fff; }
+
+    /* Session */
+    .session { margin-bottom: 28px; border: 1px solid rgba(166,255,0,0.1); border-radius: 10px; padding: 24px; background: rgba(166,255,0,0.02); }
+    .session-header { display: flex; align-items: center; gap: 16px; margin-bottom: 16px; }
+    .session-num { font-family: 'Syne Mono', monospace; font-size: 28px; font-weight: 700; color: #A6FF00; min-width: 48px; }
+    .session-title { font-size: 16px; font-weight: 700; color: #fff; }
+    .session-sub { font-size: 12px; color: #9A9A9A; margin-top: 2px; }
+    .session-desc { color: #ccc; margin-bottom: 14px; font-size: 13px; }
+    .session-list { list-style: none; padding: 0; margin-bottom: 14px; }
+    .session-list li { padding: 4px 0 4px 18px; position: relative; color: #ddd; font-size: 12px; }
+    .session-list li::before { content: '→'; position: absolute; left: 0; color: #A6FF00; }
+    .tools { background: rgba(166,255,0,0.04); border-left: 2px solid #A6FF00; padding: 10px 14px; border-radius: 0 6px 6px 0; }
+    .tools-label { font-family: 'Syne Mono', monospace; font-size: 9px; color: #A6FF00; letter-spacing: 2px; text-transform: uppercase; margin-bottom: 6px; }
+    .tools-list { list-style: none; padding: 0; }
+    .tools-list li { font-size: 11px; color: #9A9A9A; padding: 2px 0; }
+    .tools-list li::before { content: '✓ '; color: #A6FF00; }
+    .optional-badge { display: inline-block; font-family: 'Syne Mono', monospace; font-size: 9px; color: #FF3A3A; letter-spacing: 1px; background: rgba(255,58,58,0.1); padding: 2px 8px; border-radius: 4px; margin-left: 8px; }
+
+    /* Kit */
+    .kit { margin-top: 36px; padding: 24px; border: 1px solid rgba(166,255,0,0.15); border-radius: 10px; }
+    .kit-title { font-family: 'Syne Mono', monospace; font-size: 11px; color: #A6FF00; letter-spacing: 3px; text-transform: uppercase; margin-bottom: 16px; }
+    .kit-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 8px 24px; }
+    .kit-item { font-size: 11px; color: #ccc; padding: 4px 0; border-bottom: 1px solid rgba(255,255,255,0.04); }
+    .kit-item span { color: #A6FF00; font-family: 'Syne Mono', monospace; font-size: 10px; margin-right: 6px; }
+
+    /* Footer */
+    .footer { text-align: center; margin-top: 40px; padding-top: 24px; border-top: 1px solid rgba(166,255,0,0.1); }
+    .footer-text { font-family: 'Syne Mono', monospace; font-size: 10px; color: #5A5A5A; letter-spacing: 2px; }
+
+    @media print {
+      body { padding: 24px; }
+      .session { break-inside: avoid; }
+    }
+  </style>
+</head>
+<body>
+<div class="page">
+
+  <div class="header">
+    <div class="brand">// GCD · SISTEMA 5 PILARES</div>
+    <h1>Temario del Programa</h1>
+    <p class="tagline">Mentoría 1:1 · 7 sesiones · De 0 a sistema escalable</p>
+    <div class="info-bar">
+      <div class="info-item"><div class="info-label">Formato</div><div class="info-value">1:1 Individual</div></div>
+      <div class="info-item"><div class="info-label">Duración</div><div class="info-value">7 sesiones</div></div>
+      <div class="info-item"><div class="info-label">Precio</div><div class="info-value">$200-250 USD</div></div>
+      <div class="info-item"><div class="info-label">Soporte</div><div class="info-value">WhatsApp 30 días</div></div>
+    </div>
+  </div>
+
+  <!-- SESIÓN 0 -->
+  <div class="session">
+    <div class="session-header">
+      <div class="session-num">00</div>
+      <div>
+        <div class="session-title">Diagnóstico</div>
+        <div class="session-sub">30-45 min · Sesión inicial</div>
+      </div>
+    </div>
+    <p class="session-desc">Mapeamos qué tenés para escalar y diagnosticamos tus 5 áreas con un score del 1 al 10.</p>
+    <ul class="session-list">
+      <li>Preguntas de descubrimiento: qué sabés hacer, a quién, cómo te ganás la vida</li>
+      <li>Diagnóstico de las 5 áreas (Marketing, IA, Crecimiento, Finanzas, Cripto)</li>
+      <li>Identificar el pilar con mayor urgencia</li>
+      <li>Definir el talento/producto/habilidad a escalar</li>
+    </ul>
+    <div class="tools">
+      <div class="tools-label">Entregable</div>
+      <ul class="tools-list"><li>Documento Diagnóstico 5 Pilares (PDF personalizado)</li></ul>
+    </div>
+  </div>
+
+  <!-- SESIÓN 1 -->
+  <div class="session">
+    <div class="session-header">
+      <div class="session-num">01</div>
+      <div>
+        <div class="session-title">Marketing: Atraer</div>
+        <div class="session-sub">60 min · Pilar 1</div>
+      </div>
+    </div>
+    <p class="session-desc">Que más personas sepan lo que hacés y vendés. Definimos tu avatar, armamos tu embudo y diseñamos tu estrategia de contenido.</p>
+    <ul class="session-list">
+      <li>Avatar ideal: 1 persona concreta, no 1000</li>
+      <li>Embudo de captura: Lead magnet → Landing → Formulario → Email</li>
+      <li>Estrategia de contenido: qué, dónde, cuándo</li>
+      <li>Copy básico: headline, storytelling, CTA</li>
+    </ul>
+    <div class="tools">
+      <div class="tools-label">Herramientas</div>
+      <ul class="tools-list">
+        <li>Plantilla de Avatar</li>
+        <li>Plantilla de Embudo de Captura</li>
+        <li>Prompt de IA para ideas de contenido</li>
+        <li>Plantilla de Copy (headline + storytelling + CTA)</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- SESIÓN 2 -->
+  <div class="session">
+    <div class="session-header">
+      <div class="session-num">02</div>
+      <div>
+        <div class="session-title">IA: Acelerar</div>
+        <div class="session-sub">60 min · Pilar 2</div>
+      </div>
+    </div>
+    <p class="session-desc">Multiplicá tu capacidad sin multiplicar tus horas. Stack de IA, automatizaciones y creación de contenido asistida.</p>
+    <ul class="session-list">
+      <li>Stack de IA: ChatGPT, Gemini, DeepSeek, Perplexity</li>
+      <li>Casos de uso específicos para tu negocio</li>
+      <li>Automatizaciones simples con n8n o Make</li>
+      <li>Creación de contenido con IA (copy, imágenes, guiones)</li>
+    </ul>
+    <div class="tools">
+      <div class="tools-label">Herramientas</div>
+      <ul class="tools-list">
+        <li>Prompt maestro para contenido (adaptado)</li>
+        <li>Guía de automatizaciones simples (5 flows útiles)</li>
+        <li>Plantilla de calendario de contenido con IA</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- SESIÓN 3 -->
+  <div class="session">
+    <div class="session-header">
+      <div class="session-num">03</div>
+      <div>
+        <div class="session-title">Crecimiento: Escalar</div>
+        <div class="session-sub">60 min · Pilar 3</div>
+      </div>
+    </div>
+    <p class="session-desc">Construí sistemas que crezcan solos. Métricas, pipeline de productos y el paso de "vender tu tiempo" a "vender un sistema".</p>
+    <ul class="session-list">
+      <li>Métricas que importan (y cuáles ignorar)</li>
+      <li>Pipeline de productos: de $0 a $250+</li>
+      <li>Embudo loop semanal: tráfico → captura → nurturing → venta</li>
+      <li>Cómo escalar sin depender 100% de vos</li>
+    </ul>
+    <div class="tools">
+      <div class="tools-label">Herramientas</div>
+      <ul class="tools-list">
+        <li>Plantilla de Métricas (dashboard simple)</li>
+        <li>Plantilla de Pipeline de Productos</li>
+        <li>Checklist de Embudo Completo</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- SESIÓN 4 -->
+  <div class="session">
+    <div class="session-header">
+      <div class="session-num">04</div>
+      <div>
+        <div class="session-title">Finanzas: Ordenar</div>
+        <div class="session-sub">60 min · Pilar 4</div>
+      </div>
+    </div>
+    <p class="session-desc">Manejá el dinero que entra sin que se vaya por la tangente. Pricing, costos ocultos, proyecciones y pasarelas de pago.</p>
+    <ul class="session-list">
+      <li>Pricing: cómo fijar precios que vendan Y sean rentables</li>
+      <li>Costos ocultos que comen márgenes</li>
+      <li>Proyección simple: cuánto necesito vender para ganar X</li>
+      <li>Dónde reinvertir (y dónde no)</li>
+      <li>Pasarelas de pago para Argentina/Latam</li>
+    </ul>
+    <div class="tools">
+      <div class="tools-label">Herramientas</div>
+      <ul class="tools-list">
+        <li>Calculadora de Pricing (spreadsheet)</li>
+        <li>Plantilla de Proyección Mensual</li>
+        <li>Guía de Pasarelas de Pago (Hotmart, MP, DollarApp)</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- SESIÓN 5 -->
+  <div class="session">
+    <div class="session-header">
+      <div class="session-num">05</div>
+      <div>
+        <div class="session-title">Cripto: Optimizar</div>
+        <div class="session-sub">60 min · Pilar 5 <span class="optional-badge">OPCIONAL</span></div>
+      </div>
+    </div>
+    <p class="session-desc">Protegé y hacé rendir lo que se genera. Exchanges, stablecoins, trading bots y DeFi básico.</p>
+    <ul class="session-list">
+      <li>Por qué Cripto es el 5to pilar (no es opcional, es el futuro)</li>
+      <li>Exchanges recomendados: BingX, Pionex, Bybit</li>
+      <li>Stablecoins: cómo protegerse de la inflación</li>
+      <li>Trading bots: estrategias pasivas 24/7</li>
+      <li>DeFi básico: yield farming, staking</li>
+    </ul>
+    <div class="tools">
+      <div class="tools-label">Herramientas</div>
+      <ul class="tools-list">
+        <li>Guía de inicio en exchanges (paso a paso)</li>
+        <li>Configuración de bot básico en Pionex</li>
+        <li>Plantilla de distribución de ingresos (50/30/20)</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- SESIÓN 6 -->
+  <div class="session">
+    <div class="session-header">
+      <div class="session-num">06</div>
+      <div>
+        <div class="session-title">Cierre + Roadmap 90 Días</div>
+        <div class="session-sub">60 min · Sesión final</div>
+      </div>
+    </div>
+    <p class="session-desc">Consolidamos todo y definimos tu plan de acción a 90 días con pasos concretos.</p>
+    <ul class="session-list">
+      <li>Revisión de avances en cada pilar</li>
+      <li>Quick wins: cosas que podés implementar HOY</li>
+      <li>Prioridades para los próximos 30-60-90 días</li>
+      <li>Próximos pasos: qué viene después de la mentoría</li>
+    </ul>
+    <div class="tools">
+      <div class="tools-label">Entregable</div>
+      <ul class="tools-list"><li>Roadmap de Escalamiento (PDF personalizado con plan 90 días)</li></ul>
+    </div>
+  </div>
+
+  <!-- KIT -->
+  <div class="kit">
+    <div class="kit-title">Kit de Herramientas (14 recursos)</div>
+    <div class="kit-grid">
+      <div class="kit-item"><span>01</span>Plantilla de Avatar</div>
+      <div class="kit-item"><span>02</span>Plantilla de Embudo de Captura</div>
+      <div class="kit-item"><span>03</span>Prompt Maestro para Contenido</div>
+      <div class="kit-item"><span>04</span>Guía de Automatizaciones Simples</div>
+      <div class="kit-item"><span>05</span>Plantilla de Calendario de Contenido</div>
+      <div class="kit-item"><span>06</span>Plantilla de Métricas</div>
+      <div class="kit-item"><span>07</span>Plantilla de Pipeline de Productos</div>
+      <div class="kit-item"><span>08</span>Checklist de Embudo Completo</div>
+      <div class="kit-item"><span>09</span>Calculadora de Pricing</div>
+      <div class="kit-item"><span>10</span>Plantilla de Proyección Mensual</div>
+      <div class="kit-item"><span>11</span>Guía de Pasarelas de Pago</div>
+      <div class="kit-item"><span>12</span>Guía de Inicio en Exchanges</div>
+      <div class="kit-item"><span>13</span>Configuración de Bot Básico</div>
+      <div class="kit-item"><span>14</span>Plantilla de Distribución de Ingresos</div>
+    </div>
+  </div>
+
+  <div class="footer">
+    <div class="footer-text">GCD · BASES SOBRE ESCALAMIENTO Y ESTRATEGIA DIGITAL</div>
+  </div>
+
+</div>
+</body>
+</html>

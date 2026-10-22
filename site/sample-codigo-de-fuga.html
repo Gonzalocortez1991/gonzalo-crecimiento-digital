@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Muestra Gratis — Código de Fuga | GCD</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Syne+Mono&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --neon: #A6FF00; --neon-dim: rgba(166,255,0,0.5); --neon-glow: rgba(166,255,0,0.12);
+    --dark: #0a0a0a; --dark2: #111; --dark3: #1a1a1a;
+    --text: #e0e0e0; --text-dim: #888; --text-muted: #555;
+    --font-body: 'Space Grotesk', sans-serif; --font-mono: 'Syne Mono', monospace;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: var(--font-body); background: var(--dark); color: var(--text); line-height: 1.7; font-weight: 300; font-size: 15px; }
+  body::after { content: ''; position: fixed; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none; z-index: 9999; background: repeating-linear-gradient(0deg, transparent, transparent 2px, rgba(0,0,0,0.04) 2px, rgba(0,0,0,0.04) 4px); }
+  .page { max-width: 800px; margin: 0 auto; padding: 60px 40px; }
+
+  .cover { min-height: 100vh; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; position: relative; overflow: hidden; padding: 40px 20px; }
+  .cover::before { content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: radial-gradient(ellipse at 50% 40%, rgba(166,255,0,0.05) 0%, transparent 60%); }
+  .cover-grid { position: absolute; top: 0; left: 0; width: 100%; height: 100%; background-image: linear-gradient(90deg, var(--neon-glow) 1px, transparent 1px), linear-gradient(0deg, var(--neon-glow) 1px, transparent 1px); background-size: 60px 60px; opacity: 0.2; pointer-events: none; }
+  .cover-badge { font-family: var(--font-mono); font-size: 11px; color: var(--neon); letter-spacing: 5px; text-transform: uppercase; margin-bottom: 24px; opacity: 0.7; position: relative; z-index: 1; }
+  .cover-badge::before, .cover-badge::after { content: '◆'; margin: 0 10px; font-size: 7px; }
+  .cover-title { font-family: var(--font-body); font-size: clamp(32px, 5vw, 48px); font-weight: 600; position: relative; z-index: 1; }
+  .cover-title .highlight { color: var(--neon); }
+  .cover-sub { font-size: 16px; color: var(--text-dim); margin-top: 12px; position: relative; z-index: 1; }
+  .cover-line { width: 40px; height: 1px; background: var(--neon-dim); margin: 24px auto; position: relative; z-index: 1; }
+
+  .section-label { font-family: var(--font-mono); font-size: 10px; color: var(--neon); letter-spacing: 4px; text-transform: uppercase; margin-bottom: 8px; opacity: 0.6; }
+  .section-title { font-size: clamp(22px, 2.5vw, 28px); font-weight: 500; margin-bottom: 16px; }
+  .section-title .highlight { color: var(--neon); }
+  .chapter-header { display: flex; align-items: center; gap: 12px; margin-bottom: 20px; padding-bottom: 12px; border-bottom: 1px solid var(--neon-glow); }
+  .chapter-number { font-family: var(--font-mono); font-size: 12px; color: var(--neon); letter-spacing: 3px; opacity: 0.7; }
+  .chapter-number::before { content: '// '; }
+  .chapter-title { font-size: 22px; font-weight: 500; letter-spacing: 1px; }
+  .chapter-title span { color: var(--neon); }
+  p { margin-bottom: 16px; line-height: 1.8; color: var(--text-dim); }
+  strong { color: var(--text); font-weight: 500; }
+  hr { border: none; height: 1px; background: linear-gradient(90deg, transparent, var(--neon-glow), transparent); margin: 40px 0; }
+
+  .cta-box { text-align: center; border: 1px solid var(--neon-glow); padding: 32px; margin: 40px 0; }
+  .cta-box h3 { font-size: 20px; margin-bottom: 8px; }
+  .cta-box p { font-size: 14px; margin-bottom: 20px; }
+  .cta-btn { display: inline-block; font-family: var(--font-mono); font-size: 13px; letter-spacing: 3px; text-transform: uppercase; color: var(--dark); background: var(--neon); padding: 14px 36px; text-decoration: none; font-weight: 600; transition: all 0.3s; }
+  .cta-btn:hover { background: #8cdb00; box-shadow: 0 0 30px rgba(166,255,0,0.3); }
+
+  .footer-note { text-align: center; font-size: 12px; color: var(--text-muted); font-family: var(--font-mono); letter-spacing: 1px; margin-top: 48px; padding-top: 24px; border-top: 1px solid rgba(255,255,255,0.05); }
+
+  @media print { body { background: #0a0a0a !important; -webkit-print-color-adjust: exact; print-color-adjust: exact; } body::after { display: none; } .cover { min-height: 100vh; page-break-after: always; } @page { size: A4; margin: 15mm 20mm; } }
+  @media (max-width: 600px) { .page { padding: 30px 20px; } }
+</style>
+<script type="text/javascript">
+    (function(c,l,a,r,i,t,y){
+        c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+        t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
+        y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
+    })(window, document, "clarity", "script", "xd2k88rszz");
+</script>
+</head>
+<body>
+<div class="page">
+
+<section class="cover">
+  <div class="cover-grid"></div>
+  <div class="cover-badge">Código de Fuga · Muestra Gratis</div>
+  <h1 class="cover-title">CÓDIGO DE <span class="highlight">FUGA</span></h1>
+  <p class="cover-sub">De empleado a estratega digital — La ruta que nadie te va a mostrar</p>
+  <div class="cover-line"></div>
+  <p style="font-size: 13px; color: var(--text-muted); font-family: var(--font-mono); letter-spacing: 2px; position: relative; z-index: 1;">Incluye: Prólogo · Capítulo 1 · Plan de Acción Semana 1</p>
+</section>
+
+<blockquote style="border-left: 2px solid var(--neon); padding: 20px 24px; margin: 32px 0; background: rgba(166,255,0,0.03); font-size: 14px; line-height: 1.8; color: var(--text-dim); position: relative;">
+  <strong>Esto no es un manual con 10 pasos al éxito.</strong> No hay enlaces mágicos, ni capturas de pantalla de saldos millonarios, ni promesas de que en 30 días vas a renunciar a tu trabajo. Esto es una historia real. Cruda. Una radiografía de cómo alguien común —sin contactos, sin padrinos, sin capital inicial— logró construir un sistema digital desde cero. Si buscás una fórmula mágica, cerrá esto ahora. Si buscás una hoja de ruta honesta para construir la tuya propia, quedate. Esto es para vos.
+</blockquote>
+
+<div class="section-label">// PRÓLOGO</div>
+<div class="chapter-header">
+  <span class="chapter-number">PRÓLOGO</span>
+  <h2 class="chapter-title">El día que todo <span>cambió</span></h2>
+</div>
+
+<p>No hubo un click. Hubo miles.</p>
+<p>No hubo una revelación divina. Hubo cinco años de prueba y error, de madrugadas frente a una pantalla, de cuentas que no daban, de promesas que no se cumplieron, de gente que desapareció cuando las cosas se pusieron difíciles.</p>
+<p>Pero también hubo algo más. Algo que crecía lento pero firme, como una certeza subterránea: el sistema tradicional no estaba diseñado para mí. Y si el sistema no estaba diseñado para mí, entonces yo tenía que diseñar el mío propio.</p>
+<p>Mi nombre es Gonzalo. Soy <strong>Técnico en Relaciones Laborales</strong> por la Universidad Nacional Arturo Jauretche y tengo un <strong>First Certificate</strong> de Cambridge. Nada de eso me preparó para el mundo digital — pero todo eso, de alguna forma, me dio herramientas que después usaría sin saberlo.</p>
+<p>No vengo de una familia de empresarios. No heredé un negocio ni recibí una herencia. No tengo un mentor famoso ni un padrino en ningún lado.</p>
+<p>Lo que tengo es un mapa.</p>
+<p>Un mapa que fui dibujando solo. A veces a oscuras. A veces a los golpes. Un mapa que conecta cinco territorios que la mayoría cree que están separados, pero que en realidad son piezas de un mismo rompecabezas:</p>
+<p><strong>Marketing. Inteligencia Artificial. Crecimiento. Finanzas. Cripto.</strong></p>
+<p>Cinco áreas. Un solo sistema. Y en el centro, una persona que aprendió a mover las piezas.</p>
+<p>Este libro es ese mapa. Pero no empieza con el mapa terminado. Empieza mucho antes. Empieza en un lugar donde probablemente vos estás ahora mismo.</p>
+<p>Empecemos.</p>
+
+<hr>
+
+<div class="section-label">// CAPÍTULO 01</div>
+<div class="chapter-header">
+  <span class="chapter-number">CAPÍTULO 01</span>
+  <h2 class="chapter-title">El trabajo que <span>no era mío</span></h2>
+</div>
+
+<p>Antes de todo esto, trabajaba en un mayorista de alimentos.</p>
+<p>Un trabajo normal. De esos que conseguís porque "hay que trabajar", porque "es lo que hay", porque "no te podés quejar". Entraba a la mañana, salía a la tarde. Cumplía horario. Cobraba un sueldo. Nada especial. Nada terrible.</p>
+<p>Simplemente, nada que fuera mío.</p>
+<p>No es que odiara el trabajo. El lugar tampoco era la gran cosa. No fue fácil. Pero había una sensación que se volvía más pesada cada día que pasaba: la de estar gastando mi vida en algo que no construía nada para mí.</p>
+<p>Te voy a ser sincero: muchas veces pensé que era un ingrato. ¿Cuánta gente quisiera tener un trabajo estable? ¿Cuánta gente está buscando lo que yo ya tenía?</p>
+<p>Pero esa culpa no duró mucho. Porque entendí algo: el problema no era el trabajo. El problema era que <strong>yo no aparecía en la ecuación</strong>.</p>
+<p>Mi energía, mis horas, mi atención, mi creatividad — todo iba a dar a un sistema donde yo era perfectamente reemplazable. Si me iba hoy, mañana entraba otro. Mi paso por ese lugar no dejaría ninguna huella.</p>
+<p>Y lo peor no era eso. Lo peor era darme cuenta de que si seguía ese camino, el final ya estaba escrito: jubilarme a los sesenta y cinco con lo justo, habiendo vivido una vida que alguien más había diseñado para mí.</p>
+<p>Algo en mi intestino —en ese lugar donde no hay razones, solo certezas— me decía que había otra forma.</p>
+<p>No sabía cuál. No tenía pruebas. No conocía a nadie que lo hubiera logrado.</p>
+<p>Pero lo sentía.</p>
+<p>Esa incomodidad fue el motor. No el odio. No la desesperación. La incomodidad de saber que el asiento en el que estaba sentado no era el mío.</p>
+
+<hr>
+
+<div class="section-label">// PLAN DE ACCIÓN · SEMANA 1</div>
+<div class="chapter-header">
+  <span class="chapter-number">BONO</span>
+  <h2 class="chapter-title">Plan de Acción — <span>Semana 1</span></h2>
+</div>
+<p><strong>Objetivo:</strong> Reflexión y diagnóstico — entender dónde estás y conectar con el mapa.</p>
+
+<p style="margin-top: 16px;"><strong>Día 1</strong> — Leé el Prólogo + Capítulos 1-3. Subrayá, tomá notas. Preguntate: ¿en qué parte de esta historia me veo reflejado?</p>
+
+<ul style="list-style: none; margin-top: 12px;">
+  <li style="padding: 8px 0; border-bottom: 1px solid rgba(255,255,255,0.04); font-size: 14px;">☐ Leer Prólogo + Capítulos 1 al 3</li>
+  <li style="padding: 8px 0; border-bottom: 1px solid rgba(255,255,255,0.04); font-size: 14px;">☐ Escribir en una hoja: ¿Qué es lo que más me incomoda de mi situación actual?</li>
+  <li style="padding: 8px 0; border-bottom: 1px solid rgba(255,255,255,0.04); font-size: 14px;">☐ Identificar qué capítulo resonó más con mi historia personal</li>
+  <li style="padding: 8px 0; font-size: 14px;">☐ Anotar 3 cosas que tengo a mi favor (tiempo, habilidades, recursos)</li>
+</ul>
+
+<p style="margin-top: 16px; font-size: 14px; color: var(--text-dim);"><strong>Siguiente paso:</strong> Leer Capítulos 4-7 y explorar las primeras herramientas (días 2-7).</p>
+
+<div style="margin:20px 0;padding:14px;border-left:2px solid var(--neon);background:rgba(166,255,0,0.04);font-size:13px;color:var(--text-dim);">
+  💡 <strong style="color:var(--text);">¿Sin capital para arrancar?</strong> Yo usé Uber/Didi como puente económico mientras el sistema digital maduraba. Si vas a usar las apps, <a href="https://page.didiglobal.com/driver-page/register?a=102955377&activity_id=102955377&activity_type=29&channel=28&city_id=54052300&i=dBtD0LlEWusWTk8rQaPnpg%3D%3D&lang=es-419&locale=es_AR&location_country=AR&product_id=21033&scene=29&shar_chanl=wa&share_media=WHATSAPP&uid=650911348222812&url_id=2019055873&url_type=0#/home" target="_blank" style="color:var(--neon);font-weight:600;">registrate en Didi con mi código</a> — las primeras carreras te financian los $5 del Pack Starter.<br><br>
+  💱 <strong style="color:var(--text);">Exchanges cripto para arrancar:</strong> <a href="https://bingxdao.com/invite/JI972G/" target="_blank" style="color:var(--neon);font-weight:600;">BingX</a> (IA integrada) · <a href="https://www.pionex.com/es/signUp?r=0A5x3MWAgZC" target="_blank" style="color:var(--neon);font-weight:600;">Pionex</a> (bots gratuitos) · <a href="https://www.bybit.com/invite?ref=BYWR3OJ&medium=referral&utm_campaign=evergreen" target="_blank" style="color:var(--neon);font-weight:600;">Bybit</a> (spot/futuros)<br><br>
+  📌 <strong style="color:var(--text);">Todos los links en un solo lugar:</strong> <a href="/LINKS-REFERIDOS-GCD.html" target="_blank" style="color:var(--neon);font-weight:600;">Links de Referidos GCD →</a>
+</div>
+
+<hr>
+
+<div class="cta-box">
+  <h3>📖 Esto fue solo el comienzo</h3>
+  <p>El libro completo tiene 16 capítulos + 3 bonuses que te dan el mapa completo para construir tu sistema digital.</p>
+  <a href="https://pay.hotmart.com/M105972469O?src=sample" class="cta-btn" target="_blank" onclick="fbq('track', 'InitiateCheckout', {value:5, currency:'USD', content_name:'Pack Starter', content_category:'infoproducto'});">Comprar Pack Starter →</a>
+  <p style="font-size: 11px; color: var(--text-muted); margin-top: 12px;">$5 USD · Acceso inmediato · Pago 100% seguro</p>
+</div>
+
+<div class="footer-note">
+  Código de Fuga — Muestra Gratis<br>
+  © Gonzalo Crecimiento Digital
+</div>
+
+</div>
+</body>
+</html>

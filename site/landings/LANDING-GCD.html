@@ -1,0 +1,757 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Gonzalo Crecimiento Digital — Sistema v1.0 · Bases sobre escalamiento y estrategia digital</title>
+<meta name="description" content="Marketing, IA, Crecimiento, Finanzas y Cripto conectadas en un solo sistema. Empezá gratis con la muestra de Código de Fuga y el mapa que a mí me hubiera gustado tener cuando empecé.">
+<meta name="author" content="Gonzalo Crecimiento Digital">
+<meta name="robots" content="index, follow">
+
+<meta property="og:title" content="Conectá las 5 áreas en el orden exacto">
+<meta property="og:description" content="Marketing, IA, Crecimiento, Finanzas y Cripto en un solo sistema. Sin humo, sin cursos sueltos. Empezá gratis.">
+<meta property="og:image" content="https://landing-gcd.vercel.app/activos/Foto%20Perfil%20Circulo.png">
+<meta property="og:url" content="https://landing-gcd.vercel.app/LANDING-GCD.html">
+<meta property="og:type" content="website">
+<meta property="og:locale" content="es_AR">
+<meta name="theme-color" content="#A6FF00">
+
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' fill='%230d0d0d'/><text x='16' y='22' font-size='18' text-anchor='middle' fill='%23A6FF00' font-family='monospace'>G</text></svg>">
+
+<!-- Meta Pixel -->
+<script>
+!function(f,b,e,v,n,t,s)
+{if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+n.queue=[];t=b.createElement(e);t.async=!0;
+t.src=v;s=b.getElementsByTagName(e)[0];
+s.parentNode.insertBefore(t,s)}(window, document,'script',
+'https://connect.facebook.net/en_US/fbevents.js');
+fbq('init', '925391107193038');
+fbq('track', 'PageView');
+</script>
+<noscript><img height="1" width="1" style="display:none"
+src="https://www.facebook.com/tr?id=925391107193038&ev=PageView&noscript=1"/></noscript>
+
+<!-- Google tag -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-T8Y7G3YX50"></script>
+<script>
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'G-T8Y7G3YX50');
+</script>
+
+<!-- FAQ schema (AEO) -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {"@type":"Question","name":"¿Esto es otro curso más?","acceptedAnswer":{"@type":"Answer","text":"No. Es un sistema que conecta 5 áreas en orden. Arrancás gratis con la muestra y decidís después."}},
+    {"@type":"Question","name":"¿Necesito saber de marketing o programación?","acceptedAnswer":{"@type":"Answer","text":"No. El lenguaje es técnico pero explicado desde cero, pensado para principiantes."}},
+    {"@type":"Question","name":"¿Cuánto tiempo necesito?","acceptedAnswer":{"@type":"Answer","text":"La muestra se lee al instante en el navegador y la secuencia son 5 emails. Cada uno define su ritmo."}},
+    {"@type":"Question","name":"¿Tiene garantía?","acceptedAnswer":{"@type":"Answer","text":"Sí. El Pack Starter tiene 48 horas y Las 5 Áreas 7 días. Devolución del 100% sin pregunta."}},
+    {"@type":"Question","name":"¿Sirve para mi nicho?","acceptedAnswer":{"@type":"Answer","text":"El sistema es el mismo para cualquier nicho. El nicho solo cambia el tema, no la estructura."}},
+    {"@type":"Question","name":"¿Después me van a spamear?","acceptedAnswer":{"@type":"Answer","text":"Recibís 5 emails con contenido de valor y la serie se termina. Podés darte de baja en un clic."}}
+  ]
+}
+</script>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+<style>
+:root {
+  --bg: #0d0d0d;
+  --bg-2: #0a0a0a;
+  --bg-3: #141414;
+  --neon: #A6FF00;
+  --neon-dim: rgba(166, 255, 0, 0.15);
+  --neon-glow: rgba(166, 255, 0, 0.08);
+  --neon-mid: rgba(166, 255, 0, 0.4);
+  --white: #ffffff;
+  --gray-light: #bbbbbb;
+  --gray: #888888;
+  --gray-dark: #222222;
+  --ease: cubic-bezier(0.32, 0.72, 0, 1);
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body {
+  background: var(--bg);
+  color: var(--white);
+  font-family: 'Inter', sans-serif;
+  font-size: 15px;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  overflow-x: clip;
+}
+::selection { background: var(--neon); color: var(--bg); }
+h1, h2, h3, h4 { text-wrap: balance; }
+p { text-wrap: pretty; }
+a { text-decoration: none; color: inherit; }
+
+.c { max-width: 1040px; margin: 0 auto; padding: 0 28px; }
+
+/* ── HUD backgrounds ── */
+.hud-dots {
+  position: fixed; inset: 0; z-index: 0; pointer-events: none;
+  background-image: radial-gradient(rgba(166,255,0,0.14) 1px, transparent 1px);
+  background-size: 34px 34px;
+  opacity: 0.5;
+  overflow: hidden;
+}
+.smoke { position: absolute; border-radius: 50%; filter: blur(90px); pointer-events: none; }
+.smoke-a { width: 480px; height: 480px; top: -140px; right: -80px; background: var(--neon-glow); max-width: 50vw; }
+.smoke-b { width: 420px; height: 420px; bottom: 0; left: -100px; background: var(--neon-glow); max-width: 50vw; }
+
+/* ── top HUD bar ── */
+.topbar {
+  position: sticky; top: 0; z-index: 20;
+  background: rgba(13,13,13,0.85);
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid rgba(255,255,255,0.06);
+}
+.topbar-inner {
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 14px 0;
+}
+.logo {
+  font-family: 'DM Mono', monospace;
+  font-size: 13px; font-weight: 500;
+  letter-spacing: 0.3em; color: var(--neon);
+}
+.logo::before { content: '●'; margin-right: 8px; font-size: 8px; animation: blip 2s infinite; }
+@keyframes blip { 0%,100% {opacity:1;} 50% {opacity:0.15;} }
+.navcoords {
+  font-family: 'DM Mono', monospace; font-size: 10px;
+  letter-spacing: 0.2em; color: #555; text-transform: uppercase;
+}
+.nav { display: flex; gap: 6px; }
+.nav a {
+  font-size: 11px; letter-spacing: 0.2em; text-transform: uppercase;
+  color: var(--gray); padding: 8px 12px; border: 1px solid transparent;
+  transition: color 0.3s var(--ease), border-color 0.3s var(--ease);
+}
+.nav a:hover { color: var(--white); border-color: var(--neon-dim); }
+.skip-link {
+  position: absolute; left: 8px; top: -48px; z-index: 99;
+  padding: 8px 14px; background: var(--neon); color: var(--bg);
+  font: 500 11px 'DM Mono', monospace; letter-spacing: 0.15em; text-transform: uppercase;
+  transition: top 0.25s var(--ease);
+}
+.skip-link:focus { top: 8px; }
+
+/* ── hero ── */
+.hero { position: relative; padding: 96px 0 40px; text-align: center; }
+.kicker {
+  font-family: 'DM Mono', monospace; font-size: 11px;
+  letter-spacing: 0.4em; text-transform: uppercase; color: var(--neon);
+  margin-bottom: 28px;
+}
+.hero h1 {
+  font-size: clamp(38px, 6.5vw, 68px);
+  font-weight: 800; line-height: 1.04;
+  letter-spacing: -0.02em; text-transform: uppercase;
+  color: #fff;
+  max-width: 680px; margin: 0 auto 28px;
+  background: linear-gradient(90deg, #fff 30%, #9b9b9b 100%);
+  -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent;
+}
+.hero h1 .chip {
+  display: inline-block; color: var(--bg); background: var(--neon);
+  padding: 2px 14px; border-radius: 4px;
+  -webkit-text-fill-color: var(--bg);
+}
+.hero p {
+  font-size: 17px; color: var(--gray);
+  line-height: 1.7; max-width: 560px; margin: 0 auto 40px;
+}
+.hero .note { margin-top: 24px; font-size: 13px; color: #666; max-width: 640px; margin-left: auto; margin-right: auto; }
+.hero .note a { color: var(--neon); border-bottom: 1px dashed var(--neon-mid); }
+
+/* ── form ── */
+.form-wrap {
+  position: relative; z-index: 1;
+  background: var(--bg-3); border: 1px solid rgba(166,255,0,0.14);
+  padding: 40px; max-width: 520px; margin: 0 auto; text-align: left;
+}
+.hud-corner { position: absolute; width: 18px; height: 18px; border-color: var(--neon-mid); border-style: solid; }
+.hc-tl { top: -1px; left: -1px; border-width: 1px 0 0 1px; }
+.hc-br { bottom: -1px; right: -1px; border-width: 0 1px 1px 0; }
+.form-wrap h2 { font-size: 17px; font-weight: 700; letter-spacing: 0.05em; text-transform: uppercase; color: #fff; margin-bottom: 4px; }
+.form-wrap .sub { font-size: 13px; color: var(--gray); margin-bottom: 24px; }
+.fg { margin-bottom: 14px; }
+.fg label {
+  display: block; font-family: 'DM Mono', monospace; font-size: 10px;
+  letter-spacing: 0.25em; text-transform: uppercase; color: #888; margin-bottom: 6px;
+}
+.fg input {
+  width: 100%; padding: 13px 14px; background: var(--bg);
+  border: 1px solid rgba(255,255,255,0.1); color: var(--white);
+  font-family: 'Inter', sans-serif; font-size: 14px; outline: none;
+  transition: border-color 0.25s var(--ease), box-shadow 0.25s var(--ease);
+}
+.fg input:focus { border-color: var(--neon); box-shadow: 0 0 0 2px var(--neon-dim); }
+.fg input.error { border-color: #ff4d6d; }
+.btn-neon {
+  width: 100%; padding: 15px; background: var(--neon); color: var(--bg);
+  border: none; cursor: pointer; position: relative; overflow: hidden;
+  font-family: 'DM Mono', monospace; font-size: 12px; font-weight: 500;
+  letter-spacing: 0.2em; text-transform: uppercase;
+  transition: box-shadow 0.3s var(--ease), transform 0.15s var(--ease);
+}
+.btn-neon::before {
+  content: ''; position: absolute; inset: 0; background: #e0ff80;
+  transform: translateX(-100%); transition: transform 0.4s var(--ease);
+}
+.btn-neon:hover { box-shadow: 0 0 24px var(--neon-dim); }
+.btn-neon:hover::before { transform: translateX(0); }
+.btn-neon span { position: relative; }
+.btn-neon:active { transform: scale(0.98); }
+.btn-neon:disabled { opacity: 0.35; cursor: not-allowed; }
+.form-secure { text-align: center; font-size: 11px; color: #555; margin-top: 14px; font-family: 'DM Mono', monospace; letter-spacing: 0.05em; }
+#ls { font-size: 12px; margin-top: 12px; text-align: center; color: var(--neon); min-height: 18px; font-family: 'DM Mono', monospace; }
+
+/* ── stats ── */
+.stats {
+  display: flex; justify-content: center; flex-wrap: wrap; gap: 44px;
+  padding: 44px 0 8px; margin-top: 8px;
+}
+.stats .n { font-size: 34px; font-weight: 700; color: var(--white); letter-spacing: -1px; }
+.stats .n em { font-style: normal; color: var(--neon); }
+.stats .l { font-size: 11px; color: #555; text-transform: uppercase; letter-spacing: 0.2em; font-family: 'DM Mono', monospace; margin-top: 2px; }
+
+/* ── sections ── */
+.section { position: relative; padding: 96px 0; border-top: 1px solid rgba(255,255,255,0.05); }
+.section-alt { background: var(--bg-2); }
+.label {
+  font-family: 'DM Mono', monospace; font-size: 10px;
+  letter-spacing: 0.4em; text-transform: uppercase; color: var(--neon);
+  margin-bottom: 18px;
+}
+.section h2 {
+  font-size: clamp(26px, 3.6vw, 40px); font-weight: 800;
+  letter-spacing: -0.01em; text-transform: uppercase; line-height: 1.12;
+  color: #fff; margin-bottom: 16px; max-width: 680px;
+}
+.section h2 .hl { color: var(--neon); }
+.section .desc { font-size: 15px; color: var(--gray); line-height: 1.75; max-width: 620px; margin-bottom: 40px; }
+.desc a { color: var(--neon); border-bottom: 1px dashed var(--neon-mid); }
+
+/* ── tagline reveal ── */
+.tagline { padding: 110px 0; text-align: center; }
+.tagline-inner { max-width: 760px; margin: 0 auto; }
+.tagline h2 {
+  font-size: clamp(28px, 4.4vw, 50px); font-weight: 800; line-height: 1.12;
+  text-transform: uppercase; letter-spacing: -0.01em; color: var(--white);
+}
+.tagline .w { opacity: 0.28; transition: opacity 0.7s var(--ease); }
+.tagline .w.on { opacity: 1; }
+.tagline .w.neon { color: var(--neon); }
+.tagline .sep { color: var(--gray-dark); }
+
+/* ── cards ── */
+.grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 20px; }
+.card {
+  position: relative; background: rgba(10,10,10,0.8);
+  border: 1px solid rgba(166,255,0,0.1); padding: 30px;
+  transition: transform 0.4s var(--ease), border-color 0.4s var(--ease), box-shadow 0.4s var(--ease);
+}
+.card:hover { transform: translateY(-4px); border-color: var(--neon-mid); box-shadow: 0 12px 40px -18px var(--neon-dim); }
+.card .num { font-family: 'DM Mono', monospace; font-size: 11px; color: var(--neon); opacity: 0.5; letter-spacing: 0.2em; margin-bottom: 14px; }
+.card h3 { font-size: 15px; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; color: #fff; margin-bottom: 8px; }
+.card p { font-size: 14px; color: var(--gray); }
+.card-top-left, .card-bottom-right {
+  position: absolute; width: 14px; height: 14px; border-color: var(--neon-mid); border-style: solid;
+}
+.card-top-left { top: -1px; left: -1px; border-width: 2px 0 0 2px; }
+.card-bottom-right { bottom: -1px; right: -1px; border-width: 0 2px 2px 0; }
+
+/* ── steps ── */
+.steps { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; counter-reset: step; }
+.step { border: 1px solid rgba(255,255,255,0.07); border-top: 2px solid var(--neon); padding: 30px; background: var(--bg-3); }
+.step .idx { font-family: 'DM Mono', monospace; font-size: 26px; color: var(--neon); margin-bottom: 14px; }
+.step h3 { font-size: 14px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: #fff; margin-bottom: 8px; }
+.step p { font-size: 13.5px; color: var(--gray); }
+
+/* ── quote ── */
+.quote-wrap { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+.quote { position: relative; background: var(--bg-3); border: 1px solid rgba(166,255,0,0.12); padding: 28px; }
+.quote .mark { font-family: 'Inter', sans-serif; font-size: 34px; color: var(--neon); opacity: 0.35; line-height: 1; margin-bottom: 10px; }
+.quote p { font-size: 14px; color: var(--gray-light); line-height: 1.7; }
+.quote .etc { margin-top: 16px; font-size: 12px; color: #666; }
+.quote .etc em { font-style: normal; color: var(--neon); font-family: 'DM Mono', monospace; letter-spacing: 0.1em; }
+
+/* ── offers ── */
+.offers { display: grid; grid-template-columns: repeat(2, 1fr); gap: 20px; }
+.offer {
+  position: relative; text-align: left; background: var(--bg-3);
+  border: 1px solid rgba(166,255,0,0.14); padding: 30px;
+  transition: transform 0.4s var(--ease), border-color 0.4s var(--ease);
+}
+.offer:hover { transform: translateY(-3px); border-color: var(--neon); }
+.offer .otag { font-family: 'DM Mono', monospace; font-size: 10px; letter-spacing: 0.25em; color: var(--neon); text-transform: uppercase; margin-bottom: 12px; }
+.offer h3 { font-size: 17px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.04em; color: #fff; margin-bottom: 8px; }
+.offer .odesc { font-size: 13px; color: var(--gray); margin-bottom: 18px; min-height: 42px; }
+.price { display: flex; align-items: baseline; gap: 8px; margin-bottom: 20px; }
+.price .old { font-size: 13px; color: #555; text-decoration: line-through; font-family: 'DM Mono', monospace; }
+.price .now { font-size: 40px; font-weight: 800; color: var(--neon); letter-spacing: -2px; line-height: 1; }
+.price .now small { font-size: 18px; vertical-align: super; letter-spacing: 0; }
+.price .per { font-size: 12px; color: #777; font-family: 'DM Mono', monospace; }
+.btn-ghost2 {
+  display: inline-block; padding: 13px 26px; border: 1px solid var(--neon);
+  color: var(--neon); font-family: 'DM Mono', monospace; font-size: 11px;
+  font-weight: 500; letter-spacing: 0.2em; text-transform: uppercase; cursor: pointer;
+  transition: background 0.35s var(--ease), color 0.35s var(--ease), box-shadow 0.35s var(--ease);
+}
+.btn-ghost2:hover { background: var(--neon); color: var(--bg); box-shadow: 0 0 20px var(--neon-dim); }
+.btn-ghost2:active { transform: scale(0.98); }
+.g-note { margin-top: 14px; font-size: 12px; color: #666; font-family: 'DM Mono', monospace; }
+.g-note strong { color: var(--neon); font-weight: 500; }
+
+/* ── faq ── */
+.faq { max-width: 640px; margin: 0 auto; }
+.faq-i { border-bottom: 1px solid rgba(255,255,255,0.08); }
+.faq-q {
+  display: flex; justify-content: space-between; align-items: center;
+  cursor: pointer; padding: 18px 0; font-size: 14px; font-weight: 600; color: #d6d6d6;
+  user-select: none; transition: color 0.25s var(--ease);
+}
+.faq-q:hover { color: var(--white); }
+.faq-q .pl { color: var(--neon); font-family: 'DM Mono', monospace; font-size: 18px; transition: transform 0.3s var(--ease); flex-shrink: 0; margin-left: 16px;}
+.faq-i.open .faq-q { color: var(--white); }
+.faq-i.open .faq-q .pl { transform: rotate(45deg); }
+.faq-a {
+  max-height: 0; overflow: hidden; transition: max-height 0.4s var(--ease), padding 0.4s var(--ease);
+}
+.faq-a p { font-size: 13px; color: var(--gray); line-height: 1.7; padding-bottom: 18px; }
+.faq-a a { color: var(--neon); border-bottom: 1px dashed var(--neon-mid); }
+
+/* ── buttons ── */
+.btn-wa {
+  display: inline-block; padding: 15px 40px; border: 1px solid #25D366; color: #25D366;
+  font-family: 'DM Mono', monospace; font-size: 12px; font-weight: 500;
+  letter-spacing: 0.2em; text-transform: uppercase; cursor: pointer;
+  transition: background 0.35s var(--ease), color 0.35s var(--ease), box-shadow 0.35s var(--ease);
+}
+.btn-wa:hover { background: #25D366; color: var(--bg); box-shadow: 0 0 22px rgba(37,211,102,0.25); }
+
+/* ── reveal anim ── */
+[data-reveal] {
+  opacity: 0; transform: translateY(16px) blur(4px);
+  transition: opacity 0.8s var(--ease), transform 0.8s var(--ease);
+}
+[data-reveal].in { opacity: 1; transform: none; }
+
+/* ── footer ── */
+.foot { border-top: 1px solid rgba(166,255,0,0.08); padding: 44px 0; text-align: center; }
+.foot .cta { font-family: 'DM Mono', monospace; font-size: 11px; letter-spacing: 0.2em; text-transform: uppercase; color: #aaa; margin-bottom: 18px; }
+.foot .cta strong { color: var(--neon); font-weight: 500; }
+.foot-social { display: flex; justify-content: center; gap: 18px; margin-bottom: 22px; }
+.foot-social a { font-family: 'DM Mono', monospace; font-size: 11px; letter-spacing: 0.15em; color: var(--gray); transition: color 0.25s var(--ease); }
+.foot-social a:hover { color: var(--neon); }
+.foot .links { margin-bottom: 14px; }
+.foot .links a { font-size: 12px; color: #555; margin: 0 10px; transition: color 0.2s var(--ease); }
+.foot .links a:hover { color: #999; }
+.foot .copy { font-family: 'DM Mono', monospace; font-size: 10px; letter-spacing: 0.2em; text-transform: uppercase; color: rgba(255,255,255,0.2); }
+
+/* ── responsive ── */
+@media (max-width: 720px) {
+  .hero { padding: 64px 0 32px; }
+  .form-wrap, .offer, .card { padding: 26px 20px; }
+  .grid, .offers, .quote-wrap { grid-template-columns: 1fr; }
+  .steps { grid-template-columns: 1fr; }
+  .nav { display: none; }
+  .navcoords { display: none; }
+  .stats { gap: 26px; }
+  .stats .n { font-size: 26px; }
+}
+</style>
+</head>
+<body>
+
+<a class="skip-link" href="#main">Saltar al contenido</a>
+<div class="hud-dots" aria-hidden="true"></div>
+
+<!-- ── TOP BAR ── -->
+<header class="topbar">
+  <div class="c topbar-inner">
+    <a href="#" class="logo">GCD</a>
+    <nav class="nav" aria-label="Principal">
+      <a href="#muestra">Muestra gratis</a>
+      <a href="#sistema">El sistema</a>
+      <a href="#como">Cómo arrancar</a>
+      <a href="#ofertas">Ofertas</a>
+      <a href="#faq">FAQ</a>
+    </nav>
+    <span class="navcoords">LAT 35.6762 · LON 139.6503 · ELEV 0.00M</span>
+  </div>
+</header>
+
+<main id="main">
+
+<!-- ── HERO ── -->
+<section class="hero">
+  <div class="smoke smoke-a" aria-hidden="true"></div>
+  <div class="c" style="position:relative;z-index:1;">
+    <div class="kicker" data-reveal>// sistema v1.0 · bases sobre escalamiento</div>
+    <h1 data-reveal>Conectá las <span class="chip">5 áreas</span> de tu negocio<br>en el orden exacto</h1>
+    <p data-reveal>Marketing, IA, Crecimiento, Finanzas y Cripto funcionando juntos. Sin teoría vacía, sin cursos sueltos: el mapa que a mí me hubiera gustado tener cuando empecé.</p>
+
+    <div class="form-wrap" data-reveal id="muestra">
+      <span class="hud-corner hc-tl" aria-hidden="true"></span>
+      <span class="hud-corner hc-br" aria-hidden="true"></span>
+      <h2>Llevate la muestra gratis</h2>
+      <p class="sub">Prólogo + capítulo 1 + plan de la semana 1. Te llega al instante a tu email.</p>
+
+      <form id="lead-form" action="https://script.google.com/macros/s/AKfycby8OVedIlzxKW4_AvQ-T-rz8hkVL8SmdGZCRG2DXW1UOpo-MnJOGml7MMgAt1-5LKcS7A/exec" method="POST" target="hidden_iframe">
+        <div class="fg">
+          <label for="name">Nombre (opcional)</label>
+          <input type="text" id="name" name="name" placeholder="Tu nombre" autocomplete="name">
+        </div>
+        <div class="fg">
+          <label for="email">Email</label>
+          <input type="email" id="email" name="email" required placeholder="tu@email.com" autocomplete="email">
+        </div>
+        <input type="hidden" name="source" id="source-input" value="brand-landing">
+        <button type="submit" class="btn-neon" id="lead-submit"><span>→ Llevate la muestra gratis</span></button>
+      </form>
+      <iframe name="hidden_iframe" style="display:none;"></iframe>
+      <div id="ls"></div>
+      <div class="form-secure">No compartimos tu email · Podés darte de baja cuando quieras</div>
+    </div>
+
+    <div class="stats" data-reveal>
+      <div><div class="n">16</div><div class="l">capítulos</div></div>
+      <div><div class="n">5</div><div class="l">áreas conectadas</div></div>
+      <div><div class="n">ROI <em>3x</em></div><div class="l">caso validado</div></div>
+      <div><div class="n"><em>$0</em></div><div class="l">la muestra</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ── TAGLINE REVEAL ── -->
+<section class="tagline">
+  <div class="c">
+    <div class="tagline-inner">
+      <h2 id="tagline" aria-label="Marketing atrae, IA acelera, Crecimiento escala, Finanzas ordenan, Cripto optimiza"></h2>
+    </div>
+  </div>
+</section>
+
+<!-- ── PROBLEMA / SOLUCIÓN ── -->
+<section class="section">
+  <div class="c">
+    <div class="label" data-reveal>// el punto de partida</div>
+    <h2 data-reveal>El mapa no existe en los libros.<br><span class="hl">Existe en la práctica.</span></h2>
+    <p class="desc" data-reveal>
+      Probé de todo: network marketing, cursos sueltos, promesas de dinero fácil. Perdí plata
+      y tiempo, como casi todos los que arrancan. Lo que faltaba no era talento.
+      Era tener un sistema y no improvisar. Las 5 áreas de GCD existen para eso:
+      conectar lo que siempre te enseñaron por separado.
+    </p>
+    <div class="quote-wrap">
+      <div class="quote" data-reveal>
+        <div class="mark">"</div>
+        <p>Invertí 200 dólares en pauta para una clienta y le generé 600 de retorno. El orden de las áreas fue todo: sin estructura, ese número no aparece.</p>
+        <div class="etc"><em>CASO YAMILA</em> · ROI 3x · Meta Ads + IA</div>
+      </div>
+      <div class="quote" data-reveal>
+        <div class="mark">"</div>
+        <p>Conseguir clientes no es tener audiencia: es un sistema de prospección, CRM, speechs y cierre. El nicho es solo el disfraz.</p>
+        <div class="etc"><em>CASO g.c.creativewebs_artis</em> · 30 cuentas al día</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── BENEFICIOS ── -->
+<section class="section section-alt" id="sistema">
+  <div class="c">
+    <div class="label" data-reveal>// por qué gcd</div>
+    <h2 data-reveal>Un sistema,<br><span class="hl">no consejos sueltos</span></h2>
+    <div class="grid">
+      <div class="card" data-reveal>
+        <span class="card-top-left" aria-hidden="true"></span>
+        <span class="card-bottom-right" aria-hidden="true"></span>
+        <div class="num">// 01</div>
+        <h3>Orden real</h3>
+        <p>Las 5 áreas conectadas como sistema, no como silos. Cada una empuja a la siguiente.</p>
+      </div>
+      <div class="card" data-reveal>
+        <span class="card-top-left" aria-hidden="true"></span>
+        <span class="card-bottom-right" aria-hidden="true"></span>
+        <div class="num">// 02</div>
+        <h3>Sin humo</h3>
+        <p>Cero promesas falsas. Cada concepto sale de la práctica, con aplicación directa.</p>
+      </div>
+      <div class="card" data-reveal>
+        <span class="card-top-left" aria-hidden="true"></span>
+        <span class="card-bottom-right" aria-hidden="true"></span>
+        <div class="num">// 03</div>
+        <h3>Desde cero</h3>
+        <p>Técnico pero explicado al nivel de quien recién arranca. Sin jerarquías, de igual a igual.</p>
+      </div>
+      <div class="card" data-reveal>
+        <span class="card-top-left" aria-hidden="true"></span>
+        <span class="card-bottom-right" aria-hidden="true"></span>
+        <div class="num">// 04</div>
+        <h3>Es un sistema vivo</h3>
+        <p>Lo que enseñamos lo usamos nosotros: prospección, CRM, speechs y cierre en ejecución.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── CÓMO ARRANCAR ── -->
+<section class="section" id="como">
+  <div class="c">
+    <div class="label" data-reveal>// próximo target</div>
+    <h2 data-reveal>Cómo arrancás hoy</h2>
+    <div class="steps">
+      <div class="step" data-reveal>
+        <div class="idx">01</div>
+        <h3>Llevate la muestra</h3>
+        <p>Prólogo completo, capítulo 1 y plan de la semana 1. Gratis, al instante, en el navegador.</p>
+      </div>
+      <div class="step" data-reveal>
+        <div class="idx">02</div>
+        <h3>Recibí la secuencia</h3>
+        <p>Cinco emails que conectan las áreas en orden. Sin spam: la serie se termina sola.</p>
+      </div>
+      <div class="step" data-reveal>
+        <div class="idx">03</div>
+        <h3>Elegí tu nivel</h3>
+        <p>Pack Starter de $5, Las 5 Áreas de $19, herramientas de $5 o una sesión 1 a 1.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── OFERTAS ── -->
+<section class="section section-alt" id="ofertas">
+  <div class="c">
+    <div class="label" data-reveal>// el sistema completo</div>
+    <h2 data-reveal>Elegí tu <span class="hl">nivel</span></h2>
+    <div class="offers">
+      <div class="offer" data-reveal>
+        <div class="otag">Pack Starter</div>
+        <h3>Código de Fuga</h3>
+        <p class="odesc">16 capítulos sobre errores y orden en el mundo digital + 3 bonuses.</p>
+        <div class="price"><span class="now"><small>$</small>5</span><span class="per">pago único</span></div>
+        <a href="https://pay.hotmart.com/M105972469O?src=brand-landing" class="btn-ghost2" target="_blank" rel="noopener" onclick="fbq('track','InitiateCheckout',{value:5,currency:'USD',content_name:'Pack Starter',content_category:'infoproducto'});">Comprar →</a>
+        <div class="g-note">🛡️ <strong>Garantía 48 horas.</strong> Acceso vitalicio.</div>
+      </div>
+
+      <div class="offer" data-reveal>
+        <div class="otag">Sistema completo</div>
+        <h3>Las 5 Áreas</h3>
+        <p class="odesc">Sistema interactivo: 5 módulos con checklists, herramientas y prompts de IA.</p>
+        <div class="price"><span class="now"><small>$</small>19</span><span class="per">pago único</span></div>
+        <a href="https://go.hotmart.com/Q106819646H?dp=1" class="btn-ghost2" target="_blank" rel="noopener" onclick="fbq('track','InitiateCheckout',{value:19,currency:'USD',content_name:'Las 5 Áreas',content_category:'infoproducto'});">Comprar →</a>
+        <div class="g-note">🛡️ <strong>Garantía 7 días.</strong> Un solo pago.</div>
+      </div>
+
+      <div class="offer" data-reveal>
+        <div class="otag">Herramientas</div>
+        <h3>Por avatar · $5 c/u</h3>
+        <p class="odesc">Diagnosticador de 5 Áreas, Calculadora de pérdida o Plan de 15 minutos por día.</p>
+        <div class="price"><span class="now"><small>$</small>5</span><span class="per">cada una</span></div>
+        <a href="https://landing-gcd.vercel.app/LANDING-DIAGNOSTICO.html" class="btn-ghost2" target="_blank" rel="noopener">Ver herramientas →</a>
+        <div class="g-note">3 herramientas según tu punto de partida.</div>
+      </div>
+
+      <div class="offer" data-reveal>
+        <div class="otag">Sesión 1 a 1</div>
+        <h3>Plan a medida</h3>
+        <p class="odesc">Una hora conmigo. Salís con un plan personalizado y la sesión queda grabada.</p>
+        <div class="price"><span class="now"><small>$</small>30</span><span class="per">la hora</span></div>
+        <a href="https://wa.me/5491161677122?text=Quiero%20una%20sesi%C3%B3n%201%20a%201" class="btn-wa" target="_blank" rel="noopener">Reservar por WhatsApp →</a>
+        <div class="g-note">Incluye PDF resumen + audio de 35 min.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── FAQ ── -->
+<section class="section" id="faq">
+  <div class="c">
+    <div class="label" style="text-align:center;" data-reveal>// preguntas frecuentes</div>
+    <div class="faq">
+      <div class="faq-i" data-reveal>
+        <div class="faq-q">¿Esto es otro curso más?<span class="pl">+</span></div>
+        <div class="faq-a"><p>No es una pila de módulos sueltos. Es un sistema que conecta 5 áreas en orden. Y arrancás gratis con la muestra, sin arriesgar nada.</p></div>
+      </div>
+      <div class="faq-i" data-reveal>
+        <div class="faq-q">¿Necesito saber de marketing o programación?<span class="pl">+</span></div>
+        <div class="faq-a"><p>No. Todo está explicado desde cero. El lenguaje es técnico, pero si no conocés nada, es exactamente para vos.</p></div>
+      </div>
+      <div class="faq-i" data-reveal>
+        <div class="faq-q">¿Cuánto tiempo necesito?<span class="pl">+</span></div>
+        <div class="faq-a"><p>La muestra se lee cuando quieras y la secuencia son 5 emails. Los productos tienen checklists para que avances a tu ritmo, incluso 15 minutos por día.</p></div>
+      </div>
+      <div class="faq-i" data-reveal>
+        <div class="faq-q">¿Tiene garantía?<span class="pl">+</span></div>
+        <div class="faq-a"><p>Sí. El Pack Starter tiene 48 horas y Las 5 Áreas 7 días. Devolvemos el 100% sin pregunta y sin formularios.</p></div>
+      </div>
+      <div class="faq-i" data-reveal>
+        <div class="faq-q">¿Sirve para mi nicho?<span class="pl">+</span></div>
+        <div class="faq-a"><p>El sistema es el mismo para cualquier nicho: diseño, fitness, consultoría, tienda, música. El nicho cambia el tema. La estructura no.</p></div>
+      </div>
+      <div class="faq-i" data-reveal>
+        <div class="faq-q">¿Después me van a spamear?<span class="pl">+</span></div>
+        <div class="faq-a"><p>Recibís 5 emails con contenido de valor y la serie termina. Podés darte de baja en un clic cuando quieras.</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── CTA FINAL ── -->
+<section class="section section-alt">
+  <div class="c">
+    <div class="label" style="text-align:center;" data-reveal>// next signal</div>
+    <h2 style="text-align:center;margin-left:auto;margin-right:auto;" data-reveal>El orden es todo lo que importa.</h2>
+    <p class="desc" style="text-align:center;margin:0 auto 36px;max-width:480px;" data-reveal>
+      No necesitás audiencia ni presupuesto. Necesitás la muestra para arrancar con el mapa completo.
+    </p>
+    <div class="form-wrap" data-reveal>
+      <span class="hud-corner hc-tl" aria-hidden="true"></span>
+      <span class="hud-corner hc-br" aria-hidden="true"></span>
+      <h2>Llevate la muestra gratis</h2>
+      <p class="sub">Prólogo + capítulo 1 + plan de la semana 1. Te llega al instante.</p>
+      <form id="lead-form-2" action="https://script.google.com/macros/s/AKfycby8OVedIlzxKW4_AvQ-T-rz8hkVL8SmdGZCRG2DXW1UOpo-MnJOGml7MMgAt1-5LKcS7A/exec" method="POST" target="hidden_iframe2">
+        <div class="fg">
+          <label for="name2">Nombre (opcional)</label>
+          <input type="text" id="name2" name="name" placeholder="Tu nombre" autocomplete="name">
+        </div>
+        <div class="fg">
+          <label for="email2">Email</label>
+          <input type="email" id="email2" name="email" required placeholder="tu@email.com" autocomplete="email">
+        </div>
+        <input type="hidden" name="source" value="brand-landing-final">
+        <button type="submit" class="btn-neon" id="lead-submit-2"><span>→ Llevate la muestra gratis</span></button>
+      </form>
+      <iframe name="hidden_iframe2" style="display:none;"></iframe>
+      <div id="ls2"></div>
+      <div class="form-secure">No compartimos tu email · Podés darte de baja cuando quieras</div>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<!-- ── FOOTER ── -->
+<footer class="foot">
+  <div class="c">
+    <div class="cta">Escribime <strong>INFO</strong> por Instagram o WhatsApp</div>
+    <div class="foot-social">
+      <a href="https://www.instagram.com/crecimientodigital.gcd/" target="_blank" rel="noopener">INSTAGRAM</a>
+      <a href="https://www.instagram.com/gonzalo.crecimientodigital/" target="_blank" rel="noopener">IG PERSONAL</a>
+      <a href="https://www.youtube.com/@gonzalo.crecimientodigital" target="_blank" rel="noopener">YOUTUBE</a>
+      <a href="https://wa.me/5491161677122" target="_blank" rel="noopener">WHATSAPP</a>
+    </div>
+    <div class="links">
+      <a href="https://landing-gcd.vercel.app/privacidad.html">Privacidad</a>
+      <a href="https://landing-gcd.vercel.app/privacidad.html">Términos</a>
+      <a href="mailto:gonzalocortez1991@gmail.com">Contacto</a>
+      <a href="https://landing-gcd.vercel.app/?unsub=true">Baja</a>
+    </div>
+    <div class="copy">© 2026 Gonzalo Crecimiento Digital · Sistema v1.0 · Bases sobre escalamiento y estrategia digital</div>
+  </div>
+</footer>
+
+<script>
+// ── helpers ──
+function fbqTrack(name, data) { if (typeof fbq === 'function') fbq('track', name, data || {}); }
+function gtagEv(action, label) { if (typeof gtag === 'function') gtag('event', action, { event_category: 'form', event_label: label || 'landing' }); }
+
+// ── scroll reveal ──
+var io = new IntersectionObserver(function(entries) {
+  entries.forEach(function(e) { if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); } });
+}, { threshold: 0.15 });
+document.querySelectorAll('[data-reveal]').forEach(function(el) { io.observe(el); });
+
+// ── tagline word reveal ──
+var phrase = [
+  ['MARKETING', null], ['ATRAE', null], ['·', 'sep'], ['IA', null], ['ACELERA', 'neon'],
+  ['·', 'sep'], ['CRECIMIENTO', null], ['ESCALA', 'neon'], ['·', 'sep'],
+  ['FINANZAS', null], ['ORDENAN', null], ['·', 'sep'], ['CRIPTO', null], ['OPTIMIZA', 'neon']
+];
+var wrap = document.getElementById('tagline');
+phrase.forEach(function(p) {
+  var s = document.createElement('span');
+  s.className = 'w' + (p[1] ? ' ' + p[1] : '');
+  s.textContent = p[0] + ' ';
+  wrap.appendChild(s);
+});
+var words = wrap.querySelectorAll('.w');
+var wrist = new IntersectionObserver(function(entries) {
+  entries.forEach(function(e) {
+    if (e.isIntersecting) {
+      var i = 0;
+      var iv = setInterval(function() {
+        if (i >= words.length) { clearInterval(iv); return; }
+        words[i].classList.add('on'); i++;
+      }, 110);
+      wrist.unobserve(e.target);
+    }
+  });
+}, { threshold: 0.3 });
+wrist.observe(wrap);
+
+// ── forms ──
+function bindForm(formId, btnId, lsId) {
+  var form = document.getElementById(formId);
+  var btn = document.getElementById(btnId);
+  var ls = document.getElementById(lsId);
+  if (!form || !btn || !ls) return;
+  var email = form.querySelector('input[name="email"]');
+  form.addEventListener('submit', function(e) {
+    var val = email.value.trim();
+    if (!val) { email.classList.add('error'); ls.textContent = 'Poné tu email para recibir la muestra.'; e.preventDefault(); return; }
+    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(val)) { email.classList.add('error'); ls.textContent = 'Ese email no parece válido. Revisalo.'; e.preventDefault(); return; }
+    email.classList.remove('error');
+    btn.disabled = true; btn.querySelector('span').textContent = '⏳ Enviando...';
+    fbqTrack('Lead'); gtagEv('generate_lead', 'muestra_gratis');
+    var done = false;
+    setTimeout(function() {
+      if (form === document.getElementById('lead-form')) {
+        form.reset();
+      }
+      ls.textContent = '✅ Revisá tu email — te enviamos la muestra.';
+      btn.querySelector('span').textContent = '¡Enviado!';
+      btn.disabled = false;
+      done = true;
+    }, 4500);
+  });
+}
+bindForm('lead-form', 'lead-submit', 'ls');
+bindForm('lead-form-2', 'lead-submit-2', 'ls2');
+
+// ── FAQ ──
+document.querySelectorAll('.faq-q').forEach(function(q) {
+  q.addEventListener('click', function() {
+    var item = this.parentElement;
+    var open = item.classList.toggle('open');
+    var a = item.querySelector('.faq-a');
+    a.style.maxHeight = open ? (a.scrollHeight + 40) + 'px' : '0px';
+  });
+});
+
+// ── source utm on first form ──
+(function() {
+  var p = new URLSearchParams(window.location.search);
+  var c = p.get('campaign') || '', s = p.get('adset') || '', a = p.get('ad') || '';
+  if (c || s || a) {
+    var el = document.getElementById('source-input');
+    if (el) el.value = [c, s, a].filter(Boolean).join(' / ');
+  }
+})();
+</script>
+
+</body>
+</html>

@@ -1,0 +1,636 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>5 Bloqueos Emocionales que Frenan tu Negocio — Escalamiento Consciente</title>
+<meta name="description" content="Guía gratuita de Alaya y Gonzalo Crecimiento Digital: detectá el bloqueo emocional que frena tu negocio y destrabalo con una solución estratégica concreta.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300..900;1,9..144,300..900&family=Space+Mono:wght@400;700&family=Sora:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#0B0A0F;
+    --bg-2:#0F0D17;
+    --ink:#F2EFE6;
+    --ink-dim:#B9B3C2;
+    --ink-faint:#7C7688;
+    --neon:#A6FF00;
+    --violet:#B79CFF;
+    --violet-deep:#6E5AA8;
+    --line:rgba(242,239,230,.1);
+    --line-strong:rgba(242,239,230,.22);
+    --serif:'Fraunces',serif;
+    --mono:'Space Mono',monospace;
+    --sans:'Sora',sans-serif;
+  }
+  *{margin:0;padding:0;box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{
+    background:var(--bg);
+    color:var(--ink);
+    font-family:var(--sans);
+    font-weight:300;
+    line-height:1.65;
+    -webkit-font-smoothing:antialiased;
+    overflow-x:hidden;
+  }
+  body::before{
+    content:"";
+    position:fixed;inset:0;z-index:0;pointer-events:none;
+    background:
+      radial-gradient(900px 600px at 85% -5%, rgba(183,156,255,.10), transparent 60%),
+      radial-gradient(800px 500px at -10% 20%, rgba(166,255,0,.05), transparent 55%),
+      radial-gradient(700px 700px at 110% 90%, rgba(183,156,255,.06), transparent 60%);
+  }
+  body::after{
+    content:"";
+    position:fixed;inset:0;z-index:0;pointer-events:none;opacity:.5;
+    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2'/%3E%3C/filter%3E%3Crect width='120' height='120' filter='url(%23n)' opacity='0.05'/%3E%3C/svg%3E");
+  }
+  .grid-lines{
+    position:fixed;inset:0;z-index:0;pointer-events:none;
+    background-image:
+      linear-gradient(to right, var(--line) 1px, transparent 1px),
+      linear-gradient(to bottom, var(--line) 1px, transparent 1px);
+    background-size:72px 72px;
+    opacity:.35;
+    -webkit-mask-image:radial-gradient(1000px 700px at 50% 0%, #000 30%, transparent 75%);
+            mask-image:radial-gradient(1000px 700px at 50% 0%, #000 30%, transparent 75%);
+  }
+  .wrap{position:relative;z-index:1;max-width:1080px;margin:0 auto;padding:0 28px}
+
+  .serif{font-family:var(--serif)}
+  .mono{font-family:var(--mono)}
+  .kicker{
+    font-family:var(--mono);font-size:11px;letter-spacing:.28em;
+    text-transform:uppercase;color:var(--ink-faint);
+  }
+  .kicker em{font-style:normal;color:var(--neon)}
+  .violet{color:var(--violet)}
+
+  .cover{
+    min-height:100vh;display:flex;flex-direction:column;
+    justify-content:space-between;padding:56px 0 40px;position:relative;
+  }
+  .cover-top{display:flex;justify-content:space-between;align-items:flex-start;gap:24px}
+  .brand{display:flex;align-items:center;gap:14px}
+  .brand-dot{width:34px;height:34px;border-radius:50%;background:radial-gradient(circle at 30% 30%, var(--violet), var(--violet-deep));position:relative;flex:none}
+  .brand-dot::after{content:"";position:absolute;inset:0;border-radius:50%;border:1px solid var(--neon);transform:scale(1.35);opacity:.8}
+  .brand-name{font-family:var(--serif);font-weight:600;font-size:15px;letter-spacing:.02em}
+  .brand-sub{font-family:var(--mono);font-size:9.5px;letter-spacing:.22em;text-transform:uppercase;color:var(--ink-faint)}
+  .cover .free{
+    font-family:var(--mono);font-size:10px;letter-spacing:.24em;text-transform:uppercase;
+    color:var(--neon);border:1px solid rgba(166,255,0,.45);padding:8px 14px;border-radius:999px;white-space:nowrap;
+  }
+  .pdf-btn{
+    display:inline-flex;align-items:center;gap:8px;
+    font-family:var(--mono);font-size:10px;letter-spacing:.2em;text-transform:uppercase;
+    color:var(--ink);border:1px solid var(--line-strong);border-radius:999px;padding:9px 16px;
+    background:rgba(242,239,230,.04);cursor:pointer;transition:all .2s;white-space:nowrap;
+  }
+  .pdf-btn:hover{color:var(--neon);border-color:rgba(166,255,0,.5);background:rgba(166,255,0,.07)}
+  .pdf-btn svg{width:14px;height:14px;flex:none}
+  .cover-main{padding:64px 0 40px;max-width:860px}
+  .cover-main .kicker{margin-bottom:28px}
+  .cover h1{
+    font-family:var(--serif);font-weight:700;line-height:.98;letter-spacing:-.015em;
+    font-size:clamp(44px,9vw,104px);
+  }
+  .cover h1 .dim{color:var(--ink-faint);font-weight:300}
+  .cover h1 .line2{display:block;color:var(--violet);font-style:italic;font-weight:500}
+  .cover h1 .line2 b{font-weight:700;font-style:normal;color:var(--ink)}
+  .cover-deck{margin-top:36px;max-width:520px;color:var(--ink-dim);font-size:17px;font-weight:300}
+  .cover-deck strong{color:var(--ink);font-weight:600}
+  .meet{
+    margin-top:48px;display:flex;align-items:center;gap:16px;
+    font-family:var(--mono);font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:var(--ink-faint);
+  }
+  .meet .dash{width:44px;height:1px;background:var(--line-strong);position:relative}
+  .meet .dash::after{content:"";position:absolute;left:0;top:-1px;width:10px;height:3px;background:var(--neon)}
+  .cover-foot{
+    display:flex;justify-content:space-between;align-items:flex-end;gap:20px;
+    border-top:1px solid var(--line);padding-top:22px;
+    font-family:var(--mono);font-size:10px;letter-spacing:.16em;text-transform:uppercase;color:var(--ink-faint);
+  }
+  .cover-foot .roles{display:flex;gap:26px}
+  .cover-foot .roles b{color:var(--ink);font-weight:700}
+  .cover-foot .yami b{color:var(--violet)}
+  .cover-foot .gonza b{color:var(--neon)}
+
+  .section{padding:96px 0;position:relative}
+  .section-tag{
+    display:flex;align-items:center;gap:14px;margin-bottom:20px;
+    font-family:var(--mono);font-size:11px;letter-spacing:.26em;text-transform:uppercase;color:var(--ink-faint);
+  }
+  .section-tag::before{content:"";width:28px;height:1px;background:var(--neon)}
+  .section h2{
+    font-family:var(--serif);font-weight:600;font-size:clamp(30px,4.6vw,48px);line-height:1.06;
+    letter-spacing:-.01em;max-width:760px;
+  }
+  .section .lede{margin-top:22px;max-width:600px;color:var(--ink-dim);font-size:16.5px}
+  .section .lede strong{color:var(--ink);font-weight:600}
+
+  .block{
+    border-top:1px solid var(--line-strong);padding:72px 0;
+    scroll-margin-top:24px;
+  }
+  .block-head{display:flex;gap:26px;align-items:flex-start;margin-bottom:44px}
+  .block-num{
+    font-family:var(--serif);font-size:clamp(40px,6vw,64px);font-weight:300;line-height:1;
+    color:transparent;-webkit-text-stroke:1px var(--ink-faint);flex:none;width:92px;
+  }
+  .block-title h3{
+    font-family:var(--serif);font-weight:600;font-size:clamp(24px,3.6vw,38px);line-height:1.08;letter-spacing:-.01em;
+  }
+  .block-title p{margin-top:10px;color:var(--ink-dim);font-size:15px;max-width:640px}
+  .symptoms{
+    display:flex;flex-wrap:wrap;gap:10px;margin-bottom:40px;
+  }
+  .symptom{
+    font-family:var(--mono);font-size:11.5px;letter-spacing:.02em;color:var(--ink);
+    border:1px solid var(--line-strong);border-radius:999px;padding:8px 16px;background:rgba(242,239,230,.03);
+  }
+  .symptom::before{content:"▸ ";color:var(--neon)}
+  .duo{display:grid;grid-template-columns:1fr 1fr;gap:0;border:1px solid var(--line-strong);border-radius:18px;overflow:hidden}
+  .voice{padding:34px 34px 38px;position:relative}
+  .voice.yami{background:linear-gradient(160deg, rgba(183,156,255,.10), rgba(110,90,168,.05) 55%, transparent)}
+  .voice.gonza{background:linear-gradient(160deg, rgba(166,255,0,.09), rgba(166,255,0,.02) 55%, transparent)}
+  .voice-label{
+    display:flex;align-items:center;gap:10px;margin-bottom:18px;
+    font-family:var(--mono);font-size:10px;letter-spacing:.24em;text-transform:uppercase;
+  }
+  .voice.yami .voice-label{color:var(--violet)}
+  .voice.gonza .voice-label{color:var(--neon)}
+  .voice-label::before{content:"";width:8px;height:8px;border-radius:50%}
+  .voice.yami .voice-label::before{background:var(--violet);box-shadow:0 0 12px var(--violet)}
+  .voice.gonza .voice-label::before{background:var(--neon);box-shadow:0 0 12px var(--neon)}
+  .voice h4{
+    font-family:var(--serif);font-weight:600;font-size:22px;line-height:1.15;margin-bottom:14px;
+  }
+  .voice p{font-size:14.5px;color:var(--ink-dim)}
+  .voice p b{color:var(--ink);font-weight:600}
+  .voice p + p{margin-top:12px}
+
+  .exercise{
+    margin-top:24px;border:1px dashed var(--line-strong);border-radius:18px;padding:26px 30px;
+    background:rgba(242,239,230,.02);
+  }
+  .exercise-tag{
+    font-family:var(--mono);font-size:10px;letter-spacing:.24em;text-transform:uppercase;color:var(--ink-faint);
+    display:flex;align-items:center;gap:10px;margin-bottom:12px;
+  }
+  .exercise-tag::before{content:"";width:8px;height:8px;background:var(--neon);border-radius:1px;transform:rotate(45deg)}
+  .exercise p{font-size:15px;color:var(--ink)}
+  .exercise p b{font-weight:600}
+  .exercise .time{
+    font-family:var(--mono);font-size:10px;letter-spacing:.18em;text-transform:uppercase;color:var(--neon);
+    margin-top:10px;display:inline-block;border:1px solid rgba(166,255,0,.35);padding:5px 10px;border-radius:999px;
+  }
+
+  .toc{display:grid;grid-template-columns:1fr 1fr;gap:0;border:1px solid var(--line-strong);border-radius:18px;overflow:hidden;margin-top:44px}
+  .toc a{
+    display:flex;align-items:center;gap:18px;padding:22px 26px;color:var(--ink-dim);
+    text-decoration:none;border-bottom:1px solid var(--line);transition:background .25s;
+  }
+  .toc a:nth-last-child(-n+2){border-bottom:none}
+  .toc a:hover{background:rgba(166,255,0,.05);color:var(--ink)}
+  .toc .n{font-family:var(--serif);font-size:22px;color:var(--neon);width:30px;flex:none}
+  .toc span{font-size:14px;line-height:1.4}
+
+  .bonus{
+    border:1px solid var(--line-strong);border-radius:22px;overflow:hidden;margin-top:48px;
+    background:linear-gradient(165deg, rgba(183,156,255,.08), rgba(11,10,15,.4) 45%, rgba(166,255,0,.05));
+  }
+  .bonus-head{padding:40px 42px 28px;display:flex;justify-content:space-between;align-items:flex-start;gap:20px}
+  .bonus-badge{
+    font-family:var(--mono);font-size:10px;letter-spacing:.26em;text-transform:uppercase;color:var(--violet);
+    border:1px solid rgba(183,156,255,.4);padding:7px 13px;border-radius:999px;white-space:nowrap;
+  }
+  .bonus-head h3{font-family:var(--serif);font-weight:600;font-size:clamp(24px,3.4vw,34px);line-height:1.1;margin-top:18px}
+  .bonus-head p{margin-top:12px;color:var(--ink-dim);font-size:14.5px;max-width:520px}
+  .checklist{padding:10px 42px 44px}
+  .check-item{
+    display:flex;align-items:flex-start;gap:16px;padding:16px 0;border-top:1px solid var(--line);
+    cursor:pointer;user-select:none;
+  }
+  .check-item .box{
+    width:22px;height:22px;flex:none;border:1px solid var(--line-strong);border-radius:6px;margin-top:2px;
+    position:relative;transition:all .2s;
+  }
+  .check-item:hover .box{border-color:var(--neon)}
+  .check-item input{position:absolute;opacity:0;pointer-events:none}
+  .check-item input:checked + .box{background:var(--neon);border-color:var(--neon)}
+  .check-item input:checked + .box::after{
+    content:"";position:absolute;left:7px;top:3px;width:5px;height:11px;
+    border:solid #0B0A0F;border-width:0 2px 2px 0;transform:rotate(45deg);
+  }
+  .check-item .txt{font-size:15px;color:var(--ink-dim);line-height:1.5}
+  .check-item .txt b{color:var(--ink);font-weight:600}
+  .check-item .day{font-family:var(--mono);font-size:9.5px;letter-spacing:.2em;color:var(--violet);margin-bottom:4px}
+  .check-item input:checked ~ .txt{color:var(--ink-faint)}
+  .check-item input:checked ~ .txt b{color:var(--ink-faint)}
+
+  .cta{margin-top:88px;padding:72px 0 96px;border-top:1px solid var(--line-strong);text-align:center;position:relative}
+  .cta .orb{
+    width:140px;height:140px;border-radius:50%;margin:0 auto 36px;position:relative;
+    background:radial-gradient(circle at 32% 30%, var(--violet), var(--violet-deep) 70%);
+  }
+  .cta .orb::before{content:"";position:absolute;inset:-16px;border-radius:50%;border:1px solid rgba(166,255,0,.5);animation:orb 6s linear infinite}
+  .cta .orb::after{content:"";position:absolute;inset:-32px;border-radius:50%;border:1px dashed rgba(242,239,230,.18);animation:orb 14s linear infinite reverse}
+  @keyframes orb{to{transform:rotate(360deg)}}
+  .cta h2{
+    font-family:var(--serif);font-weight:600;font-size:clamp(30px,4.6vw,48px);line-height:1.06;
+    letter-spacing:-.01em;max-width:640px;margin:0 auto;
+  }
+  .cta h2 .v{color:var(--violet);font-style:italic;font-weight:500}
+  .cta p{margin:22px auto 0;max-width:520px;color:var(--ink-dim);font-size:15.5px}
+  .cta p strong{color:var(--ink);font-weight:600}
+  .cta-btn{
+    display:inline-flex;align-items:center;gap:12px;margin-top:38px;
+    font-family:var(--mono);font-size:12px;letter-spacing:.2em;text-transform:uppercase;
+    color:#0B0A0F;background:var(--neon);text-decoration:none;padding:18px 34px;border-radius:999px;font-weight:700;
+    transition:transform .2s, box-shadow .2s;
+  }
+  .cta-btn:hover{transform:translateY(-3px);box-shadow:0 18px 40px rgba(166,255,0,.22)}
+  .cta-btn small{font-size:9px;letter-spacing:.14em;color:rgba(11,10,15,.7)}
+  .cta-note{margin-top:20px;font-family:var(--mono);font-size:9.5px;letter-spacing:.18em;text-transform:uppercase;color:var(--ink-faint)}
+  .cta-note a{color:var(--violet);text-decoration:none;border-bottom:1px solid rgba(183,156,255,.35)}
+  .cta-note a:hover{color:var(--neon)}
+
+  .footer{
+    border-top:1px solid var(--line);padding:40px 0 48px;
+    font-family:var(--mono);font-size:9.5px;letter-spacing:.18em;text-transform:uppercase;color:var(--ink-faint);
+    display:flex;justify-content:space-between;align-items:center;gap:16px;flex-wrap:wrap;
+  }
+  .footer .tags{display:flex;gap:18px;flex-wrap:wrap}
+  .footer .tags span{display:inline-flex;align-items:center;gap:8px}
+  .footer .tags span::before{content:"";width:6px;height:6px;border-radius:50%}
+  .footer .tags .g::before{background:var(--neon)}
+  .footer .tags .a::before{background:var(--violet)}
+
+  @media (max-width:820px){
+    .duo{grid-template-columns:1fr}
+    .voice{transform:none}
+    .toc{grid-template-columns:1fr}
+    .toc a:nth-last-child(-n+2){border-bottom:1px solid var(--line)}
+    .toc a:last-child{border-bottom:none}
+    .cover-foot{flex-direction:column;align-items:flex-start;gap:14px}
+    .cover h1{font-size:clamp(40px,12vw,64px)}
+    .bonus-head{flex-direction:column}
+    .checklist{padding:10px 24px 34px}
+    .block-head{flex-direction:column;gap:14px}
+    .block-num{width:auto}
+    .section{padding:72px 0}
+    .cta{padding:56px 0 72px}
+  }
+  @media print{
+    body{background:#0B0A0F}
+    body::before,body::after,.grid-lines{display:none}
+    .pdf-btn{display:none}
+    .cover{min-height:auto;padding:0;page-break-after:always}
+    .block{page-break-inside:avoid;padding:48px 0}
+    .section{padding:48px 0}
+    .cta{margin-top:48px;padding:48px 0 24px;page-break-inside:avoid}
+    a{text-decoration:none}
+  }
+</style>
+</head>
+<body>
+<div class="grid-lines"></div>
+
+<!-- ============ PORTADA ============ -->
+<header class="cover">
+  <div class="wrap">
+    <div class="cover-top">
+      <div class="brand">
+        <div class="brand-dot"></div>
+        <div>
+          <div class="brand-name">Escalamiento Consciente</div>
+          <div class="brand-sub">Alaya <span class="violet">·</span> Gonzalo Crecimiento Digital</div>
+        </div>
+      </div>
+      <div style="display:flex;align-items:center;gap:12px">
+        <button class="pdf-btn" type="button" onclick="window.print()" aria-label="Descargar en PDF">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+          Descargar en PDF
+        </button>
+        <div class="free">Guía gratuita</div>
+      </div>
+    </div>
+
+    <div class="cover-main">
+      <div class="kicker"><em>Lead magnet</em> — Alaya &amp; GCD</div>
+      <h1>
+        <span class="dim">5 bloqueos</span> emocionales
+        <span class="line2">que frenan <b>tu negocio</b></span>
+      </h1>
+      <p class="cover-deck">
+        Y cómo destrabarlos con <strong>una solución estratégica concreta</strong> para cada uno.
+        Dos miradas, un solo mapa: <strong>la emoción</strong> que te frena <em>y</em> <strong>la estructura</strong> que te saca del lugar.
+      </p>
+      <div style="margin-top:22px;display:flex;align-items:center;gap:16px">
+        <img src="https://landing-gcd.vercel.app/alaya/hero-alaya-gcd.png" alt="Yamila y Gonzalo — Alaya × GCD" style="width:110px;height:110px;border-radius:50%;object-fit:cover;object-position:center top;border:1px solid rgba(183,156,255,.35);box-shadow:0 12px 28px rgba(0,0,0,.35);background:rgba(242,239,230,.06);flex:none" loading="eager" onerror="this.src='https://landing-gcd.vercel.app/alaya/hero-alaya-gcd.jpg'">
+        <div style="font-family:var(--mono);font-size:9px;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-faint);line-height:1.6"><b style="color:var(--ink)">Yamila · Alaya</b> + <b style="color:var(--ink)">Gonzalo · GCD</b><br>Dos miradas, un solo mapa</div>
+      </div>
+      <div class="meet">
+        <span class="dash"></span>
+        <span>Dónde la conciencia se encuentra con el sistema</span>
+      </div>
+    </div>
+
+    <div class="cover-foot">
+      <div class="roles">
+        <div class="yami"><b>Yamila</b> — Lado emocional</div>
+        <div class="gonza"><b>Gonzalo</b> — Lado digital</div>
+      </div>
+      <div>5 bloqueos · 5 ejercicios · 1 checklist</div>
+    </div>
+  </div>
+</header>
+
+<!-- ============ INTRO ============ -->
+<section class="section">
+  <div class="wrap">
+    <div class="section-tag">Para leer esta guía</div>
+    <h2>Esto no es teoría espiritual. Tampoco es teoría de marketing. Es el puente entre las dos.</h2>
+    <p class="lede">
+      Probaste cosas sueltas: un taller de Instagram, un curso de ventas, una limpieza energética.
+      Nada cerró, no porque estuviera mal — sino porque <strong>ninguna pieza suelta toca lo que realmente te detiene</strong>.
+      Acá cada bloqueo se mira dos veces: <strong>su origen emocional</strong> (qué creencia lo sostiene) y
+      <strong>su destrabe estratégico</strong> (qué acción concreta lo rompe). Encontrá el tuyo y empezá por ahí.
+    </p>
+
+    <div class="toc">
+      <a href="#b1"><span class="n">01</span><span>Vender es sucio / No merezco cobrar eso</span></a>
+      <a href="#b2"><span class="n">02</span><span>Síndrome del impostor / No soy suficiente</span></a>
+      <a href="#b3"><span class="n">03</span><span>Perfeccionismo que paraliza</span></a>
+      <a href="#b4"><span class="n">04</span><span>Agobio / Todo lo hago yo</span></a>
+      <a href="#b5"><span class="n">05</span><span>No sé por dónde empezar / Mapa disperso</span></a>
+      <a href="#bonus"><span class="n">+</span><span>Bonus: Mi plan de destrabe semanal</span></a>
+    </div>
+  </div>
+</section>
+
+<!-- ============ BLOQUEOS ============ -->
+<article id="b1" class="block">
+  <div class="wrap">
+    <div class="block-head">
+      <div class="block-num">01</div>
+      <div class="block-title">
+        <h3>«Vender es sucio» — No merezco cobrar eso</h3>
+        <p>El precio no es el problema. La creencia detrás del precio, sí.</p>
+      </div>
+    </div>
+
+    <div class="symptoms">
+      <span class="symptom">Ponés precios bajos</span>
+      <span class="symptom">Dás descuentos antes de que te pidan</span>
+      <span class="symptom">Te disculpás al hablar de tu oferta</span>
+    </div>
+
+    <div class="duo">
+      <div class="voice yami">
+        <div class="voice-label">Origen emocional — Yamila</div>
+        <h4>No es una cuestión de plata. Es una lealtad.</h4>
+        <p>Detrás de cobrar poco hay creencias heredadas: <b>«el dinero es malo»</b>, <b>«si ayudo, no debería cobrar»</b>, <b>«¿quién soy yo para pedir esto?»</b>. Son mandatos que te protegieron alguna vez y hoy te sabotean en silencio. Cada vez que bajás tu precio, le estás diciendo a tu inconsciente que tu trabajo no vale — y él te cree.</p>
+      </div>
+      <div class="voice gonza">
+        <div class="voice-label">Destrabe estratégico — Gonzalo</div>
+        <h4>Tu precio no se calcula en horas.</h4>
+        <p>Usás un <b>framework de precio basado en valor transformacional</b>: ¿cuánto le cambia la vida a tu cliente si resuelve esto? Ese es tu número de referencia. Cuando el precio sale del valor entregado (y no de la culpa), la conversación deja de ser «pedir» y pasa a ser «proponer un resultado».</p>
+      </div>
+    </div>
+
+    <div class="exercise">
+      <div class="exercise-tag">Ejercicio rápido</div>
+      <p><b>Mapeá el costo de NO resolverlo.</b> Escribí en una lista el costo emocional y económico de que tu cliente siga con el problema un año más. Ese costo es tu verdadero precio — y también tu mejor copy.</p>
+      <span class="time">&lt; 5 min</span>
+    </div>
+  </div>
+</article>
+
+<article id="b2" class="block">
+  <div class="wrap">
+    <div class="block-head">
+      <div class="block-num">02</div>
+      <div class="block-title">
+        <h3>Síndrome del impostor — No soy suficiente</h3>
+        <p>Comparás tu interior con el exterior de los demás.</p>
+      </div>
+    </div>
+
+    <div class="symptoms">
+      <span class="symptom">Postergás lanzamientos</span>
+      <span class="symptom">Comparás tu interior con el exterior de otros</span>
+      <span class="symptom">«Ya hay miles haciendo esto»</span>
+    </div>
+
+    <div class="duo">
+      <div class="voice yami">
+        <div class="voice-label">Origen emocional — Yamila</div>
+        <h4>Tu identidad está partida en dos.</h4>
+        <p>Conviven <b>la «versión espiritual»</b> y <b>la «versión empresaria»</b> como si fueran enemigas, y ninguna se anima a mostrarse completa. Debajo hay un miedo más viejo: <b>miedo a ser vista</b>. Si nadie me ve, nadie puede juzgarme ni rechazarme — pero tampoco nadie puede recibir mi ayuda.</p>
+      </div>
+      <div class="voice gonza">
+        <div class="voice-label">Destrabe estratégico — Gonzalo</div>
+        <h4>La autoridad se construye, no se nace con ella.</h4>
+        <p>Montás un <b>sistema de contenido automatizado con IA</b> que habla con tu voz y publica por vos. Autoridad no es estar 24/7 en redes: es <b>consistencia con un sistema</b>. Mientras tu contenido demuestra tu trabajo, tu yo interno se queda tranquilo haciendo lo que sí te gusta.</p>
+      </div>
+    </div>
+
+    <div class="exercise">
+      <div class="exercise-tag">Ejercicio rápido</div>
+      <p><b>Escribí 3 historias donde ayudaste a alguien</b> (un consejo, una sesión, una frase a tiempo). Cada historia es un pilar de contenido: tu prueba de que ya sos la versión que creés que todavía no alcanzaste.</p>
+      <span class="time">&lt; 5 min</span>
+    </div>
+  </div>
+</article>
+
+<article id="b3" class="block">
+  <div class="wrap">
+    <div class="block-head">
+      <div class="block-num">03</div>
+      <div class="block-title">
+        <h3>Perfeccionismo que paraliza</h3>
+        <p>No lanzás hasta que «todo esté perfecto». Y nunca está perfecto.</p>
+      </div>
+    </div>
+
+    <div class="symptoms">
+      <span class="symptom">Rediseñás 20 veces</span>
+      <span class="symptom">El curso / producto nunca sale</span>
+      <span class="symptom">Un error = descalificado</span>
+    </div>
+
+    <div class="duo">
+      <div class="voice yami">
+        <div class="voice-label">Origen emocional — Yamila</div>
+        <h4>La perfección es tu forma de tener control.</h4>
+        <p>Detrás del perfeccionismo hay <b>miedo al juicio externo</b> y una creencia dura: <b>«un error me descalifica como profesional»</b>. La autoexigencia se vuelve un mecanismo de control: si nada sale, nadie puede criticarlo — pero también nadie puede recibirlo.</p>
+      </div>
+      <div class="voice gonza">
+        <div class="voice-label">Destrabe estratégico — Gonzalo</div>
+        <h4>Lanzá mínimo viable. Mejorá en el camino.</h4>
+        <p>Usás el framework de <b>«lanzamiento mínimo viable»</b>: definís la versión más chica que resuelve el problema, la publicás en <b>7 días</b> y mejorás con la retroalimentación real. El mercado te enseña más en una semana que tu cabeza en seis meses de «casi listo».</p>
+      </div>
+    </div>
+
+    <div class="exercise">
+      <div class="exercise-tag">Ejercicio rápido</div>
+      <p><b>Elegí algo pendiente y reducí su alcance un 50%.</b> Eso que querés hacer «completo», hacelo a la mitad. Publicalo esta semana. La versión que sale al mundo corrige más que la que nunca sale.</p>
+      <span class="time">&lt; 5 min</span>
+    </div>
+  </div>
+</article>
+
+<article id="b4" class="block">
+  <div class="wrap">
+    <div class="block-head">
+      <div class="block-num">04</div>
+      <div class="block-title">
+        <h3>Agobio — Todo lo hago yo</h3>
+        <p>Tu negocio depende 100% de vos. Eso no es compromiso: es un techo.</p>
+      </div>
+    </div>
+
+    <div class="symptoms">
+      <span class="symptom">Contenido + sesiones + administración + ventas</span>
+      <span class="symptom">No dormís bien</span>
+      <span class="symptom">«Nadie lo hace como yo»</span>
+    </div>
+
+    <div class="duo">
+      <div class="voice yami">
+        <div class="voice-label">Origen emocional — Yamila</div>
+        <h4>Delegar se siente como traicionar tu obra.</h4>
+        <p>Hay una <b>dificultad real para delegar</b> sostenida por la creencia <b>«nadie lo hace como yo»</b>. Y algo más profundo: tu identidad está <b>fusionada con el negocio</b>. Si el negocio puede funcionar sin vos en algo, ¿quién sos? Esa pregunta asusta más que el cansancio.</p>
+      </div>
+      <div class="voice gonza">
+        <div class="voice-label">Destrabe estratégico — Gonzalo</div>
+        <h4>El embudo trabaja mientras vos descansás.</h4>
+        <p>Automatizás las tres tareas que más horas te comen: <b>lead magnet automático</b>, <b>email nurturing secuencial</b>, <b>agendamiento y cobro sin fricción</b>. La tecnología no reemplaza tu talento: reemplaza lo repetitivo para que vos quedes solo en lo que solo vos podés hacer.</p>
+      </div>
+    </div>
+
+    <div class="exercise">
+      <div class="exercise-tag">Ejercicio rápido</div>
+      <p><b>Listá 3 tareas repetitivas</b> que hacés todas las semanas y que un sistema (o una persona) podría hacer por vos. Esta semana, automatizá o delegá solo una. Empezá por la que más te aburre.</p>
+      <span class="time">&lt; 5 min</span>
+    </div>
+  </div>
+</article>
+
+<article id="b5" class="block">
+  <div class="wrap">
+    <div class="block-head">
+      <div class="block-num">05</div>
+      <div class="block-title">
+        <h3>No sé por dónde empezar — Mapa disperso</h3>
+        <p>Probaste de todo y nada cerró. El problema no sos vos: es la falta de un orden.</p>
+      </div>
+    </div>
+
+    <div class="symptoms">
+      <span class="symptom">Un curso de Instagram, un taller de ventas, una limpieza energética</span>
+      <span class="symptom">Cada pieza tiene sentido sola</span>
+      <span class="symptom">Nada conecta con nada</span>
+    </div>
+
+    <div class="duo">
+      <div class="voice yami">
+        <div class="voice-label">Origen emocional — Yamila</div>
+        <h4>Buscás afuera la respuesta que ya tenés adentro.</h4>
+        <p>El mapa disperso es síntoma de <b>falta de confianza en tu propio criterio</b>. Cada curso nuevo promete la respuesta, y cada uno te deja más lejos de escucharte. La respuesta no está en «el método correcto»: está en <b>tu propio diagnóstico</b> — y nunca lo hiciste en serio.</p>
+      </div>
+      <div class="voice gonza">
+        <div class="voice-label">Destrabe estratégico — Gonzalo</div>
+        <h4>Un mapa de 5 pasos, no 500 consejos.</h4>
+        <p>Un <b>mapa de 5 pasos</b> desde donde estás hoy hasta tu primer cliente pago consistente. Cada paso conecta <b>una acción digital</b> (estructura) con <b>una preparación emocional</b> (conciencia). No es hacer más: es hacer en orden.</p>
+      </div>
+    </div>
+
+    <div class="exercise">
+      <div class="exercise-tag">Ejercicio rápido</div>
+      <p><b>Diagnosticá en qué paso del mapa estás hoy.</b> ¿Te falta oferta? ¿Audiencia? ¿Sistema de ventas? ¿No sabés tu nicho? Escribí UNA sola cosa que sea tu próximo paso — y empezá por ahí, no por todo.</p>
+      <span class="time">&lt; 5 min</span>
+    </div>
+  </div>
+</article>
+
+<!-- ============ BONUS ============ -->
+<section id="bonus" class="section" style="padding-top:24px">
+  <div class="wrap">
+    <div class="section-tag">Bonus incluido</div>
+    <h2>Tu mapa también se trabaja en papel.</h2>
+
+    <div class="bonus">
+      <div class="bonus-head">
+        <div>
+          <span class="bonus-badge">Bonus — Checklist imprimible</span>
+          <h3>Mi plan de destrabe semanal</h3>
+          <p>Un bloqueo por semana. Un ejercicio por día. Tildá tu avance — lo que se mide, se destraba.</p>
+        </div>
+      </div>
+      <div class="checklist">
+        <label class="check-item">
+          <input type="checkbox"><span class="box"></span>
+          <span class="txt"><span class="day">Lunes</span><b>Reconocé tu bloqueo.</b> Elegí UNO de los cinco. Escribí en qué momentos de esta semana se te aparece.</span>
+        </label>
+        <label class="check-item">
+          <input type="checkbox"><span class="box"></span>
+          <span class="txt"><span class="day">Martes</span><b>Nombrá la creencia.</b> ¿Qué frase interna lo sostiene? («no merezco cobrar», «no soy suficiente»). Escríbela tal cual.</span>
+        </label>
+        <label class="check-item">
+          <input type="checkbox"><span class="box"></span>
+          <span class="txt"><span class="day">Miércoles</span><b>Hacé el ejercicio del bloqueo</b> (el que está en cada sección de esta guía). Menos de 5 minutos.</span>
+        </label>
+        <label class="check-item">
+          <input type="checkbox"><span class="box"></span>
+          <span class="txt"><span class="day">Jueves</span><b>Una acción mínima.</b> Una sola, chica, en la dirección contraria a tu bloqueo. Un precio justo. Un posteo. Un lanzamiento a mitad de alcance.</span>
+        </label>
+        <label class="check-item">
+          <input type="checkbox"><span class="box"></span>
+          <span class="txt"><span class="day">Viernes</span><b>Registrá qué pasó.</b> ¿Qué cambió en tu cabeza al hacerlo? Ese registro es tu prueba: ya sos capaz de lo que creías que no.</span>
+        </label>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ CTA ============ -->
+<section class="cta">
+  <div class="orb"></div>
+  <div class="wrap">
+    <h2>¿Querés destrabar <span class="v">tu caso</span> concreto?</h2>
+    <p>Esta guía te muestra el mapa. En una <strong>sesión de 15 minutos con Yamila y Gonzalo</strong>, armamos el plan para tu situación puntual — tu bloqueo, tu negocio, tu orden de pasos.</p>
+    <a class="cta-btn" href="https://wa.me/5491161677122?text=Hola%20Yamila%20y%20Gonzalo%2C%20le%C3%AD%20la%20gu%C3%ADa%20de%20los%205%20bloqueos%20y%20quiero%20reservar%20mi%20sesi%C3%B3n%20de%2015%20minutos." target="_blank" rel="noopener" id="ctaLink">Reservá tu sesión <small>15 min · diagnóstico + plan</small></a>
+    <p class="cta-note">Sin compromiso · Cupos limitados · <a href="https://wa.me/5491161677122" target="_blank">También podés escribirnos por WhatsApp</a></p>
+  </div>
+</section>
+
+<!-- ============ FOOTER ============ -->
+<footer class="footer">
+  <div class="wrap" style="display:flex;justify-content:space-between;align-items:center;gap:16px;flex-wrap:wrap;width:100%">
+    <div>Escalamiento Consciente · Lead magnet</div>
+    <div class="tags">
+      <span class="a">Alaya — conciencia</span>
+      <span class="g">GCD — estructura</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+  var count=document.querySelectorAll('.check-item input:checked').length;
+  document.querySelectorAll('.checklist .check-item input').forEach(function(box){
+    box.addEventListener('change',function(){
+      var done=document.querySelectorAll('.checklist .check-item input:checked').length;
+      var t=document.querySelector('.bonus-head p');
+      if(done===5){t.innerHTML='<b style="color:var(--neon)">Semana completa. El bloqueo elegido se destrabó.</b> Pasá al próximo — o reservá tu sesión para ir más profundo.';}
+      else if(done>0){t.textContent='Tildaste '+done+' de 5. Seguí: lo que se mide, se destraba.';}
+      else{t.textContent='Un bloqueo por semana. Un ejercicio por día. Tildá tu avance — lo que se mide, se destraba.';}
+    });
+  });
+</script>
+</body>
+</html>

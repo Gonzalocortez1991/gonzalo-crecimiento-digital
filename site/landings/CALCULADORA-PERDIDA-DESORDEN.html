@@ -1,0 +1,733 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Calculadora de Pérdida por Desorden | GCD</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Syne+Mono&display=swap" rel="stylesheet">
+<!-- Meta Pixel -->
+<script>
+!function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,document,'script','https://connect.facebook.net/en_US/fbevents.js');
+fbq('init', '925391107193038');
+fbq('track', 'PageView');
+</script>
+<!-- End Meta Pixel -->
+<style>
+* { margin:0; padding:0; box-sizing:border-box; }
+:root {
+  --neon: #A6FF00;
+  --neon-dim: rgba(166,255,0,0.3);
+  --neon-glow: rgba(166,255,0,0.08);
+  --dark: #0a0a0a;
+  --dark2: #111;
+  --dark3: #1a1a1a;
+  --text: #ddd;
+  --text-dim: #888;
+  --text-muted: #555;
+  --font: 'Space Grotesk', sans-serif;
+  --mono: 'Syne Mono', monospace;
+  --danger: #FF3A3A;
+  --danger-dim: rgba(255,58,58,0.15);
+  --warn: #FFC107;
+  --success: #A6FF00;
+}
+html { scroll-behavior: smooth; }
+body {
+  font-family: var(--font);
+  background: var(--dark);
+  color: var(--text);
+  min-height: 100vh;
+  overflow-x: hidden;
+}
+.grid-bg {
+  position: fixed;
+  inset: 0;
+  background-image:
+    linear-gradient(rgba(166,255,0,0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(166,255,0,0.03) 1px, transparent 1px);
+  background-size: 40px 40px;
+  pointer-events: none;
+  z-index: 0;
+}
+.scanline {
+  position: fixed;
+  inset: 0;
+  background: repeating-linear-gradient(0deg, transparent, transparent 2px, rgba(0,0,0,0.03) 2px, rgba(0,0,0,0.03) 4px);
+  pointer-events: none;
+  z-index: 0;
+}
+.container {
+  position: relative;
+  z-index: 1;
+  max-width: 680px;
+  margin: 0 auto;
+  padding: 40px 20px;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+.header-bar {
+  text-align: center;
+  margin-bottom: 32px;
+}
+.header-bar .badge {
+  font-family: var(--mono);
+  font-size: 10px;
+  letter-spacing: 5px;
+  color: var(--neon);
+  opacity: 0.6;
+  text-transform: uppercase;
+}
+.header-bar .badge::before, .header-bar .badge::after {
+  content: ' ◆ ';
+  font-size: 6px;
+}
+
+.screen { display: none; }
+.screen.active { display: block; animation: fadeIn 0.4s ease; }
+
+@keyframes fadeIn {
+  from { opacity:0; transform:translateY(12px); }
+  to { opacity:1; transform:translateY(0); }
+}
+
+.btn {
+  display: inline-block;
+  font-family: var(--mono);
+  font-size: 13px;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  padding: 16px 48px;
+  border: none;
+  cursor: pointer;
+  transition: all 0.3s;
+  text-decoration: none;
+  color: var(--dark);
+  background: var(--neon);
+  font-weight: 600;
+}
+.btn:hover {
+  background: #8cdb00;
+  box-shadow: 0 0 40px rgba(166,255,0,0.25);
+  transform: translateY(-2px);
+}
+.btn:disabled {
+  opacity: 0.3;
+  cursor: not-allowed;
+  transform: none;
+  box-shadow: none;
+}
+.btn-outline {
+  background: transparent;
+  color: var(--neon);
+  border: 1px solid var(--neon);
+}
+.btn-outline:hover {
+  background: var(--neon-glow);
+}
+
+/* INTRO */
+.intro-wrap { text-align: center; }
+.intro-icon { font-size: 48px; margin-bottom: 12px; }
+.intro-title {
+  font-size: clamp(26px, 5vw, 38px);
+  font-weight: 600;
+  line-height: 1.15;
+  margin-bottom: 10px;
+}
+.intro-title .hl { color: var(--danger); }
+.intro-sub {
+  font-size: 15px;
+  color: var(--text-dim);
+  line-height: 1.6;
+  max-width: 480px;
+  margin: 0 auto 20px;
+}
+.intro-features {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 8px 20px;
+  margin: 20px 0;
+  font-size: 13px;
+  color: var(--text-dim);
+}
+.intro-features span { display: flex; align-items: center; gap: 6px; }
+.intro-features .ck { color: var(--neon); }
+
+/* PROGRESS */
+.progress-wrap { margin-bottom: 28px; }
+.progress-label {
+  display: flex;
+  justify-content: space-between;
+  font-family: var(--mono);
+  font-size: 11px;
+  color: var(--text-dim);
+  letter-spacing: 1px;
+  margin-bottom: 8px;
+}
+.progress-bar { height: 2px; background: var(--dark3); border-radius: 2px; overflow: hidden; }
+.progress-fill { height: 100%; background: var(--neon); width: 0%; transition: width 0.4s ease; box-shadow: 0 0 12px var(--neon-dim); }
+
+/* CARD */
+.card {
+  background: var(--dark2);
+  border: 1px solid rgba(166,255,0,0.06);
+  padding: 32px;
+}
+.card-step {
+  font-family: var(--mono);
+  font-size: 10px;
+  letter-spacing: 3px;
+  color: var(--neon);
+  opacity: 0.5;
+  margin-bottom: 6px;
+}
+.card-title {
+  font-size: 20px;
+  font-weight: 500;
+  line-height: 1.4;
+  margin-bottom: 20px;
+}
+
+/* CHECKBOXES */
+.check-grid { display: flex; flex-direction: column; gap: 8px; }
+.check-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 14px 16px;
+  background: var(--dark3);
+  border: 1px solid rgba(255,255,255,0.04);
+  cursor: pointer;
+  transition: all 0.2s;
+  font-size: 14px;
+  color: var(--text);
+}
+.check-item:hover {
+  background: rgba(166,255,0,0.04);
+  border-color: var(--neon-dim);
+}
+.check-item.checked {
+  background: rgba(166,255,0,0.08);
+  border-color: var(--neon);
+  color: var(--neon);
+}
+.check-box {
+  width: 18px; height: 18px;
+  border: 1px solid var(--text-muted);
+  display: flex; align-items: center; justify-content: center;
+  flex-shrink: 0;
+  font-size: 10px;
+  color: var(--dark);
+  transition: all 0.2s;
+}
+.check-item.checked .check-box {
+  background: var(--neon);
+  border-color: var(--neon);
+}
+
+/* SLIDER */
+.slider-wrap { margin: 16px 0; }
+.slider-wrap label {
+  display: block;
+  font-size: 14px;
+  font-weight: 500;
+  margin-bottom: 12px;
+}
+.slider-value {
+  text-align: center;
+  font-size: 36px;
+  font-weight: 600;
+  color: var(--neon);
+  margin-bottom: 8px;
+  font-family: var(--mono);
+}
+.slider-value .currency { font-size: 18px; color: var(--text-dim); }
+input[type="range"] {
+  width: 100%;
+  height: 4px;
+  -webkit-appearance: none;
+  appearance: none;
+  background: var(--dark3);
+  outline: none;
+  border: none;
+  cursor: pointer;
+}
+input[type="range"]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  width: 20px;
+  height: 20px;
+  background: var(--neon);
+  cursor: pointer;
+  border: 2px solid var(--dark);
+}
+.slider-labels {
+  display: flex;
+  justify-content: space-between;
+  font-size: 11px;
+  color: var(--text-muted);
+  margin-top: 6px;
+  font-family: var(--mono);
+}
+
+.nav-row {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 24px;
+  gap: 12px;
+}
+
+/* RESULTS */
+.result-icon { font-size: 48px; margin-bottom: 12px; }
+.result-title {
+  font-size: clamp(24px, 4vw, 36px);
+  font-weight: 600;
+  margin-bottom: 8px;
+}
+.result-sub {
+  font-size: 15px;
+  color: var(--text-dim);
+  margin-bottom: 24px;
+  line-height: 1.6;
+}
+
+/* COMPARISON */
+.comparison { margin-bottom: 24px; }
+.comp-row {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 8px;
+}
+.comp-label {
+  font-size: 13px;
+  color: var(--text-dim);
+  min-width: 100px;
+  flex-shrink: 0;
+}
+.comp-bar-wrap {
+  flex: 1;
+  height: 28px;
+  background: var(--dark3);
+  position: relative;
+  overflow: hidden;
+}
+.comp-bar {
+  height: 100%;
+  display: flex;
+  align-items: center;
+  padding-left: 10px;
+  font-size: 11px;
+  font-weight: 600;
+  font-family: var(--mono);
+  transition: width 0.6s ease;
+}
+.comp-bar.loss { background: var(--danger); color: #fff; }
+.comp-bar.correct { background: var(--neon); color: var(--dark); }
+
+/* ORDER STEPS */
+.order-steps {
+  background: var(--dark3);
+  border: 1px solid rgba(166,255,0,0.06);
+  padding: 20px;
+  margin-bottom: 24px;
+}
+.order-steps h4 {
+  font-family: var(--mono);
+  font-size: 10px;
+  letter-spacing: 3px;
+  color: var(--neon);
+  margin-bottom: 12px;
+}
+.order-step {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 8px 0;
+  border-bottom: 1px solid rgba(255,255,255,0.03);
+  font-size: 13px;
+}
+.order-step:last-child { border: none; }
+.order-step .num {
+  font-family: var(--mono);
+  font-size: 10px;
+  color: var(--neon);
+  min-width: 20px;
+}
+.order-step .icon { font-size: 16px; }
+
+/* FORM */
+.form-box {
+  background: var(--dark2);
+  border: 1px solid rgba(166,255,0,0.06);
+  padding: 28px;
+  text-align: center;
+}
+.form-box h3 {
+  font-size: 17px;
+  font-weight: 500;
+  margin-bottom: 6px;
+}
+.form-box p {
+  font-size: 14px;
+  color: var(--text-dim);
+  margin-bottom: 18px;
+}
+.form-box form {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  max-width: 380px;
+  margin: 0 auto;
+}
+.form-box input {
+  padding: 14px 16px;
+  background: var(--dark3);
+  border: 1px solid rgba(255,255,255,0.06);
+  font-family: var(--font);
+  font-size: 14px;
+  color: var(--text);
+  outline: none;
+  transition: border 0.2s;
+}
+.form-box input:focus { border-color: var(--neon-dim); }
+.form-box input::placeholder { color: var(--text-muted); }
+.form-box .btn-sm { padding: 12px 32px; font-size: 12px; }
+
+.status-msg {
+  font-size: 12px;
+  color: var(--text-muted);
+  margin-top: 12px;
+  min-height: 18px;
+}
+.status-msg.success { color: var(--neon); }
+.status-msg.error { color: var(--danger); }
+
+/* RESPONSIVE */
+@media (max-width: 600px) {
+  .container { padding: 24px 16px; }
+  .card { padding: 24px 16px; }
+  .nav-row { flex-direction: column; }
+  .nav-row .btn { width: 100%; text-align: center; }
+  .comp-label { min-width: 70px; font-size: 11px; }
+}
+</style>
+</head>
+<body>
+<div class="grid-bg"></div>
+<div class="scanline"></div>
+
+<div class="container" id="app">
+
+  <div class="header-bar">
+    <div class="badge">GCD · CALCULADORA v1.0</div>
+  </div>
+
+  <div class="progress-wrap" id="progressWrap" style="display:none;">
+    <div class="progress-label">
+      <span id="qLabel">Paso 1 de 3</span>
+      <span id="qPct">0%</span>
+    </div>
+    <div class="progress-bar"><div class="progress-fill" id="progressFill"></div></div>
+  </div>
+
+  <!-- SCREEN 0: INTRO -->
+  <div class="screen active" id="screenIntro">
+    <div class="intro-wrap">
+      <div class="intro-icon">📊</div>
+      <h1 class="intro-title">¿Cuánta plata perdiste <span class="hl">por hacer todo en desorden</span>?</h1>
+      <p class="intro-sub">Seleccioná lo que probaste y cuánto te costó. Te mostramos cuánto hubieras ahorrado siguiendo el orden correcto.</p>
+      <div class="intro-features">
+        <span><span class="ck">✓</span> 2 pasos</span>
+        <span><span class="ck">✓</span> 2 minutos</span>
+        <span><span class="ck">✓</span> Resultado comparativo</span>
+        <span><span class="ck">✓</span> Roadmap gratis</span>
+      </div>
+      <button class="btn" onclick="startCalc()">Calcular pérdida →</button>
+    </div>
+  </div>
+
+  <!-- SCREEN 1: STEPS -->
+  <div class="screen" id="screenSteps">
+    <div class="card" id="stepCard"></div>
+  </div>
+
+  <!-- SCREEN 2: RESULTS -->
+  <div class="screen" id="screenResult">
+    <div class="card" style="text-align:center;">
+      <div class="result-icon">💸</div>
+      <h2 class="result-title" id="resultTitle">Tu pérdida por desorden</h2>
+      <p class="result-sub" id="resultSub">Esto es lo que te costó aprender sin mapa.</p>
+
+      <div class="comparison" id="comparisonWrap"></div>
+      <div class="order-steps" id="orderSteps"></div>
+
+      <div class="form-box" id="checkoutBox">
+        <h3>Conseguí el roadmap completo por $5</h3>
+        <p>Incluye la comparación detallada, el orden exacto de las 5 áreas y los recursos para arrancar sin perder más plata.</p>
+        <form id="checkoutForm" method="POST" target="_blank" onsubmit="checkoutCalc('calculadora-perdida', event)">
+          <input type="hidden" name="createCheckout" value="true">
+          <input type="hidden" name="product" value="calculadora-perdida">
+          <input type="text" name="name" placeholder="Tu nombre" required style="width:100%;padding:14px 16px;background:var(--dark3);border:1px solid rgba(255,255,255,0.06);font-family:var(--font);font-size:14px;color:var(--text);outline:none;">
+          <input type="email" name="email" placeholder="Tu mejor email" required style="width:100%;padding:14px 16px;background:var(--dark3);border:1px solid rgba(255,255,255,0.06);font-family:var(--font);font-size:14px;color:var(--text);outline:none;">
+          <button type="submit" class="btn btn-sm">Comprar ahora → $5</button>
+        </form>
+        <div style="margin-top:14px;font-size:12px;color:var(--text-muted);">
+          ⏳ ¿No tenés $5 ahora? <a href="#" onclick="showCalcFreeForm();return false;" style="color:var(--neon);">Dejá tu email y recibí un resumen gratis</a>
+        </div>
+      </div>
+
+      <div class="form-box" id="leadFormBox" style="display:none;">
+        <h3>Recibí un resumen gratis</h3>
+        <p>Te enviamos los pasos principales para arrancar con el orden correcto.</p>
+        <form id="resultForm" onsubmit="submitLead(event)">
+          <input type="text" name="name" placeholder="Tu nombre" required>
+          <input type="email" name="email" placeholder="Tu mejor email" required>
+          <input type="hidden" name="source" value="calculadora-perdida-free">
+          <input type="hidden" name="interes" id="interesData">
+          <button type="submit" class="btn btn-sm" id="submitBtn">Quiero el resumen gratis →</button>
+        </form>
+        <div class="status-msg" id="formStatus"></div>
+      </div>
+
+      <div style="margin-top:16px;">
+        <button class="btn btn-outline btn-sm" onclick="resetCalc()">← Volver a empezar</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<iframe name="result-frame" style="display:none"></iframe>
+
+<script>
+const GAS_URL = 'https://script.google.com/macros/s/AKfycbyUBUepqHYtzGRyda1AJGuC38sqxs215YZaViDsxyPiMNhjmCg5OZFWqKt-KXDTwBSWBQ/exec';
+const MP_GAS_URL = 'https://script.google.com/macros/s/AKfycbyxcn1-PWFdKcq5e9TWFljD47XkJ6dVCnLxt4bCb7LO0e8umzXp2MwFpjhhp0NoBGrZ/exec';
+
+const ITEMS = [
+  { id:'crypto', label:'Crypto trading / NFTs', icon:'₿' },
+  { id:'dropshipping', label:'Dropshipping / Ecommerce', icon:'📦' },
+  { id:'cursos', label:'Cursos de marketing digital', icon:'📚' },
+  { id:'ia', label:'IA / ChatGPT / Automatización', icon:'🤖' },
+  { id:'bots', label:'Bots de trading', icon:'⚙️' },
+  { id:'infoproductos', label:'Infoproductos / Creación de contenido', icon:'🎬' },
+  { id:'mineria', label:'Minería cripto / Staking', icon:'⛏️' }
+];
+
+const STEPS_DATA = [
+  { icon:'🎯', name:'Marketing', desc:'Definí a quién le vendés y atraelos con $5 de ads' },
+  { icon:'🤖', name:'IA', desc:'Usá IA para crear contenido y automatizar procesos' },
+  { icon:'📈', name:'Crecimiento', desc:'Construí tu lista y escalá resultados' },
+  { icon:'💰', name:'Finanzas', desc:'Ordená ingresos y destiná un % a inversión' },
+  { icon:'₿', name:'Cripto', desc:'Optimizá valor con exchanges y DeFi' }
+];
+
+let step = 0;
+let selected = [];
+let lossAmount = 200;
+
+function showScreen(id) {
+  document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
+  document.getElementById(id).classList.add('active');
+}
+
+function startCalc() {
+  step = 0; selected = []; lossAmount = 200;
+  showScreen('screenSteps');
+  document.getElementById('progressWrap').style.display = 'block';
+  renderStep();
+}
+
+function renderStep() {
+  const total = 3;
+  const pct = Math.round((step / total) * 100);
+  document.getElementById('qLabel').textContent = `Paso ${step + 1} de ${total}`;
+  document.getElementById('qPct').textContent = `${pct}%`;
+  document.getElementById('progressFill').style.width = `${pct}%`;
+
+  const card = document.getElementById('stepCard');
+
+  if (step === 0) {
+    card.innerHTML = `
+      <div class="card-step">PASO 1/3</div>
+      <div class="card-title">¿Qué cosas probaste sin orden?</div>
+      <div class="check-grid">
+        ${ITEMS.map(item => `
+          <div class="check-item ${selected.includes(item.id) ? 'checked' : ''}" onclick="toggleItem('${item.id}')">
+            <span class="check-box">${selected.includes(item.id) ? '✓' : ''}</span>
+            <span>${item.icon} ${item.label}</span>
+          </div>
+        `).join('')}
+      </div>
+      <div class="nav-row">
+        <button class="btn btn-outline btn-sm" onclick="backIntro()">← Volver</button>
+        <button class="btn btn-sm ${selected.length === 0 ? 'btn-disabled' : ''}" onclick="nextStep()" ${selected.length === 0 ? 'disabled' : ''}>Siguiente →</button>
+      </div>
+    `;
+  } else if (step === 1) {
+    const sliderVals = [50, 100, 200, 500, 1000, 2000, 5000];
+    const idx = sliderVals.indexOf(lossAmount);
+    const valIdx = idx >= 0 ? idx : 2;
+    card.innerHTML = `
+      <div class="card-step">PASO 2/3</div>
+      <div class="card-title">Aproximadamente, ¿cuánta plata perdiste?</div>
+      <div class="slider-wrap">
+        <div class="slider-value"><span class="currency">≈ $</span>${lossAmount.toLocaleString()}</div>
+        <input type="range" min="0" max="6" value="${valIdx}" oninput="updateSlider(this.value)" id="slider">
+        <div class="slider-labels"><span>$50</span><span>$200</span><span>$1.000</span><span>$5.000+</span></div>
+      </div>
+      <div class="nav-row">
+        <button class="btn btn-outline btn-sm" onclick="prevStep()">← Anterior</button>
+        <button class="btn btn-sm" onclick="nextStep()">Calcular →</button>
+      </div>
+    `;
+  } else if (step === 2) {
+    const countLabel = selected.length === 1 ? '1 cosa' : `${selected.length} cosas`;
+    card.innerHTML = `
+      <div class="card-step">PASO 3/3</div>
+      <div class="card-title">Confirmá tus datos</div>
+      <div style="font-size:14px;color:var(--text-dim);line-height:1.7;">
+        <p>Probaste <strong style="color:var(--neon);">${countLabel}</strong> sin un orden claro.</p>
+        <p>Perdiste aproximadamente <strong style="color:var(--danger);">$${lossAmount.toLocaleString()}</strong>.</p>
+        <p style="margin-top:16px;">Con el orden correcto, el sistema completo cuesta <strong style="color:var(--neon);">$5</strong>.</p>
+      </div>
+      <div class="nav-row">
+        <button class="btn btn-outline btn-sm" onclick="prevStep()">← Anterior</button>
+        <button class="btn btn-sm" onclick="showResults()">Ver comparación →</button>
+      </div>
+    `;
+  }
+}
+
+function toggleItem(id) {
+  const idx = selected.indexOf(id);
+  if (idx >= 0) selected.splice(idx, 1);
+  else selected.push(id);
+  if (step === 0) renderStep();
+}
+
+function updateSlider(val) {
+  const values = [50, 100, 200, 500, 1000, 2000, 5000];
+  lossAmount = values[parseInt(val)] || 200;
+  document.querySelector('.slider-value').innerHTML = `<span class="currency">≈ $</span>${lossAmount.toLocaleString()}`;
+}
+
+function nextStep() {
+  if (step === 0 && selected.length === 0) return;
+  if (step < 2) { step++; renderStep(); }
+}
+
+function prevStep() {
+  if (step > 0) { step--; renderStep(); }
+}
+
+function backIntro() {
+  document.getElementById('progressWrap').style.display = 'none';
+  showScreen('screenIntro');
+}
+
+function showResults() {
+  const total = 3;
+  document.getElementById('qPct').textContent = '100%';
+  document.getElementById('progressFill').style.width = '100%';
+
+  const minCost = 5;
+  const totalLost = lossAmount;
+  const savings = totalLost - minCost;
+
+  document.getElementById('resultTitle').textContent = `Perdiste $${totalLost.toLocaleString()}`;
+  document.getElementById('resultSub').textContent = savings > 0
+    ? `Podrías haber gastado solo $${minCost} si seguías el orden correcto. Ahorraste $${savings.toLocaleString()}... o mejor dicho, los perdiste.`
+    : `Bien, todavía no perdiste mucho. Mejor arrancá ahora con el orden correcto.`;
+
+  // Comparison bars
+  const maxBar = Math.max(totalLost, 100);
+  document.getElementById('comparisonWrap').innerHTML = `
+    <div class="comp-row">
+      <span class="comp-label">Tu pérdida</span>
+      <div class="comp-bar-wrap">
+        <div class="comp-bar loss" style="width:${Math.min(100, (totalLost/maxBar)*100)}%;">
+          ${totalLost > 0 ? `-$${totalLost.toLocaleString()}` : ''}
+        </div>
+      </div>
+    </div>
+    <div class="comp-row">
+      <span class="comp-label">Orden correcto</span>
+      <div class="comp-bar-wrap">
+        <div class="comp-bar correct" style="width:${Math.min(100, (minCost/maxBar)*100)}%;">
+          $${minCost}
+        </div>
+      </div>
+    </div>
+  `;
+
+  // Order steps
+  document.getElementById('orderSteps').innerHTML = `
+    <h4>// EL ORDEN CORRECTO</h4>
+    ${STEPS_DATA.map((s, i) => `
+      <div class="order-step">
+        <span class="num">${String(i+1).padStart(2, '0')}</span>
+        <span class="icon">${s.icon}</span>
+        <span><strong style="color:var(--neon);">${s.name}</strong> — ${s.desc}</span>
+      </div>
+    `).join('')}
+  `;
+
+  document.getElementById('interesData').value = JSON.stringify({
+    items: selected,
+    loss: lossAmount,
+    savings: savings
+  });
+
+  showScreen('screenResult');
+}
+
+function checkoutCalc(productId, e) {
+  document.getElementById('checkoutForm').action = MP_GAS_URL;
+  fbq('track', 'InitiateCheckout', {value:5, currency:'USD', content_name:'Calculadora Pérdida', content_category:'tool'});
+}
+
+function showCalcFreeForm() {
+  document.getElementById('checkoutBox').style.display = 'none';
+  document.getElementById('leadFormBox').style.display = 'block';
+}
+
+function resetCalc() {
+  step = 0; selected = []; lossAmount = 200;
+  document.getElementById('progressWrap').style.display = 'none';
+  document.getElementById('progressFill').style.width = '0%';
+  showScreen('screenIntro');
+}
+
+function submitLead(e) {
+  e.preventDefault();
+  const form = e.target;
+  const btn = document.getElementById('submitBtn');
+  const status = document.getElementById('formStatus');
+  const data = new FormData(form);
+
+  btn.disabled = true;
+  btn.textContent = 'Enviando...';
+  status.textContent = '';
+  status.className = 'status-msg';
+
+  fetch(GAS_URL, { method: 'POST', body: data, mode: 'no-cors' })
+    .then(() => {
+      if (typeof fbq === 'function') fbq('track', 'Lead');
+      btn.textContent = '✅ Enviado';
+      status.textContent = '✅ Roadmap enviado a tu email. Revisá tu bandeja de entrada.';
+      status.className = 'status-msg success';
+      form.innerHTML = '<p style="color:var(--neon);font-size:16px;">✅ ¡Listo! Revisá tu email.</p>';
+    })
+    .catch(() => {
+      btn.disabled = false;
+      btn.textContent = 'Enviar y recibir roadmap →';
+      status.textContent = '❌ Error al enviar. Intentalo de nuevo.';
+      status.className = 'status-msg error';
+    });
+}
+</script>
+</body>
+</html>

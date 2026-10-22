@@ -1,0 +1,585 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Toolkit de Prompts — Código de Fuga | GCD</title>
+
+<!-- Meta Pixel -->
+<script>
+!function(f,b,e,v,n,t,s)
+{if(f.fbq)return;n=f.fbq=function(){n.callMethod?n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,document,'script','https://connect.facebook.net/en_US/fbevents.js');
+fbq('init', '925391107193038');
+fbq('track', 'PageView');
+</script>
+
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-2N5KRY06B3"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-2N5KRY06B3');</script>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Syne+Mono&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --neon: #A6FF00;
+    --neon-dim: rgba(166,255,0,0.5);
+    --neon-glow: rgba(166,255,0,0.12);
+    --neon-bg: rgba(166,255,0,0.03);
+    --dark: #0a0a0a;
+    --dark2: #111;
+    --dark3: #1a1a1a;
+    --dark4: #222;
+    --text: #e0e0e0;
+    --text-dim: #888;
+    --text-muted: #555;
+    --font-body: 'Space Grotesk', sans-serif;
+    --font-mono: 'Syne Mono', monospace;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    font-family: var(--font-body); background: var(--dark); color: var(--text);
+    line-height: 1.7; font-weight: 300; font-size: 15px;
+  }
+  body::after {
+    content: ''; position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+    pointer-events: none; z-index: 9999;
+    background: repeating-linear-gradient(0deg, transparent, transparent 2px, rgba(0,0,0,0.04) 2px, rgba(0,0,0,0.04) 4px);
+  }
+  .page { max-width: 800px; margin: 0 auto; padding: 60px 40px; }
+
+  .cover {
+    min-height: 100vh; display: flex; flex-direction: column; justify-content: center;
+    align-items: center; text-align: center; position: relative; overflow: hidden; padding: 40px 20px;
+  }
+  .cover::before {
+    content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+    background: radial-gradient(ellipse at 50% 40%, rgba(166,255,0,0.05) 0%, transparent 60%);
+  }
+  .cover-grid {
+    position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+    background-image: linear-gradient(90deg, var(--neon-glow) 1px, transparent 1px), linear-gradient(0deg, var(--neon-glow) 1px, transparent 1px);
+    background-size: 60px 60px; opacity: 0.2; pointer-events: none;
+  }
+  .cover-badge {
+    font-family: var(--font-mono); font-size: 11px; color: var(--neon);
+    letter-spacing: 5px; text-transform: uppercase; margin-bottom: 24px; opacity: 0.7; position: relative; z-index: 1;
+  }
+  .cover-badge::before, .cover-badge::after { content: '◆'; margin: 0 10px; font-size: 7px; }
+  .cover-title {
+    font-family: var(--font-body); font-size: clamp(36px, 6vw, 56px); font-weight: 600;
+    position: relative; z-index: 1;
+  }
+  .cover-title .highlight { color: var(--neon); }
+  .cover-sub {
+    font-size: clamp(16px, 2vw, 20px); color: var(--text-dim);
+    margin-top: 16px; position: relative; z-index: 1;
+  }
+  .cover-line {
+    width: 40px; height: 1px; background: var(--neon-dim); margin: 24px auto; position: relative; z-index: 1;
+  }
+  .cover-count {
+    font-family: var(--font-mono); font-size: 12px; color: var(--neon);
+    letter-spacing: 3px; position: relative; z-index: 1; margin-top: 20px;
+  }
+
+  hr { border: none; height: 1px; background: linear-gradient(90deg, transparent, var(--neon-glow), transparent); margin: 48px 0; }
+
+  .section-label {
+    font-family: var(--font-mono); font-size: 10px; color: var(--neon);
+    letter-spacing: 4px; text-transform: uppercase; margin-bottom: 8px; opacity: 0.6;
+  }
+  .section-title {
+    font-size: clamp(24px, 3vw, 32px); font-weight: 500; margin-bottom: 24px;
+  }
+  .section-title .highlight { color: var(--neon); }
+  .section-desc { font-size: 15px; color: var(--text-dim); max-width: 600px; margin-bottom: 32px; line-height: 1.7; }
+
+  .prompt-card {
+    background: var(--dark3); border: 1px solid rgba(255,255,255,0.05);
+    padding: 28px 32px; margin-bottom: 20px; transition: all 0.3s;
+  }
+  .prompt-card:hover { border-color: var(--neon-dim); background: rgba(166,255,0,0.02); }
+
+  .prompt-header {
+    display: flex; align-items: center; gap: 12px; margin-bottom: 12px;
+  }
+  .prompt-area {
+    font-family: var(--font-mono); font-size: 9px; color: var(--dark);
+    background: var(--neon); padding: 3px 10px; letter-spacing: 2px; text-transform: uppercase;
+  }
+  .prompt-number {
+    font-family: var(--font-mono); font-size: 11px; color: var(--text-muted); letter-spacing: 2px;
+  }
+  .prompt-title {
+    font-size: 18px; font-weight: 600; margin-bottom: 6px;
+  }
+  .prompt-desc {
+    font-size: 14px; color: var(--text-dim); margin-bottom: 16px; line-height: 1.6;
+  }
+  .prompt-code {
+    background: #000; border: 1px solid rgba(166,255,0,0.08);
+    padding: 20px 24px; font-family: var(--font-mono); font-size: 13px;
+    color: var(--text-dim); line-height: 1.8; white-space: pre-wrap; overflow-x: auto;
+    position: relative;
+  }
+  .prompt-code::before {
+    content: '// COPY'; position: absolute; top: 8px; right: 12px;
+    font-size: 9px; color: var(--text-muted); letter-spacing: 2px;
+  }
+  .prompt-tip {
+    font-size: 13px; color: var(--text-muted); margin-top: 12px; font-style: italic;
+  }
+  .prompt-tip strong { color: var(--neon); font-style: normal; }
+
+  .area-divider {
+    display: flex; align-items: center; gap: 16px; margin: 40px 0 24px;
+  }
+  .area-divider::before, .area-divider::after {
+    content: ''; flex: 1; height: 1px;
+    background: linear-gradient(90deg, transparent, var(--neon-dim), transparent);
+  }
+  .area-divider span {
+    font-family: var(--font-mono); font-size: 11px; color: var(--neon);
+    letter-spacing: 4px; text-transform: uppercase; opacity: 0.6;
+  }
+
+  .outro {
+    background: var(--dark3); border: 1px solid var(--neon-dim); padding: 40px;
+    text-align: center; margin-top: 48px;
+  }
+  .outro h3 { font-size: 22px; font-weight: 500; margin-bottom: 12px; }
+  .outro h3 .highlight { color: var(--neon); }
+  .outro p { font-size: 15px; color: var(--text-dim); max-width: 500px; margin: 0 auto 20px; }
+  .outro .cta-btn {
+    display: inline-block; font-family: var(--font-mono); font-size: 12px;
+    letter-spacing: 3px; text-transform: uppercase; color: var(--dark); background: var(--neon);
+    padding: 14px 32px; text-decoration: none; transition: all 0.3s;
+  }
+  .outro .cta-btn:hover { background: #fff; }
+
+  .footer-text {
+    text-align: center; font-size: 12px; color: var(--text-muted); margin-top: 40px;
+  }
+  .footer-text .code { color: var(--neon); font-family: var(--font-mono); letter-spacing: 2px; }
+
+  @media (max-width: 640px) {
+    .page { padding: 40px 20px; }
+    .prompt-card { padding: 20px; }
+    .prompt-code { font-size: 12px; padding: 16px; }
+    .prompt-header { flex-wrap: wrap; }
+  }
+</style>
+<script type="text/javascript">
+    (function(c,l,a,r,i,t,y){
+        c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+        t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
+        y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
+    })(window, document, "clarity", "script", "xd2k88rszz");
+</script>
+</head>
+<body>
+<div class="page">
+
+  <!-- COVER -->
+  <div class="cover">
+    <div class="cover-grid"></div>
+    <div class="cover-badge">Toolkit Exclusivo</div>
+    <h1 class="cover-title">Toolkit de <span class="highlight">Prompts</span></h1>
+    <p class="cover-sub">10 prompts de batalla para las 5 áreas del Código de Fuga</p>
+    <div class="cover-line"></div>
+    <div class="cover-count">Marketing · IA · Crecimiento · Finanzas · Cripto</div>
+  </div>
+
+  <hr>
+
+  <!-- INTRO -->
+  <div class="section-label">◆ Cómo usar esto</div>
+  <p style="color:var(--text-dim); font-size:15px; line-height:1.7; margin-bottom:32px;">
+    Cada prompt está diseñado para ChatGPT, DeepSeek o Gemini. Copialo, pegálo en el chat de la IA y reemplazá lo que está entre <strong style="color:var(--text);">[corchetes]</strong> con tu información. Los prompts están ordenados por área y aumentan en complejidad. Empezá por el que más resuene con tu situación actual.
+  </p>
+
+  <!-- AREA 1: MARKETING -->
+  <div class="area-divider"><span>Marketing</span></div>
+
+  <div class="prompt-card">
+    <div class="prompt-header">
+      <span class="prompt-area">Marketing</span>
+      <span class="prompt-number">#01</span>
+    </div>
+    <h3 class="prompt-title">Generador de Hooks para Reels</h3>
+    <p class="prompt-desc">Genera 10 hooks emocionales para reels de Instagram segmentados por disparador psicológico. Cada hook viene con su estructura y un ejemplo aplicado a tu nicho.</p>
+    <div class="prompt-code">Actuá como un copywriter especializado en contenido vertical para Instagram Reels. Tu nicho es de alto conocimiento específico.
+
+Mi nicho: [describí tu nicho en 1 línea]
+Mi producto/servicio: [qué ofrecés]
+Mi audiencia ideal: [edad, género, situación]
+
+Generá 10 hooks para reels, cada uno apelando a un disparador psicológico distinto de esta lista:
+1. Curiosidad  ·  2. Dolor  ·  3. Identidad  ·  4. Urgencia  ·  5. Utilidad directa
+6. Contraste  ·  7. Prueba social  ·  8. Exclusividad  ·  9. Autoridad  ·  10. Pertenencia
+
+Formato de cada hook:
+[EMOCIÓN] → [Hook en 1 línea] → [Ejemplo aplicado a mi nicho]
+
+Idioma: español argentino, tono directo, sin vueltas.</div>
+    <div class="prompt-tip"><strong>Pro tip:</strong> Guardate los hooks que más te resuenen. Usalos como títulos de reel. El hook define si alguien ve los primeros 3 segundos.</div>
+  </div>
+
+  <div class="prompt-card">
+    <div class="prompt-header">
+      <span class="prompt-area">Marketing</span>
+      <span class="prompt-number">#02</span>
+    </div>
+    <h3 class="prompt-title">Briefing Completo de Audiencia</h3>
+    <p class="prompt-desc">Investigá a tu audiencia como si tuvieras un equipo de research. Este prompt devuelve un perfil demográfico + psicográfico + mapa de dolor y deseo en un formato listo para usar en campañas.</p>
+    <div class="prompt-code">Actuá como un estratega de marketing con 10 años de experiencia en investigación de audiencias. Necesito un perfil completo de mi audiencia objetivo.
+
+Mi nicho: [describí tu nicho en 1 línea]
+Mi oferta principal: [qué le vendés a esta audiencia]
+
+Formato de respuesta obligatorio:
+
+1. PERFIL DEMOGRÁFICO
+   Edad, género, ubicación geográfica, nivel educativo, rango de ingresos, situación laboral.
+
+2. PERFIL PSICOGRÁFICO
+   Qué lee, qué consume en redes, a quién sigue, qué valora, qué aspira, qué lo frustra.
+
+3. SUS 3 DOLORES PRINCIPALES
+   Explicá cada dolor en una línea. No uses genéricos como "falta de tiempo". Sé específico.
+
+4. SUS 3 DESEOS PRINCIPALES
+   El resultado concreto que esta persona quiere lograr.
+
+5. OBJECIÓN DE COMPRA #1
+   La razón principal por la que NO compra hoy. Textual.
+
+6. MENSAJE QUE MÁS RESONARÍA HOY
+   Una frase de 15 palabras máx. que esta audiencia necesita escuchar.
+
+Idioma: español argentino. Formato briefing táctico, sin introducciones ni resúmenes.</div>
+    <div class="prompt-tip"><strong>Pro tip:</strong> Corré este prompt para 3 nichos diferentes y compará. Las superposiciones te muestran dónde tenés ventaja.</div>
+  </div>
+
+  <!-- AREA 2: IA -->
+  <div class="area-divider"><span>Inteligencia Artificial</span></div>
+
+  <div class="prompt-card">
+    <div class="prompt-header">
+      <span class="prompt-area">IA</span>
+      <span class="prompt-number">#03</span>
+    </div>
+    <h3 class="prompt-title">Asistente de Copy para Redes</h3>
+    <p class="prompt-desc">Un tema, 3 formatos. Este prompt toma cualquier idea y la transforma en: script de reel de 15s, post de Instagram y tweet/hilo de X. Con tono ajustable.</p>
+    <div class="prompt-code">Actuá como mi asistente de contenido digital. Te voy a dar un tema y necesito que lo adaptes a 3 formatos distintos.
+
+TEMA: [describí el tema en 1-2 líneas]
+TONO: [directo / educativo / provocador / cercano]
+CTA PRINCIPAL: [guardar / comentar / compartir / DM con keyword "SISTEMA"]
+
+FORMATO 1 — Reel de Instagram (15s)
+- Hook (0-4s): frase que detenga el scroll
+- Desarrollo (4-12s): el contenido en 2 ideas
+- Cierre (12-15s): llamado a la acción
+- Texto en pantalla: incluí 2 overlays clave
+
+FORMATO 2 — Post de Instagram (carrusel o imagen)
+- Título (máx 10 palabras)
+- Cuerpo del texto (máx 200 palabras)
+- Hastags: 5 específicos del nicho
+
+FORMATO 3 — Hilo de X (3 tweets)
+- Tweet 1: hook que genere curiosidad
+- Tweet 2: desarrollo del concepto
+- Tweet 3: remate + CTA
+
+Idioma: español argentino. Sin emojis genéricos. Sin introducciones.</div>
+    <div class="prompt-tip"><strong>Pro tip:</strong> Definí el tono antes del tema. Un mismo tema cambia completamente según el tono que elijas.</div>
+  </div>
+
+  <div class="prompt-card">
+    <div class="prompt-header">
+      <span class="prompt-area">IA</span>
+      <span class="prompt-number">#04</span>
+    </div>
+    <h3 class="prompt-title">Analizador de Métricas de Contenido</h3>
+    <p class="prompt-desc">Pegá las métricas de tus últimos posts y la IA identifica patrones, anomalías y te da recomendaciones accionables. Como tener un analista de datos sin pagar sueldo.</p>
+    <div class="prompt-code">Actuá como un analista de datos especializado en contenido digital para creadores individuales. Te voy a pasar métricas reales de mi cuenta y necesito que identifiques patrones y me des recomendaciones.
+
+CONTEXTO:
+Mi nicho: [describí tu nicho]
+Mi frecuencia de publicación: [veces por semana]
+Mi objetivo principal: [alcance / engagement / conversión]
+
+MÉTRICAS DE LOS ÚLTIMOS 7 DÍAS (copiá y pegá las filas de Instagram Insights):
+[pegá acá tus métricas: publicación, alcance, reproducciones, guardados, compartidos, comentarios, perfil alcanzado]
+
+ANALIZÁ:
+1. ¿Qué patrón de rendimiento ves? (qué tipo de contenido funciona mejor)
+2. Top 1 publicación: ¿por qué funcionó? (desglosá: hook? tema? formato?)
+3. Bottom 1 publicación: ¿por qué no funcionó?
+3. Anomalías: ¿hay algún dato que no cierra o es inesperado?
+4. Recomendación #1: la acción más importante que debería tomar esta semana (una sola, no me abrumes)
+5. Recomendación #2: qué contenido repetir o iterar
+6. Recomendación #3: qué contenido dejar de hacer
+
+Idioma: español argentino. Respuesta directa sin introducción. Usá bullet points.</div>
+    <div class="prompt-tip"><strong>Pro tip:</strong> Hacé esto cada viernes. En 4 semanas vas a tener un patrón claro de lo que funciona para tu audiencia.</div>
+  </div>
+
+  <!-- AREA 3: CRECIMIENTO -->
+  <div class="area-divider"><span>Crecimiento</span></div>
+
+  <div class="prompt-card">
+    <div class="prompt-header">
+      <span class="prompt-area">Crecimiento</span>
+      <span class="prompt-number">#05</span>
+    </div>
+    <h3 class="prompt-title">Diagnóstico de Embudo Digital</h3>
+    <p class="prompt-desc">Describí tu proceso actual y la IA identifica el cuello de botella exacto que te frena. Sin teoría. Te dice qué está fallando y qué tocar primero.</p>
+    <div class="prompt-code">Actuá como un growth specialist con experiencia en embudos de creadores individuales y pequeños negocios digitales. Te voy a describir mi proceso actual y necesito que diagnostiques el cuello de botella.
+
+MI EMBUDO ACTUAL (describí paso a paso):
+1. [cómo llega la gente a mí: redes, ads, referrals]
+2. [qué pasa cuando llegan: ven contenido, landing, lead magnet]
+3. [cómo capturo contacto: formulario, link, DM]
+4. [cómo hago seguimiento: email, WhatsApp, no hago]
+5. [cómo convierto: venta directa, llamada, checkout]
+6. [post-venta: upsell, recompra, nada]
+
+MIS NÚMEROS (aproximaciones):
+- Alcance semanal: [número]
+- Leads capturados por semana: [número]
+- Conversiones por mes: [número]
+- Ticket promedio: [$]
+
+ANALIZÁ:
+1. Cuello de botella #1: ¿dónde se pierde más gente? (una etapa específica)
+2. Impacto estimado de resolverlo: ¿cuánto aumentarían mis conversiones?
+3. Acción concreta: qué hacer esta semana para destrabar ese cuello (una sola acción, no un plan de 20 pasos)
+4. Métrica única: qué número mirar para saber si mejoré
+
+Idioma: español argentino. Respuesta directa, sin relleno. Priorizá la acción sobre la teoría.</div>
+    <div class="prompt-tip"><strong>Pro tip:</strong> Si no tenés números exactos, estimá. La dirección del diagnóstico es más importante que la precisión del dato.</div>
+  </div>
+
+  <div class="prompt-card">
+    <div class="prompt-header">
+      <span class="prompt-area">Crecimiento</span>
+      <span class="prompt-number">#06</span>
+    </div>
+    <h3 class="prompt-title">Plan de Acción Semanal Priorizado</h3>
+    <p class="prompt-desc">Decile a la IA cuántas horas tenés por semana y qué objetivos tenés. Te devuelve una semana de tareas ordenadas por impacto, no por urgencia.</p>
+    <div class="prompt-code">Actuá como un productividad strategist especializado en emprendedores digitales solitarios. Necesito un plan de acción para mi semana, priorizado por impacto real, no por urgencia.
+
+MI CONTEXTO:
+- Horas disponibles por semana para mi proyecto: [horas]
+- Mi objetivo principal este mes: [qué quiero lograr]
+- Mi objetivo secundario: [opcional]
+- Mi mayor distracción o pérdida de tiempo: [opcional]
+
+MIS TAREAS PENDIENTES (listá todo lo que tenés en mente):
+- [tarea 1]
+- [tarea 2]
+- [tarea 3]
+- ... (seguí listando)
+
+ARMÁ:
+
+LUNES (día de tracción):
+- 1 tarea de alto impacto (la que más acerca al objetivo)
+- Tiempo estimado
+
+MARTES A VIERNES (días de ejecución):
+- 1 tarea de mantenimiento por día
+- 1 tarea de aprendizaje/optimización por día
+
+SÁBADO (día de revisión):
+- Qué medir para saber si la semana funcionó
+
+Para cada tarea:
+[Prioridad 🔴/🟡/🟢] · [Tiempo estimado] · [Tarea] · [Por qué esta y no otra]
+
+Al final, identificá:
+- La tarea que debería DELEGAR o ELIMINAR (si aplica)
+- La trampa de productividad más probable que voy a enfrentar esta semana
+
+Idioma: español argentino. Sin vueltas. No me des motivación, dame un plan.</div>
+    <div class="prompt-tip"><strong>Pro tip:</strong> Corré este prompt cada domingo a la noche. Llegá al lunes con el plan listo, no pensando en qué hacer.</div>
+  </div>
+
+  <!-- AREA 4: FINANZAS -->
+  <div class="area-divider"><span>Finanzas</span></div>
+
+  <div class="prompt-card">
+    <div class="prompt-header">
+      <span class="prompt-area">Finanzas</span>
+      <span class="prompt-number">#07</span>
+    </div>
+    <h3 class="prompt-title">Calculadora de ROI para Ads</h3>
+    <p class="prompt-desc">Meté el número de tu última campaña de Meta Ads o Google Ads y la IA te calcula ROI, CAC, LTV estimado y te dice si esa campaña conviene escalarla o matarla.</p>
+    <div class="prompt-code">Actuá como un analista de performance marketing. Te voy a dar los números de una campaña publicitaria y necesito que analices si conviene escalarla, optimizarla o pausarla.
+
+DATOS DE LA CAMPAÑA:
+- Plataforma: [Meta Ads / Google Ads / TikTok Ads / otra]
+- Inversión total: [$]
+- Impresiones: [número]
+- Clics: [número]
+- Conversiones: [número] (definí qué contás como conversión: lead, venta, registro)
+- Ingreso generado: [$] (si aplica)
+- Ticket promedio del producto/servicio: [$]
+- Frecuencia de compra estimada (veces que compra un mismo cliente): [número]
+
+ANALIZÁ:
+1. CTR (porcentaje de clics sobre impresiones)
+2. CPM (costo cada 1000 impresiones)
+3. CPC (costo por clic)
+4. CAC (costo de adquisición por conversión)
+5. ROI (retorno sobre inversión)
+6. LTV estimado (valor del cliente en el tiempo según frecuencia de compra)
+7. ¿Cuánto podría invertir la próxima semana sin romper la rentabilidad?
+8. VEREDICTO: ¿Escalo? ¿Optimizo? ¿Pauso? ¿Por qué?
+
+Idioma: español argentino. Usá números claros. Si falta un dato, decilo pero hacé el cálculo igual con lo que hay.</div>
+    <div class="prompt-tip"><strong>Pro tip:</strong> Si tu campaña tiene ROI positivo pero CAC alto, no la pauses — optimizá segmentación. Si el ROI es negativo, pausá y volvé al briefing de audiencia.</div>
+  </div>
+
+  <div class="prompt-card">
+    <div class="prompt-header">
+      <span class="prompt-area">Finanzas</span>
+      <span class="prompt-number">#08</span>
+    </div>
+    <h3 class="prompt-title">Presupuesto Mensual para Emprendedores Digitales</h3>
+    <p class="prompt-desc">Armá un presupuesto claro para tu proyecto digital. Este prompt te ayuda a separar ingresos variables, gastos fijos, inversión y ahorro en un solo ejercicio de 10 minutos.</p>
+    <div class="prompt-code">Actuá como un contador especializado en emprendedores digitales. Necesito armar un presupuesto mensual claro para mi proyecto.
+
+MIS INGRESOS (estimaciones mensuales):
+- Ingreso por productos digitales: [$] (cuántos productos × precio)
+- Ingreso por servicios/consultoría: [$]
+- Ingreso por afiliados/referidos: [$]
+- Otros: [$]
+
+MIS GASTOS:
+- Herramientas/suscripciones: [$] (listá cada una)
+- Publicidad (Meta Ads, Google, etc.): [$]
+- Hosting/dominio/tecnología: [$]
+- Educación/cursos: [$]
+- Diseño/edición (si tercerizás): [$]
+- Impuestos aproximados: [$]
+- Otros: [$]
+
+MIS METAS:
+- Quiero ahorrar/invertir: [$] por mes
+- Quiero reinvertir en: [ads / herramientas / educación]
+
+ARMÁ:
+1. FLUJO DE CAJA ESTIMADO: Ingresos totales - Gastos totales
+2. Porcentaje recomendado para cada categoría (con tu estructura actual)
+3. Ajuste #1: el gasto que debería reducir o eliminar
+4. Ajuste #2: la inversión que debería aumentar
+5. Meta realista de ahorro para este mes (no la ideal, la realista)
+6. REGLA SIMPLE: una frase que resuma cómo manejar tus finanzas este mes
+
+Idioma: español argentino. Sin jerga financiera innecesaria. Priorizá claridad sobre precisión contable.</div>
+    <div class="prompt-tip"><strong>Pro tip:</strong> Los emprendedores digitales suelen mezclar gastos personales con del proyecto. Separalos aunque sea en este prompt. La claridad financiera es la base para escalar.</div>
+  </div>
+
+  <!-- AREA 5: CRIPTO -->
+  <div class="area-divider"><span>Cripto</span></div>
+
+  <div class="prompt-card">
+    <div class="prompt-header">
+      <span class="prompt-area">Cripto</span>
+      <span class="prompt-number">#09</span>
+    </div>
+    <h3 class="prompt-title">Explicador de Conceptos Cripto en 3 Niveles</h3>
+    <p class="prompt-desc">Cualquier concepto de cripto explicado en 3 niveles de complejidad. Usalo para entender vos o para crear contenido educativo para tu audiencia.</p>
+    <div class="prompt-code">Actuá como un divulgador de cripto que sabe explicar conceptos complejos de forma simple, sin perder precisión. Te voy a dar un concepto y necesito que lo expliques en 3 niveles.
+
+CONCEPTO: [nombre del concepto, ej: staking, liquid staking, Layer 2, AMM, pool de liquidez, etc.]
+
+NIVEL 1 — Para alguien que nunca operó cripto (analogía del mundo real):
+- Explicación en 3 líneas máx
+- Una analogía con algo de la vida cotidiana
+- Por qué le importa a alguien que recién empieza
+
+NIVEL 2 — Para alguien que ya compró cripto pero no entiende el ecosistema:
+- Explicación técnica pero accesible
+- Cómo se usa en la práctica
+- Riesgo principal (uno solo)
+
+NIVEL 3 — Para alguien que quiere operar con este concepto:
+- Estrategia de entrada sugerida
+- Qué métrica mirar antes de decidir
+- Error más común al operar con esto
+
+CIERRE: Una línea que resuma el concepto para cualquier nivel.
+
+Idioma: español argentino. Sin promesas de ganancias, sin sugerencias de inversión específicas. Informativo, no asesor financiero.</div>
+    <div class="prompt-tip"><strong>Pro tip:</strong> Usá el Nivel 1 para contenido de Instagram, el Nivel 2 para tu newsletter, el Nivel 3 para sesiones de consultoría. Un concepto, 3 formatos.</div>
+  </div>
+
+  <div class="prompt-card">
+    <div class="prompt-header">
+      <span class="prompt-area">Cripto</span>
+      <span class="prompt-number">#10</span>
+    </div>
+    <h3 class="prompt-title">Evaluación de Riesgo de una Operación Cripto</h3>
+    <p class="prompt-desc">Antes de meter plata en cualquier operación, correle este prompt. Te da una evaluación objetiva del riesgo según tu perfil y el tipo de operación.</p>
+    <div class="prompt-code">Actuá como un asesor de gestión de riesgo en cripto. No soy un trader experimentado. Necesito una evaluación objetiva de riesgo antes de realizar una operación.
+
+MI PERFIL:
+- Experiencia en cripto: [principiante / intermedio / avanzado]
+- Capital destinado a esta operación: [$] (o porcentaje de mi cartera total)
+- Horizonte de la operación: [corto plazo / mediano plazo / largo plazo]
+- ¿Puedo perder este capital sin afectar mis finanzas?: [sí / no parcialmente / no]
+
+LA OPERACIÓN:
+- Tipo: [compra spot / staking / farming / trading / futuros / NFT / otra]
+- Activo/plataforma: [nombre]
+- Qué promete: [describí lo que esperás ganar]
+- Quién lo recomienda: [un conocido / un influencer / investigación propia]
+
+EVALUACIÓN (respondé cada punto):
+1. RIESGO DEL ACTIVO/PLATAFORMA: Bajo / Medio / Alto · Explicación en 1 línea
+2. RIESGO DE LIQUIDEZ: ¿Podés salir cuando quieras? Bajo / Medio / Alto
+3. RIESGO DE CONTRAPARTE: ¿La plataforma puede desaparecer? Bajo / Medio / Alto
+4. RIESGO DE MERCADO: ¿Depende del precio de algún activo volátil? Bajo / Medio / Alto
+5. RIESGO PERSONAL: ¿Estás operando con plata que no podés perder? Bajo / Medio / Alto
+
+VEREDICTO:
+- 🟢 OPERACIÓN CONSERVADORA: Riesgo asumible para tu perfil
+- 🟡 OPERACIÓN CONTROLADA: Riesgo manejable si dimensionás bien el capital
+- 🔴 OPERACIÓN DE ALTO RIESGO: No recomendada para tu perfil
+
+Recomendación concreta (1 línea): ¿hacerla, no hacerla, o hacerla con qué ajuste?
+
+Idioma: español argentino. Sin vueltas. No des consejos financieros personalizados — solo análisis de riesgo objetivo.</div>
+    <div class="prompt-tip"><strong>Pro tip:</strong> Corré este prompt antes de CADA operación, aunque sea chica. El hábito de evaluar riesgo es lo que separa a los que se mantienen en cripto de los que entran, pierden y se van.</div>
+  </div>
+
+  <hr>
+
+  <!-- OUTRO -->
+  <div class="outro">
+    <h3>Estos son mis <span class="highlight">10 prompts de batalla</span></h3>
+    <p>
+      Los uso semanalmente para mantener las 5 áreas del sistema en movimiento.
+      Son la versión gratuita de un proceso mucho más profundo.
+    </p>
+    <p>
+      En el <strong style="color:var(--neon);">Pack Starter — Código de Fuga</strong> ($5 USD) encontrás
+      20 prompts avanzados más, el sistema completo de 5 áreas
+      en 16 capítulos, el plan de acción de 30 días, mi stack de
+      12 herramientas y la plantilla de estrategia personal.
+    </p>
+    <a class="cta-btn" href="https://pay.hotmart.com/M105972469O?src=toolkit" target="_blank" onclick="fbq('track', 'InitiateCheckout', {value:5, currency:'USD', content_name:'Pack Starter', content_category:'infoproducto'});">Conseguir el Pack Starter</a>
+  </div>
+
+  <div class="footer-text">
+    <span class="code">GCD2026</span> · Gonzalo Crecimiento Digital
+  </div>
+
+</div>
+</body>
+</html>

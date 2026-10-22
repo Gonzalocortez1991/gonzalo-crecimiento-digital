@@ -1,0 +1,515 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Links de Referidos | GCD</title>
+<meta name="description" content="Todos los links de referidos de Gonzalo Crecimiento Digital en un solo lugar: Didi, BingX, Pionex, Bybit y más.">
+<style>
+  :root {
+    --neon: #A6FF00;
+    --neon-dim: rgba(166,255,0,0.15);
+    --neon-glow: rgba(166,255,0,0.08);
+    --neon-mid: rgba(166,255,0,0.4);
+    --bg: #000000;
+    --bg-2: #050505;
+    --bg-3: #0a0a0a;
+    --white: #ffffff;
+    --gray: #888888;
+    --gray-light: #bbbbbb;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    background: var(--bg);
+    color: var(--white);
+    font-family: 'Space Grotesk', sans-serif;
+    overflow-x: hidden;
+    -webkit-font-smoothing: antialiased;
+  }
+  body::after {
+    content: '';
+    position: fixed;
+    top: 0; left: 0; width: 100%; height: 100%;
+    pointer-events: none; z-index: 9999;
+    background: repeating-linear-gradient(0deg, transparent, transparent 2px, rgba(0,0,0,0.04) 2px, rgba(0,0,0,0.04) 4px);
+  }
+  a { text-decoration: none; color: inherit; }
+  ::selection { background: var(--neon); color: var(--bg); }
+  ::-webkit-scrollbar { width: 4px; }
+  ::-webkit-scrollbar-track { background: var(--bg); }
+  ::-webkit-scrollbar-thumb { background: var(--neon-mid); border-radius: 2px; }
+
+  .bg-grid {
+    position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+    pointer-events: none; z-index: 0;
+    background-image: radial-gradient(circle, rgba(166,255,0,0.06) 1px, transparent 1px);
+    background-size: 40px 40px;
+  }
+
+  .container {
+    max-width: 720px;
+    margin: 0 auto;
+    padding: 60px 24px;
+    position: relative;
+    z-index: 5;
+  }
+
+  .hud-corner {
+    position: absolute;
+    width: 24px; height: 24px;
+    pointer-events: none;
+  }
+  .hud-corner.tl { top: -1px; left: -1px; border-top: 1px solid var(--neon-mid); border-left: 1px solid var(--neon-mid); }
+  .hud-corner.br { bottom: -1px; right: -1px; border-bottom: 1px solid var(--neon-mid); border-right: 1px solid var(--neon-mid); }
+
+  .header {
+    text-align: center;
+    margin-bottom: 48px;
+    position: relative;
+  }
+
+  .header-tag {
+    font-family: 'Syne Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.4em;
+    text-transform: uppercase;
+    color: var(--neon);
+    margin-bottom: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+  }
+  .header-tag::before, .header-tag::after {
+    content: '';
+    width: 24px;
+    height: 1px;
+    background: var(--neon);
+  }
+
+  .header h1 {
+    font-size: clamp(28px, 4vw, 40px);
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: -0.01em;
+    line-height: 1.15;
+    margin-bottom: 12px;
+  }
+  .header h1 .neon { color: var(--neon); text-shadow: 0 0 20px rgba(166,255,0,0.25); }
+
+  .header p {
+    font-size: 14px;
+    color: var(--gray-light);
+    line-height: 1.6;
+    max-width: 480px;
+    margin: 0 auto;
+  }
+
+  .category {
+    margin-bottom: 40px;
+  }
+
+  .category-title {
+    font-family: 'Syne Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.4em;
+    text-transform: uppercase;
+    color: var(--neon);
+    margin-bottom: 16px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+  .category-title::before {
+    content: '';
+    width: 20px;
+    height: 1px;
+    background: var(--neon);
+  }
+
+  .card {
+    background: var(--bg-3);
+    border: 1px solid rgba(166,255,0,0.1);
+    padding: 20px 24px;
+    margin-bottom: 12px;
+    display: flex;
+    align-items: flex-start;
+    gap: 16px;
+    transition: border-color 0.3s, transform 0.3s;
+    position: relative;
+  }
+  .card:hover {
+    border-color: rgba(166,255,0,0.3);
+    transform: translateX(4px);
+  }
+
+  .card-icon {
+    width: 40px;
+    height: 40px;
+    border: 1px solid rgba(166,255,0,0.2);
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 18px;
+  }
+
+  .card-body { flex: 1; }
+
+  .card-name {
+    font-size: 16px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    margin-bottom: 4px;
+  }
+
+  .card-desc {
+    font-size: 13px;
+    color: var(--gray);
+    line-height: 1.5;
+    margin-bottom: 10px;
+  }
+
+  .card-link {
+    display: inline-block;
+    font-family: 'Syne Mono', monospace;
+    font-size: 10px;
+    color: var(--neon);
+    word-break: break-all;
+    padding: 6px 12px;
+    border: 1px solid rgba(166,255,0,0.15);
+    transition: all 0.3s;
+  }
+  .card-link:hover {
+    background: rgba(166,255,0,0.1);
+    border-color: var(--neon);
+  }
+
+  .card-link-wrapper {
+    display: flex;
+    gap: 8px;
+    align-items: center;
+    flex-wrap: wrap;
+  }
+
+  .btn-copy {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 10px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    padding: 6px 12px;
+    border: 1px solid var(--neon-mid);
+    color: var(--neon);
+    background: transparent;
+    cursor: pointer;
+    transition: all 0.3s;
+  }
+  .btn-copy:hover {
+    background: var(--neon);
+    color: var(--bg);
+  }
+
+  .footer {
+    text-align: center;
+    padding: 40px 0 20px;
+    border-top: 1px solid rgba(166,255,0,0.06);
+  }
+  .footer a {
+    color: var(--neon);
+    font-size: 12px;
+    letter-spacing: 0.1em;
+  }
+  .footer p {
+    font-family: 'Syne Mono', monospace;
+    font-size: 10px;
+    color: rgba(166,255,0,0.2);
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    margin-top: 12px;
+  }
+
+  .toast {
+    position: fixed;
+    bottom: 24px;
+    left: 50%;
+    transform: translateX(-50%) translateY(80px);
+    background: var(--neon);
+    color: var(--bg);
+    padding: 10px 24px;
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    opacity: 0;
+    transition: all 0.4s;
+    z-index: 99999;
+    pointer-events: none;
+  }
+  .toast.show {
+    opacity: 1;
+    transform: translateX(-50%) translateY(0);
+  }
+
+  @media (max-width: 640px) {
+    .container { padding: 40px 16px; }
+    .card { flex-direction: column; gap: 12px; }
+    .card-link-wrapper { flex-direction: column; align-items: stretch; }
+    .card-link { text-align: center; }
+    .btn-copy { text-align: center; }
+  }
+</style>
+</head>
+<body>
+
+<div class="bg-grid"></div>
+<div class="toast" id="toast">✅ Link copiado</div>
+
+<div class="container">
+
+  <div class="header">
+    <div class="header-tag">// GCD · SISTEMA v1.0</div>
+    <h1>Links de <span class="neon">Referidos</span></h1>
+    <p>Todos los links que uso en un solo lugar. Cada registro me ayuda a seguir creando contenido gratuito.</p>
+  </div>
+
+  <!-- PUENTE ECONÓMICO -->
+  <div class="category">
+    <div class="category-title">Puente económico</div>
+
+    <div class="card">
+      <div class="card-icon">🚗</div>
+      <div class="card-body">
+        <div class="card-name">Didi</div>
+        <div class="card-desc">Registrate como conductor. Las primeras carreras te fondean los primeros $5 de ads. Lo usé mientras armaba el sistema.</div>
+        <div class="card-link-wrapper">
+          <span class="card-link" id="link-didi">https://page.didiglobal.com/driver-page/register?a=102955377&activity_id=102955377&activity_type=29&channel=28&city_id=54052300&i=dBtD0LlEWusWTk8rQaPnpg%3D%3D&lang=es-419&locale=es_AR&location_country=AR&product_id=21033&scene=29&shar_chanl=wa&share_media=WHATSAPP&uid=650911348222812&url_id=2019055873&url_type=0#/home</span>
+          <button class="btn-copy" onclick="copyLink('link-didi')">Copiar</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- EXCHANGES CRIPTO -->
+  <div class="category">
+    <div class="category-title">Exchanges cripto</div>
+
+    <div class="card">
+      <div class="card-icon">🤖</div>
+      <div class="card-body">
+        <div class="card-name">BingX</div>
+        <div class="card-desc">Exchange con IA integrada para trading automatizado. Ideal para el módulo de Cripto del sistema.</div>
+        <div class="card-link-wrapper">
+          <span class="card-link" id="link-bingx">https://bingxdao.com/invite/JI972G/</span>
+          <button class="btn-copy" onclick="copyLink('link-bingx')">Copiar</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-icon">🦾</div>
+      <div class="card-body">
+        <div class="card-name">Pionex</div>
+        <div class="card-desc">Exchange con bots de trading gratuitos. Ideal para principiantes que quieren automatizar sin programar.</div>
+        <div class="card-link-wrapper">
+          <span class="card-link" id="link-pionex">https://www.pionex.com/es/signUp?r=0A5x3MWAgZC</span>
+          <button class="btn-copy" onclick="copyLink('link-pionex')">Copiar</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-icon">📊</div>
+      <div class="card-body">
+        <div class="card-name">Bybit</div>
+        <div class="card-desc">Exchange global para trading spot y futuros. Uno de los exchanges más grandes del mundo.</div>
+        <div class="card-link-wrapper">
+          <span class="card-link" id="link-bybit">https://www.bybit.com/invite?ref=BYWR3OJ&medium=referral&utm_campaign=evergreen</span>
+          <button class="btn-copy" onclick="copyLink('link-bybit')">Copiar</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- PRODUCTOS GCD -->
+  <div class="category">
+    <div class="category-title">Productos GCD</div>
+
+    <div class="card">
+      <div class="card-icon">📖</div>
+      <div class="card-body">
+        <div class="card-name">Pack Starter — Código de Fuga ($5)</div>
+        <div class="card-desc">16 capítulos + 3 bonuses. El mapa que conecta las 5 áreas. Acceso inmediato por Hotmart.</div>
+        <div class="card-link-wrapper">
+          <span class="card-link" id="link-packstarter">https://landing-gcd.vercel.app/LANDING-PACK-STARTER.html</span>
+          <button class="btn-copy" onclick="copyLink('link-packstarter')">Copiar</button>
+        </div>
+        <div class="card-link-wrapper" style="margin-top:6px;">
+          <span class="card-link" id="link-packstarter-pay" style="font-size:11px;color:var(--neon-dim);">🔗 https://pay.hotmart.com/M105972469O</span>
+          <button class="btn-copy" onclick="copyLink('link-packstarter-pay')">Copiar</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-icon">🎯</div>
+      <div class="card-body">
+        <div class="card-name">Las 5 Áreas — Sistema Completo ($19)</div>
+        <div class="card-desc">5 módulos interactivos con checklists, herramientas y prompts de IA. El sistema completo.</div>
+        <div class="card-link-wrapper">
+          <span class="card-link" id="link-5areas">https://landing-gcd.vercel.app/LANDING-5-AREAS.html</span>
+          <button class="btn-copy" onclick="copyLink('link-5areas')">Copiar</button>
+        </div>
+        <div class="card-link-wrapper" style="margin-top:6px;">
+          <span class="card-link" id="link-5areas-pay" style="font-size:11px;color:var(--neon-dim);">🔗 https://go.hotmart.com/Q106819646H?dp=1</span>
+          <button class="btn-copy" onclick="copyLink('link-5areas-pay')">Copiar</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-icon">📊</div>
+      <div class="card-body">
+        <div class="card-name">Diagnosticador de 5 Áreas ($5)</div>
+        <div class="card-desc">10 preguntas. 2 minutos. Sabé exactamente por dónde empezar.</div>
+        <div class="card-link-wrapper">
+          <span class="card-link" id="link-diagnostico">https://landing-gcd.vercel.app/LANDING-DIAGNOSTICO.html</span>
+          <button class="btn-copy" onclick="copyLink('link-diagnostico')">Copiar</button>
+        </div>
+        <div class="card-link-wrapper" style="margin-top:6px;">
+          <span class="card-link" id="link-diagnostico-pay" style="font-size:11px;color:var(--neon-dim);">🔗 https://go.hotmart.com/Y106824758X?dp=1</span>
+          <button class="btn-copy" onclick="copyLink('link-diagnostico-pay')">Copiar</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-icon">🧮</div>
+      <div class="card-body">
+        <div class="card-name">Calculadora de Pérdida por Desorden ($5)</div>
+        <div class="card-desc">Sumá lo que gastaste probando cosas sueltas. Descubrí cuánto ahorrarías con orden.</div>
+        <div class="card-link-wrapper">
+          <span class="card-link" id="link-calculadora">https://landing-gcd.vercel.app/LANDING-CALCULADORA.html</span>
+          <button class="btn-copy" onclick="copyLink('link-calculadora')">Copiar</button>
+        </div>
+        <div class="card-link-wrapper" style="margin-top:6px;">
+          <span class="card-link" id="link-calculadora-pay" style="font-size:11px;color:var(--neon-dim);">🔗 https://go.hotmart.com/K106824961A?dp=1</span>
+          <button class="btn-copy" onclick="copyLink('link-calculadora-pay')">Copiar</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-icon">📅</div>
+      <div class="card-body">
+        <div class="card-name">Plan 15 Minutos al Día ($5)</div>
+        <div class="card-desc">3 meses. 15 minutos por día. Un sistema andando solo.</div>
+        <div class="card-link-wrapper">
+          <span class="card-link" id="link-plan15">https://landing-gcd.vercel.app/LANDING-PLAN-15.html</span>
+          <button class="btn-copy" onclick="copyLink('link-plan15')">Copiar</button>
+        </div>
+        <div class="card-link-wrapper" style="margin-top:6px;">
+          <span class="card-link" id="link-plan15-pay" style="font-size:11px;color:var(--neon-dim);">🔗 https://go.hotmart.com/T106825064U?dp=1</span>
+          <button class="btn-copy" onclick="copyLink('link-plan15-pay')">Copiar</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-icon">📝</div>
+      <div class="card-body">
+        <div class="card-name">Muestra Gratis — Lead Magnet</div>
+        <div class="card-desc">Prólogo + Capítulo 1 de Código de Fuga + Plan Semana 1. Sin costo.</div>
+        <div class="card-link-wrapper">
+          <span class="card-link" id="link-muestra">https://landing-gcd.vercel.app/sample-codigo-de-fuga.html</span>
+          <button class="btn-copy" onclick="copyLink('link-muestra')">Copiar</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-icon">🔗</div>
+      <div class="card-body">
+        <div class="card-name">INDEX GCD — Linktree</div>
+        <div class="card-desc">Todos los productos en una sola página tipo link-in-bio. Ideal para redes.</div>
+        <div class="card-link-wrapper">
+          <span class="card-link" id="link-indexgcd">https://landing-gcd.vercel.app/INDEX-GCD.html</span>
+          <button class="btn-copy" onclick="copyLink('link-indexgcd')">Copiar</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- REDES Y CONTACTO -->
+  <div class="category">
+    <div class="category-title">Redes y contacto</div>
+
+    <div class="card">
+      <div class="card-icon">📱</div>
+      <div class="card-body">
+        <div class="card-name">WhatsApp</div>
+        <div class="card-desc">Contacto directo para sesiones 1 a 1, consultas o soporte.</div>
+        <div class="card-link-wrapper">
+          <span class="card-link" id="link-whatsapp">https://wa.me/5491161677122</span>
+          <button class="btn-copy" onclick="copyLink('link-whatsapp')">Copiar</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-icon">📸</div>
+      <div class="card-body">
+        <div class="card-name">Instagram</div>
+        <div class="card-desc">Contenido diario sobre las 5 áreas.</div>
+        <div class="card-link-wrapper">
+          <span class="card-link" id="link-ig">https://www.instagram.com/gonzalo.crecimientodigital/</span>
+          <button class="btn-copy" onclick="copyLink('link-ig')">Copiar</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-icon">▶️</div>
+      <div class="card-body">
+        <div class="card-name">YouTube</div>
+        <div class="card-desc">Video "Bases sobre escalamiento y estrategia digital" y más contenido.</div>
+        <div class="card-link-wrapper">
+          <span class="card-link" id="link-yt">https://www.youtube.com/@gonzalo.crecimientodigital</span>
+          <button class="btn-copy" onclick="copyLink('link-yt')">Copiar</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="footer">
+    <a href="https://landing-gcd.vercel.app/INDEX-GCD.html">← Volver al inicio</a>
+    <p>// GCD · SISTEMA v1.0 · BASES SOBRE ESCALAMIENTO Y ESTRATEGIA DIGITAL</p>
+  </div>
+
+</div>
+
+<script>
+function copyLink(id) {
+  const el = document.getElementById(id);
+  const text = el.textContent.trim();
+  navigator.clipboard.writeText(text).then(() => {
+    const toast = document.getElementById('toast');
+    toast.classList.add('show');
+    setTimeout(() => toast.classList.remove('show'), 2000);
+  }).catch(() => {
+    const range = document.createRange();
+    range.selectNode(el);
+    window.getSelection().removeAllRanges();
+    window.getSelection().addRange(range);
+    document.execCommand('copy');
+    window.getSelection().removeAllRanges();
+    const toast = document.getElementById('toast');
+    toast.classList.add('show');
+    setTimeout(() => toast.classList.remove('show'), 2000);
+  });
+}
+</script>
+
+</body>
+</html>

@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Webinar — Escalamiento Consciente | Alaya × GCD</title>
+<meta name="description" content="Webinar gratuito de Alaya y Gonzalo Crecimiento Digital. La emoción que te frena + la estructura que te saca del lugar. En vivo, cupos limitados.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300..900;1,9..144,300..900&family=Space+Mono:wght@400;700&family=Sora:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<!-- Calendly widget CSS (dejar tal cual, solo reemplazar HREF abajo) -->
+<link href="https://assets.calendly.com/assets/external/widget.css" rel="stylesheet">
+<style>
+  :root{
+    --bg:#0B0A0F; --bg-2:#0F0D17; --ink:#F2EFE6; --ink-dim:#B9B3C2; --ink-faint:#7C7688;
+    --neon:#A6FF00; --violet:#B79CFF; --violet-deep:#6E5AA8;
+    --line:rgba(242,239,230,.1); --line-strong:rgba(242,239,230,.22);
+    --serif:'Fraunces',serif; --mono:'Space Mono',monospace; --sans:'Sora',sans-serif;
+  }
+  *{margin:0;padding:0;box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{background:var(--bg);color:var(--ink);font-family:var(--sans);font-weight:300;line-height:1.65;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+  body::before{content:"";position:fixed;inset:0;z-index:0;pointer-events:none;background:radial-gradient(900px 600px at 88% -5%, rgba(183,156,255,.12), transparent 60%), radial-gradient(800px 500px at -10% 15%, rgba(166,255,0,.06), transparent 55%), radial-gradient(700px 700px at 110% 95%, rgba(183,156,255,.08), transparent 60%);}
+  .wrap{position:relative;z-index:1;max-width:1080px;margin:0 auto;padding:0 22px}
+  .kicker{font-family:var(--mono);font-size:11px;letter-spacing:.28em;text-transform:uppercase;color:var(--ink-faint)}
+  .kicker em{font-style:normal;color:var(--neon)}
+  .violet{color:var(--violet)}
+  .nav{position:relative;z-index:2;display:flex;justify-content:space-between;align-items:center;padding:22px 0;border-bottom:1px solid var(--line)}
+  .brand{display:flex;align-items:center;gap:12px}
+  .brand-dot{width:30px;height:30px;border-radius:50%;background:radial-gradient(circle at 30% 30%, var(--violet), var(--violet-deep));position:relative;flex:none}
+  .brand-dot::after{content:"";position:absolute;inset:0;border-radius:50%;border:1px solid var(--neon);transform:scale(1.35);opacity:.8}
+  .brand-name{font-family:var(--serif);font-weight:600;font-size:14px;letter-spacing:.02em}
+  .brand-sub{font-family:var(--mono);font-size:8.5px;letter-spacing:.2em;text-transform:uppercase;color:var(--ink-faint)}
+  .nav-tag{font-family:var(--mono);font-size:9.5px;letter-spacing:.2em;text-transform:uppercase;color:var(--ink-faint)}
+  .hero{padding:56px 0 32px;position:relative}
+  .hero h1{font-family:var(--serif);font-weight:700;line-height:.97;letter-spacing:-.015em;font-size:clamp(36px,7.5vw,78px)}
+  .hero h1 .dim{color:var(--ink-faint);font-weight:300}
+  .hero h1 .line2{display:block;color:var(--violet);font-style:italic;font-weight:500}
+  .hero h1 .line2 b{font-weight:700;font-style:normal;color:var(--neon)}
+  .hero-deck{margin-top:22px;max-width:640px;color:var(--ink-dim);font-size:17px}
+  .hero-deck strong{color:var(--ink);font-weight:600}
+  .hero-meta{margin-top:18px;display:flex;flex-wrap:wrap;gap:10px}
+  .meta-pill{font-family:var(--mono);font-size:10px;letter-spacing:.16em;text-transform:uppercase;padding:7px 12px;border-radius:999px;border:1px solid var(--line-strong);color:var(--ink-dim);background:rgba(242,239,230,.03)}
+  .meta-pill.live{color:var(--neon);border-color:rgba(166,255,0,.35);background:rgba(166,255,0,.06)}
+  .meta-pill.date{color:var(--violet);border-color:rgba(183,156,255,.35);background:rgba(183,156,255,.07)}
+  .hero-cta{margin-top:28px;display:flex;gap:12px;flex-wrap:wrap}
+  .btn-primary{display:inline-flex;align-items:center;gap:10px;font-family:var(--mono);font-size:12px;letter-spacing:.16em;text-transform:uppercase;font-weight:700;color:#0B0A0F;background:linear-gradient(100deg,var(--violet),var(--neon));padding:16px 26px;border-radius:999px;text-decoration:none;transition:transform .2s,box-shadow .2s}
+  .btn-primary:hover{transform:translateY(-2px);box-shadow:0 16px 36px rgba(166,255,0,.18)}
+  .btn-ghost{display:inline-flex;align-items:center;gap:8px;font-family:var(--mono);font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--ink);border:1px solid var(--line-strong);padding:14px 22px;border-radius:999px;text-decoration:none;background:rgba(242,239,230,.03)}
+  .btn-ghost:hover{border-color:rgba(166,255,0,.4);color:var(--neon)}
+
+  /* VIDEO PLACEHOLDER */
+  .video-wrap{margin-top:36px;border:1px solid var(--line-strong);border-radius:22px;overflow:hidden;background:linear-gradient(165deg, rgba(183,156,255,.06), rgba(11,10,15,.5));padding:14px}
+  .video-inner{position:relative;width:100%;aspect-ratio:16/9;border-radius:16px;overflow:hidden;background:rgba(11,10,15,.9);border:1px dashed rgba(242,239,230,.18);display:flex;align-items:center;justify-content:center;flex-direction:column;gap:12px;padding:24px;text-align:center}
+  .video-inner .ph-icon{width:56px;height:56px;border-radius:50%;background:rgba(183,156,255,.12);border:1px solid rgba(183,156,255,.25);display:flex;align-items:center;justify-content:center;font-size:22px;color:var(--violet)}
+  .video-inner h3{font-family:var(--serif);font-size:18px;font-weight:600;color:var(--ink)}
+  .video-inner p{font-size:12.5px;color:var(--ink-dim);max-width:520px}
+  .video-inner code{font-family:var(--mono);font-size:10px;color:var(--ink-faint);background:rgba(242,239,230,.06);padding:6px 10px;border-radius:6px;border:1px solid var(--line)}
+  /* Cuando pegues el iframe, reemplazá TODO el .video-inner por el iframe */
+  .video-inner.has-video{padding:0;border:none;background:#000}
+  .video-inner.has-video iframe{width:100%;height:100%;border:none;display:block}
+
+  /* SECTIONS */
+  .section{padding:72px 0;position:relative}
+  .section-tag{display:flex;align-items:center;gap:14px;margin-bottom:18px;font-family:var(--mono);font-size:11px;letter-spacing:.26em;text-transform:uppercase;color:var(--ink-faint)}
+  .section-tag::before{content:"";width:28px;height:1px;background:var(--neon)}
+  .section h2{font-family:var(--serif);font-weight:600;font-size:clamp(28px,4.2vw,44px);line-height:1.06;letter-spacing:-.01em;max-width:760px}
+  .section h2 em{color:var(--violet);font-style:italic;font-weight:500}
+  .bullets{margin-top:28px;display:grid;grid-template-columns:1fr 1fr;gap:14px}
+  .bullet{border:1px solid var(--line-strong);border-radius:16px;padding:20px;background:rgba(242,239,230,.02);display:flex;gap:14px}
+  .bullet .n{font-family:var(--serif);font-size:22px;color:var(--neon);flex:none;line-height:1}
+  .bullet h3{font-family:var(--serif);font-size:16px;font-weight:600;margin-bottom:6px}
+  .bullet p{font-size:13.5px;color:var(--ink-dim)}
+  .duo{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:28px}
+  .duo-card{border:1px solid var(--line-strong);border-radius:16px;padding:22px}
+  .duo-card.yami{background:linear-gradient(160deg, rgba(183,156,255,.10), transparent 65%)}
+  .duo-card.gonza{background:linear-gradient(160deg, rgba(166,255,0,.08), transparent 65%)}
+  .duo-card .who{font-family:var(--mono);font-size:10px;letter-spacing:.22em;text-transform:uppercase;margin-bottom:10px}
+  .duo-card.yami .who{color:var(--violet)}
+  .duo-card.gonza .who{color:var(--neon)}
+  .case{border:1px solid var(--line-strong);border-radius:22px;padding:32px;background:linear-gradient(165deg, rgba(166,255,0,.06), rgba(183,156,255,.05));margin-top:28px}
+  .case .big{font-family:var(--serif);font-weight:700;font-size:clamp(32px,5vw,56px);line-height:1}
+  .case .big .a{color:var(--neon)} .case .big .b{color:var(--violet)}
+
+  /* CALENDLY */
+  .cal-wrap{margin-top:28px;border:1px solid var(--line-strong);border-radius:22px;overflow:hidden;background:rgba(242,239,230,.02);min-height:680px}
+  .cal-head{padding:18px 22px;border-bottom:1px solid var(--line);display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap}
+  .cal-head h3{font-family:var(--serif);font-size:18px;font-weight:600}
+  .cal-head p{font-family:var(--mono);font-size:10px;letter-spacing:.16em;text-transform:uppercase;color:var(--ink-faint)}
+  .cal-placeholder{padding:32px;text-align:center;color:var(--ink-dim)}
+  .cal-placeholder code{font-family:var(--mono);font-size:11px;background:rgba(242,239,230,.06);padding:8px 12px;border-radius:8px;border:1px solid var(--line);color:var(--ink-faint);word-break:break-all}
+
+  .faq{margin-top:28px;display:grid;gap:10px}
+  .faq-item{border:1px solid var(--line-strong);border-radius:14px;padding:18px 20px;background:rgba(242,239,230,.02)}
+  .faq-item h4{font-family:var(--serif);font-size:16px;font-weight:600;margin-bottom:6px}
+  .faq-item p{font-size:13.5px;color:var(--ink-dim)}
+
+  .footer{border-top:1px solid var(--line);padding:34px 0 44px;font-family:var(--mono);font-size:9.5px;letter-spacing:.18em;text-transform:uppercase;color:var(--ink-faint);display:flex;justify-content:space-between;align-items:center;gap:16px;flex-wrap:wrap}
+  .footer .tags{display:flex;gap:18px;flex-wrap:wrap}
+  .footer .tags span{display:inline-flex;align-items:center;gap:8px}
+  .footer .tags span::before{content:"";width:6px;height:6px;border-radius:50%}
+  .footer .tags .g::before{background:var(--neon)} .footer .tags .a::before{background:var(--violet)}
+  @media (max-width:760px){.bullets{grid-template-columns:1fr}.duo{grid-template-columns:1fr}.hero{padding:40px 0 28px}.section{padding:56px 0}.cal-wrap{min-height:620px}}
+</style>
+</head>
+<body>
+
+<header class="wrap">
+  <nav class="nav">
+    <div class="brand">
+      <div class="brand-dot"></div>
+      <div>
+        <div class="brand-name">Escalamiento Consciente</div>
+        <div class="brand-sub">Alaya <span class="violet">·</span> Gonzalo Crecimiento Digital</div>
+      </div>
+    </div>
+    <div class="nav-tag">Webinar gratuito · En vivo</div>
+  </nav>
+</header>
+
+<section class="hero wrap">
+  <div class="kicker"><em>Webinar gratuito</em> — Alaya &amp; GCD</div>
+  <h1>
+    <span class="dim">Escalamiento</span> Consciente
+    <span class="line2">donde la conciencia <b>se encuentra</b> con el sistema</span>
+  </h1>
+  <p class="hero-deck">
+    Un espacio para mirar tu negocio completo: <strong>lo que te frena por dentro</strong> y <strong>lo que te falta por fuera</strong>. Dos miradas complementarias para ordenar el camino y avanzar con claridad.
+  </p>
+  <div class="hero-meta">
+    <span class="meta-pill live">● En vivo</span>
+    <span class="meta-pill date" id="datePill">📅 Jueves 17/09 · 19:00 hs (ART) — En vivo</span>
+    <span class="meta-pill">Gratis · Cupos limitados</span>
+  </div>
+  <div class="hero-cta">
+    <a class="btn-primary" href="https://wa.me/5491164982599?text=QUIERO%20WEBINAR%2017-09%20-%20Jueves%2017%2F09%2019hs%20-%20Escalamiento%20Consciente" target="_blank" rel="noopener">Reservar por WhatsApp →</a>
+    <a class="btn-ghost" href="#video">Ver de qué se trata ↓</a>
+  </div>
+  <p style="margin-top:12px;font-family:var(--mono);font-size:9.5px;letter-spacing:.12em;text-transform:uppercase;color:var(--ink-faint)">Solo por WhatsApp — filtramos gente comprometida · Te pasamos el link directo + recordatorio</p>
+
+  <!-- ===== VIDEO PLACEHOLDER — REEMPLAZAR POR IFRAME CUANDO ESTÉ LISTO ===== -->
+  <div class="video-wrap" id="video">
+    <div class="video-inner" id="videoInner">
+      <div class="ph-icon">▶</div>
+      <h3>Acá va tu video de presentación</h3>
+      <p>Dejá este placeholder hasta subir el video ancla. Cuando lo tengas, pegá el iframe de YouTube/Vimeo reemplazando todo el bloque <code>.video-inner</code>. El contenedor ya es 16:9 responsive.</p>
+      <code>&lt;iframe src="https://www.youtube.com/embed/TU_ID" ...&gt;&lt;/iframe&gt;</code>
+      <p style="font-size:11px;color:var(--ink-faint)">Instrucción: en este archivo buscá <code>VIDEO PLACEHOLDER</code> y reemplazá el div completo.</p>
+    </div>
+  </div>
+  <!-- Ejemplo para cuando tengas el video (descomentá y borra el placeholder de arriba):
+  <div class="video-wrap">
+    <div class="video-inner has-video">
+      <iframe src="https://www.youtube.com/embed/TU_ID?rel=0" title="Webinar Escalamiento Consciente" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen loading="lazy"></iframe>
+    </div>
+  </div>
+  -->
+</section>
+
+<section class="section wrap">
+  <div class="section-tag">Qué te llevás</div>
+  <h2>Entendé <em>por qué volvés al mismo lugar</em> — y salí con tu orden.</h2>
+  <div class="bullets">
+    <div class="bullet"><span class="n">01</span><div><h3>Tu bloqueo con nombre</h3><p>Cuál de los 5 te frena hoy y qué frase interna lo sostiene.</p></div></div>
+    <div class="bullet"><span class="n">02</span><div><h3>Tu destrabe concreto</h3><p>Una acción clara por bloqueo para romper el patrón sin sumar más herramientas.</p></div></div>
+    <div class="bullet"><span class="n">03</span><div><h3>Tu mapa ordenado</h3><p>Dónde estás hoy y cuál es tu próximo paso, sin hacer todo a la vez.</p></div></div>
+  </div>
+
+  <div class="duo">
+    <div class="duo-card yami">
+      <div class="who">Yamila · Alaya — lado emocional</div>
+      <p><b>¿Qué creencia te hace volver?</b> Nombrarla y reescribirla. Regulación, subconsciente y tarot consciente sin humo.</p>
+    </div>
+    <div class="duo-card gonza">
+      <div class="who">Gonzalo · GCD — lado digital</div>
+      <p><b>¿Qué estructura te falta?</b> Embudo, IA, pauta $5/día y automatización — con herramientas gratis.</p>
+    </div>
+  </div>
+
+  <div class="case">
+    <div class="kicker" style="color:var(--neon)">Caso real · Alaya + GCD</div>
+    <div class="big" style="margin-top:10px"><span class="a">$200</span> → <span class="b">$600</span></div>
+    <p>En 30 días, misma clienta, mismo servicio. Cambiamos el <strong style="color:var(--ink)">orden</strong>: primero la creencia (merecimiento), después la estructura (precio por valor + embudo). Esa lógica la ves completa en el webinar.</p>
+  </div>
+</section>
+
+<section class="section wrap" id="reserva" style="padding-top:0">
+  <div class="section-tag">Reservá tu lugar</div>
+  <h2>Reservá por WhatsApp — <em>Jueves 17/09 · 19:00 hs</em></h2>
+  <p style="margin-top:14px;color:var(--ink-dim);max-width:620px">Webinar gratuito, en vivo. <strong style="color:var(--ink)">Solo por WhatsApp</strong> te pasamos el link directo + recordatorio. Filtramos gente comprometida.</p>
+
+  <div class="cal-wrap" style="min-height:auto">
+    <div class="cal-head">
+      <div>
+        <h3>Webinar — Jueves 17/09 · 19:00 hs (ART)</h3>
+        <p>60 min · En vivo · Gratis · Cupos limitados</p>
+      </div>
+      <span style="font-family:var(--mono);font-size:9px;letter-spacing:.18em;text-transform:uppercase;color:var(--neon);border:1px solid rgba(166,255,0,.3);padding:6px 10px;border-radius:999px;background:rgba(166,255,0,.06)">Solo WhatsApp</span>
+    </div>
+    <div style="padding:28px;text-align:center">
+      <p style="color:var(--ink-dim);font-size:14px;max-width:520px;margin:0 auto">Escribí <strong style="color:var(--neon)">QUIERO WEBINAR</strong> por WhatsApp y te enviamos el link de la sala + el recordatorio. Sin WhatsApp no hay acceso.</p>
+      <div style="margin-top:20px">
+        <a href="https://wa.me/5491164982599?text=QUIERO%20WEBINAR%2017-09%20-%20Jueves%2017%2F09%2019hs%20-%20Escalamiento%20Consciente" target="_blank" rel="noopener" class="btn-primary" style="font-size:13px;padding:18px 32px">Reservar por WhatsApp →</a>
+      </div>
+      <p style="margin-top:16px;font-family:var(--mono);font-size:10px;color:var(--ink-faint)">Te llega el link + .ics por WhatsApp en el día. Backup por email si ya dejaste tu guía en <a href="/alaya-a" style="color:var(--violet)">/alaya-a</a>.</p>
+      <div style="margin-top:16px;display:flex;gap:10px;justify-content:center;flex-wrap:wrap">
+        <a href="https://calendar.google.com/calendar/render?action=TEMPLATE&text=Webinar%20gratuito%20--%20Escalamiento%20Consciente&dates=20260917T220000Z%2F20260917T230000Z&details=Donde%20la%20conciencia%20se%20encuentra%20con%20el%20sistema.%20Yamila%20%28Alaya%29%20%2B%20Gonzalo%20%28GCD%29%20--%2060min%20en%20vivo.%20Link:%20https%3A%2F%2Flanding-gcd.vercel.app%2Fwebinar-alaya&location=Online%20--%20link%20se%20envia%20por%20WhatsApp&ctz=America%2FArgentina%2FBuenos_Aires" target="_blank" rel="noopener" style="font-family:var(--mono);font-size:9px;letter-spacing:.12em;text-transform:uppercase;color:var(--violet);text-decoration:none">+ Google Calendar (opcional)</a>
+        <a href="/alaya/webinar-escalamiento-consciente.ics" download style="font-family:var(--mono);font-size:9px;letter-spacing:.12em;text-transform:uppercase;color:var(--ink-faint);text-decoration:none">+ .ics</a>
+      </div>
+    </div>
+  </div>
+  <p style="margin-top:14px;font-family:var(--mono);font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:var(--ink-faint);text-align:center">Al reservar por WhatsApp aceptás recibir el link y recordatorio por ese medio. <a href="https://landing-gcd.vercel.app/privacidad.html" style="color:var(--violet)">Privacidad</a></p>
+</section>
+
+<section class="section wrap" style="padding-top:0">
+  <div class="section-tag">Preguntas frecuentes</div>
+  <div class="faq">
+    <div class="faq-item"><h4>¿Es realmente gratis?</h4><p>Sí. Webinar completo, en vivo. Sin obligación de compra.</p></div>
+    <div class="faq-item"><h4>¿Queda grabado?</h4><p>Dependerá de la edición — lo confirmamos al agendar tu lugar.</p></div>
+    <div class="faq-item"><h4>¿Necesito saber de estrategia o de terapia?</h4><p>No. Partimos de cero y mostramos ambas capas con ejemplos del lead magnet (los 5 bloqueos).</p></div>
+  </div>
+</section>
+
+<footer class="footer wrap">
+  <div>Webinar · Escalamiento Consciente · Alaya × GCD</div>
+  <div class="tags"><span class="a">Alaya — conciencia</span><span class="g">GCD — estructura</span></div>
+</footer>
+
+<script src="https://assets.calendly.com/assets/external/widget.js" async></script>
+<script>
+  // Cuando definan fecha, descomentá y completá:
+  // var WEBINAR_DATE = "2026-09-18";
+  // var WEBINAR_TIME = "19:00";
+  // document.getElementById('datePill').textContent = "📅 " + WEBINAR_DATE + " · " + WEBINAR_TIME + " — En vivo";
+</script>
+</body>
+</html>
