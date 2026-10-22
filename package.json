@@ -1,0 +1,24 @@
+{
+  "name": "gonzalo-crecimiento-digital",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "description": "Sitio de landings, herramientas interactivas y sistema de captación de Gonzalo Crecimiento Digital.",
+  "scripts": {
+    "dev": "node tools/dev-server.mjs",
+    "check:links": "node tools/check-links.mjs",
+    "screenshots": "node tools/screenshots.mjs"
+  },
+  "keywords": [
+    "landing-pages",
+    "static-site",
+    "vercel",
+    "playwright",
+    "apps-script"
+  ],
+  "author": "Gonzalo Cortez",
+  "license": "MIT",
+  "dependencies": {
+    "playwright": "^1.62.1"
+  }
+}
