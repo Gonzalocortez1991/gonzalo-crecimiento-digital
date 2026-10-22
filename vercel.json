@@ -46,6 +46,8 @@
     { "source": "/FORMULARIO-DIAGNOSTICO-GCD.html", "destination": "/landings/FORMULARIO-DIAGNOSTICO-GCD.html" },
     { "source": "/DIAGNOSTICO-5-AREAS.html", "destination": "/landings/DIAGNOSTICO-5-AREAS.html" },
     { "source": "/CALCULADORA-PERDIDA-DESORDEN.html", "destination": "/landings/CALCULADORA-PERDIDA-DESORDEN.html" },
+    { "source": "/landings/LANDING-GCD.html", "destination": "/LANDING-GCD.html" },
+    { "source": "/alaya/", "destination": "/alaya/LANDING-CENTRAL-ESCALAMIENTO.html" },
     { "source": "/alaya-a", "destination": "/alaya/LANDING-ALAYA-A.html" },
     { "source": "/alaya-b", "destination": "/alaya/LANDING-ALAYA-B.html" },
     { "source": "/alaya", "destination": "/alaya/LANDING-CENTRAL-ESCALAMIENTO.html" },
