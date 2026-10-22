@@ -7,4 +7,5 @@ node_modules/
 docs/
 tools/
 *.md
+package.json
 package-lock.json
