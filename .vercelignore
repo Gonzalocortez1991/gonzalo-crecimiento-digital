@@ -1,0 +1,10 @@
+# Vercel solo necesita el contenido de site/.
+# El resto es operación privada o tooling local.
+_private/
+node_modules/
+.vercel/
+.git/
+docs/
+tools/
+*.md
+package-lock.json

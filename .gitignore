@@ -1,0 +1,25 @@
+# Dependencias
+node_modules/
+
+# Operación privada: estrategia, clientes, métricas, medios y credenciales
+_private/
+.env
+.env.*
+!.env.example
+
+# Vercel
+.vercel/
+
+# Sistema operativo y editores
+.DS_Store
+Thumbs.db
+desktop.ini
+*.log
+
+# Playwright
+test-results/
+playwright-report/
+
+# Temporales
+__pycache__/
+*.pyc
