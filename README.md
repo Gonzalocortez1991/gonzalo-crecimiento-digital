@@ -6,6 +6,11 @@ Sitio estático y sistema de captación para productos digitales: landings de ve
 
 ![Home de Gonzalo Crecimiento Digital](docs/screenshots/01-home-desktop.png)
 
+<p align="center">
+  <img src="docs/screenshots/02-pack-starter.png" width="49%" alt="Landing Pack Starter">
+  <img src="docs/screenshots/03-alaya.png" width="49%" alt="Landing Alaya">
+</p>
+
 ## Qué incluye
 
 - **Landings de venta** para Pack Starter ($5), Las 5 Áreas ($19) y tres herramientas por avatar.
